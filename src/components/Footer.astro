@@ -14,6 +14,15 @@ const socials = (['instagram', 'tiktok', 'youtube', 'linkedin', 'x'] as const).m
 const socialNames = { instagram: 'Instagram', tiktok: 'TikTok', youtube: 'YouTube', linkedin: 'LinkedIn', x: 'X' };
 const c = site.contacts;
 const year = new Date().getFullYear();
+// Aynı e-posta / telefon footer'da yalnızca bir kez gösterilir.
+const shown = new Set<string>();
+const once = (v: string | null | undefined) => (v && !shown.has(v) ? (shown.add(v), v) : null);
+const contactLines = [
+  { label: t.footer.franchiseLine, email: once(c.franchise.email), phone: once(c.franchise.phone), address: null as string | null },
+  { label: t.footer.guestLine, email: once(c.guest.email), phone: once(c.guest.phone), address: null },
+  { label: t.footer.pressLine, email: once(c.press.email), phone: once(c.press.phone), address: null },
+  ...site.offices.map((o) => ({ label: o.label[lang as 'tr' | 'en'], address: `${o.street}, ${o.postalCode} ${o.district} / ${o.city}`, email: null, phone: once(o.phone) })),
+].filter((l) => l.email || l.phone || l.address);
 ---
 <footer class="on-dark pattern-rice-dark bg-ink text-ink-mute">
   <div class="container-x grid gap-10 py-14 md:grid-cols-12">
@@ -65,17 +74,12 @@ const year = new Date().getFullYear();
       <div class="col-span-2 sm:col-span-1">
         <p class="font-semibold text-white">{t.footer.colContact}</p>
         <dl class="mt-3 space-y-3 [overflow-wrap:anywhere]">
-          <div><dt class="text-xs text-ink-mute/80">{t.footer.franchiseLine}</dt>
-            <dd class="text-white">{c.franchise.email ? <a href={`mailto:${c.franchise.email}`} class="hover:underline">{c.franchise.email}</a> : <Todo label="e-mail TODO" />}</dd>
-            <dd class="text-white">{c.franchise.phone ? <a href={telHref(c.franchise.phone)} class="hover:underline">{c.franchise.phone}</a> : <Todo label="tel TODO" />}</dd></div>
-          <div><dt class="text-xs text-ink-mute/80">{t.footer.guestLine}</dt>
-            <dd class="text-white">{c.guest.phone ? <a href={telHref(c.guest.phone)} class="hover:underline">{c.guest.phone}</a> : <Todo label="tel TODO" />}</dd></div>
-          <div><dt class="text-xs text-ink-mute/80">{t.footer.pressLine}</dt>
-            <dd class="text-white">{c.press.email ? <a href={`mailto:${c.press.email}`} class="hover:underline">{c.press.email}</a> : <Todo label="e-mail TODO" />}</dd></div>
-          {site.offices.map((o) => (
-            <div><dt class="text-xs text-ink-mute/80">{o.label[lang]}</dt>
-              <dd class="text-white">{o.street}, {o.postalCode} {o.district} / {o.city}</dd>
-              <dd class="text-white"><a href={telHref(o.phone)} class="hover:underline">{o.phone}</a></dd></div>
+          {contactLines.map((l) => (
+            <div><dt class="text-xs text-ink-mute/80">{l.label}</dt>
+              {l.address && <dd class="text-white">{l.address}</dd>}
+              {l.email && <dd class="text-white"><a href={`mailto:${l.email}`} class="hover:underline">{l.email}</a></dd>}
+              {l.phone && <dd class="text-white"><a href={telHref(l.phone)} class="hover:underline">{l.phone}</a></dd>}
+            </div>
           ))}
         </dl>
         <div class="mt-6"><LangSwitch lang={lang} alternates={alternates} dark /></div>
