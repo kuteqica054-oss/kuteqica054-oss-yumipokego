@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <rect width="1000" height="1000" fill="#fbf7f0"/>
+  <g transform="translate(320 215) scale(5.625)"><circle cx="32" cy="32" r="30" fill="#0e2a3b"/><circle cx="32" cy="32" r="23.5" fill="#fbf7f0"/><path d="M32 32 L32 10.5 A21.5 21.5 0 0 1 52.4 25.4 Z" fill="#ee6a4e"/><path d="M32 32 L52.4 25.4 A21.5 21.5 0 0 1 44.6 49.4 Z" fill="#6e9a3c"/><path d="M32 32 L44.6 49.4 A21.5 21.5 0 0 1 19.4 49.4 Z" fill="#f5b83d"/><path d="M32 32 L19.4 49.4 A21.5 21.5 0 0 1 11.6 25.4 Z" fill="#9fc46a"/><circle cx="32" cy="32" r="6" fill="#fbf7f0"/><circle cx="22" cy="22" r="1.4" fill="#0e2a3b"/><circle cx="26" cy="17.5" r="1.1" fill="#0e2a3b"/><circle cx="19" cy="27" r="1" fill="#0e2a3b"/></g>
+  <text x="500" y="730" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="700" font-size="150" letter-spacing="-6" fill="#0e2a3b">Yumi<tspan fill="#c4442a">Poke</tspan><tspan fill="#3f6b22">Go</tspan></text>
+</svg>
