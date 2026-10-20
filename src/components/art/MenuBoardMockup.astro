@@ -20,7 +20,6 @@ const sets = [['salmon', 'avocado', 'edamame', 'mango'], ['tuna', 'corn', 'cucum
           <div class="rounded-lg bg-white/5 p-2 text-center">
             <svg viewBox="-132 -132 264 264" class="mx-auto block w-full" set:html={bowlSvg({ toppings: sets[i] as any, seed: 40 + i, idPrefix: `mb${i}` })} />
             <p class="mt-1.5 text-[10px] font-semibold leading-tight">{it}</p>
-            <p class="text-[10px] text-mango-400">{m.priceHidden}</p>
           </div>
         ))}
       </div>

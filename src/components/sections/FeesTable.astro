@@ -1,27 +1,41 @@
 ---
+// Ödemeler tablosu. Hiçbir değer girilmemişse (showTodos: false) "Değer" sütunu gizlenir,
+// tablonun altında bilgi paketi notu ve başvuru bağlantısı gösterilir.
 import type { Lang } from '../../i18n/routes';
-import { useT, pick, type Num, type Unit } from '../../i18n/utils';
+import { path } from '../../i18n/routes';
+import { useT, pick, formatValue, type Num, type Unit } from '../../i18n/utils';
 import franchise from '../../data/franchise.json';
+import site from '../../config/site.json';
 import Value from '../ui/Value.astro';
+import Icon from '../ui/Icon.astro';
 interface Props { lang: Lang; ids?: string[] }
 const { lang, ids } = Astro.props;
-const t = useT(lang).investmentPage;
+const T = useT(lang);
+const t = T.investmentPage;
 const rows = ids ? franchise.fees.filter((f) => ids.includes(f.id)) : franchise.fees;
+const filled = (r: (typeof rows)[number]) => !!formatValue(pick(r.value as any, lang) as Num, r.unit as Unit, lang);
+const showValues = site.showTodos || rows.some(filled);
 ---
 <div class="overflow-hidden rounded-[var(--radius-card)] border border-line bg-white">
   <table class="w-full text-left text-[0.95rem]">
     <caption class="sr-only">{t.tableTitle}</caption>
     <thead class="hidden bg-rice-2 text-sm text-ink-soft sm:table-header-group">
-      <tr><th scope="col" class="px-5 py-3 font-semibold">{t.tableItem}</th><th scope="col" class="px-5 py-3 font-semibold">{t.tableValue}</th><th scope="col" class="px-5 py-3 font-semibold">{t.tableDetail}</th></tr>
+      <tr><th scope="col" class="px-5 py-3 font-semibold">{t.tableItem}</th>{showValues && <th scope="col" class="px-5 py-3 font-semibold">{t.tableValue}</th>}<th scope="col" class="px-5 py-3 font-semibold">{t.tableDetail}</th></tr>
     </thead>
     <tbody class="divide-y divide-line">
       {rows.map((r) => (
         <tr class="grid grid-cols-1 gap-1 px-5 py-4 sm:table-row sm:p-0">
           <th scope="row" class="font-display text-base font-bold sm:px-5 sm:py-4">{pick(r.label, lang)}</th>
-          <td class="font-display text-xl font-bold text-coral-700 sm:px-5 sm:py-4 sm:whitespace-nowrap"><Value value={pick(r.value as any, lang) as Num} unit={r.unit as Unit} lang={lang} /></td>
-          <td class="text-sm text-ink-soft sm:px-5 sm:py-4">{pick(r.detail, lang)}</td>
+          {showValues && <td class="font-display text-xl font-bold text-coral-700 sm:px-5 sm:py-4 sm:whitespace-nowrap"><Value value={pick(r.value as any, lang) as Num} unit={r.unit as Unit} lang={lang} /></td>}
+          <td class="text-ink-soft sm:px-5 sm:py-4">{pick(r.detail, lang)}</td>
         </tr>
       ))}
     </tbody>
   </table>
+  {!rows.every(filled) && !site.showTodos && (
+    <div class="flex flex-col gap-3 border-t border-line bg-coral-50 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+      <p class="flex gap-2 text-[0.95rem] text-ink"><span class="mt-0.5 text-coral-700"><Icon name="FileText" size={18} /></span>{T.common.feesOnRequest}</p>
+      <a href={path('apply', lang)} class="btn-primary btn-sm shrink-0">{T.common.requestPack}</a>
+    </div>
+  )}
 </div>

@@ -7,15 +7,15 @@ export const tr = {
 
   meta: {
     home: {
-      title: 'YumiPokeGo Franchise | Poke ve Asya Mutfağı Restoran Franchise Fırsatı',
-      description: 'YumiPokeGo franchise: poke bowl, wok ve roll sunan hızlı-rahat Asya mutfağı restoranı açın. Yatırım bilgileri, formatlar, açılış süreci ve franchise başvurusu.',
+      title: 'Poke ve Asya Mutfağı Franchise Fırsatları | YumiPokeGo',
+      description: 'YumiPokeGo ile poke bowl, wok ve roll sunan fast casual bir Asya mutfağı restoranı açın. Yemek franchise fırsatları: yatırım, formatlar, açılış süreci ve başvuru.',
     },
     franchise: {
-      title: 'Poke Franchise — YumiPokeGo Bayilik Modeli ve Koşulları',
-      description: 'YumiPokeGo franchise modeli: tekil, çoklu ve master franchise, aday profili, franchise bedeli, royalti ve reklam payı. Asya mutfağı franchise fırsatını inceleyin.',
+      title: 'Poke Franchise ve Restoran Bayiliği | YumiPokeGo',
+      description: 'YumiPokeGo franchise (bayilik) modeli: tek restoran, çoklu ve master franchise, aday profili ve ödemeler. Asya mutfağı franchise fırsatını inceleyin.',
     },
     formats: {
-      title: 'Restoran Formatları — Cadde, AVM, Kiosk ve Dark Kitchen | YumiPokeGo',
+      title: 'Restoran Formatları: Cadde, AVM, Kiosk | YumiPokeGo',
       description: 'YumiPokeGo restoran formatları: cadde mağazası, AVM yemek katı, kiosk/express ve dark kitchen. Yerleşim planları, alan, oturma kapasitesi ve personel bilgileri.',
     },
     investment: {
@@ -27,20 +27,20 @@ export const tr = {
       description: 'YumiPokeGo franchise açılış süreci adım adım: başvuru, ön görüşme, değerlendirme ve NDA, lokasyon onayı, sözleşme, proje, eğitim ve açılış.',
     },
     support: {
-      title: 'Franchise Destek — Eğitim, Tedarik, Pazarlama | YumiPokeGo',
+      title: 'Franchise Desteği: Eğitim, Tedarik, Pazarlama | YumiPokeGo',
       description: 'YumiPokeGo franchise sahiplerine lokasyon seçimi, iç mimari proje, personel eğitimi, operasyon el kitabı, tedarik zinciri, pazarlama ve POS desteği sunar.',
     },
     menu: {
       title: 'Menü — Poke Bowl, Wok ve Roll | YumiPokeGo',
-      description: 'YumiPokeGo menüsü: taze malzemelerle hazırlanan poke bowl\'lar, yüksek ateşte wok ve roll çeşitleri. Bowl\'unu kendin oluştur.',
+      description: 'YumiPokeGo menüsü: taze malzemelerle hazırlanan poke bowl’lar, yüksek ateşte wok ve roll çeşitleri. Bowl’unuzu kendiniz oluşturun.',
     },
     locations: {
       title: 'Restoranlar — YumiPokeGo Şubeleri',
-      description: 'YumiPokeGo restoranlarının adresleri, çalışma saatleri ve paket servis bağlantıları. Size en yakın şubeyi bulun.',
+      description: 'YumiPokeGo restoranları ve franchise’a açık şehirler. Restoran adresleri, çalışma saatleri ve paket servis bağlantıları bu sayfada yayımlanır.',
     },
     corporate: {
       title: 'Kurumsal — Hakkımızda, Yönetim ve Kalite | YumiPokeGo A.Ş.',
-      description: 'YumiPokeGo A.Ş. hakkında: misyon, değerler, yönetim kurulu ve yönetim ekibi, gıda güvenliği ve kalite politikası.',
+      description: 'YumiPokeGo A.Ş. hakkında: misyon, vizyon, değerler, merkez organizasyonu, gıda güvenliği ve kalite politikası. Franchise ağını yöneten kurumsal yapı.',
     },
     companyInfo: {
       title: 'Bilgi Toplumu Hizmetleri | YumiPokeGo A.Ş.',
@@ -48,7 +48,7 @@ export const tr = {
     },
     press: {
       title: 'Basın ve Haberler | YumiPokeGo',
-      description: 'YumiPokeGo basın bültenleri, haberler ve basın iletişim bilgileri.',
+      description: 'YumiPokeGo basın bültenleri, franchise programı ve şirket haberleri. Röportaj, görsel ve bilgi talepleri için basın iletişim bilgileri.',
     },
     apply: {
       title: 'Franchise Başvurusu | YumiPokeGo',
@@ -56,11 +56,11 @@ export const tr = {
     },
     contact: {
       title: 'İletişim | YumiPokeGo',
-      description: 'YumiPokeGo franchise, misafir ilişkileri ve basın iletişim bilgileri. Merkez ofis adresi ve WhatsApp hattı.',
+      description: 'YumiPokeGo iletişim bilgileri: franchise ve yatırım soruları, misafir ilişkileri ve basın talepleri için e-posta, telefon ve ofis adresleri.',
     },
-    privacy: { title: 'KVKK Aydınlatma Metni | YumiPokeGo', description: 'YumiPokeGo kişisel verilerin korunması ve işlenmesine ilişkin aydınlatma metni.' },
-    cookies: { title: 'Çerez Politikası | YumiPokeGo', description: 'YumiPokeGo web sitesinde kullanılan çerezler ve tercihlerinizi nasıl yönetebileceğiniz.' },
-    terms: { title: 'Kullanım Koşulları | YumiPokeGo', description: 'YumiPokeGo web sitesi kullanım koşulları.' },
+    privacy: { title: 'KVKK Aydınlatma Metni | YumiPokeGo', description: 'YumiPokeGo KVKK aydınlatma metni: franchise başvurularında işlenen kişisel veriler, işleme amaçları, hukuki sebepler ve haklarınız.' },
+    cookies: { title: 'Çerez Politikası | YumiPokeGo', description: 'YumiPokeGo web sitesinde kullanılan çerezler, çerez kategorileri ve tercihlerinizi nasıl yönetebileceğiniz hakkında bilgi.' },
+    terms: { title: 'Kullanım Koşulları | YumiPokeGo', description: 'YumiPokeGo web sitesinin kullanım koşulları: sitedeki bilgilerin niteliği, fikri mülkiyet, başvuru formu ve uygulanacak hukuk.' },
   },
 
   common: {
@@ -73,6 +73,13 @@ export const tr = {
     readMore: 'Devamını oku',
     todo: 'TODO',
     onRequest: 'Bilgi paketinde paylaşılır',
+    figureFacts: [
+      { value: '3', label: 'Franchise modeli', note: 'Tek restoran, çoklu ve master' },
+      { value: '4', label: 'Restoran formatı', note: 'Cadde, AVM, kiosk, dark kitchen' },
+      { value: '9', label: 'Adımlık açılış süreci', note: 'Başvurudan sürekli desteğe' },
+    ],
+    feesOnRequest: 'Güncel tutar ve oranlar, ön görüşmenin ardından paylaşılan bilgi paketinde kalem kalem yer alır.',
+    requestPack: 'Bilgi paketini talep edin',
     updating: 'Güncelleniyor',
     available: 'Başvuruya açık',
     sample: 'Örnek',
@@ -82,7 +89,7 @@ export const tr = {
     menuOpen: 'Menüyü aç',
     menuClose: 'Menüyü kapat',
     switchLang: 'Switch to English',
-    breadcrumb: 'Konum',
+    breadcrumb: 'Sayfa yolu',
     home: 'Ana sayfa',
     photoSlot: 'Fotoğraf alanı',
     whatsapp: 'WhatsApp ile yazın',
@@ -110,12 +117,13 @@ export const tr = {
   },
 
   footer: {
-    tagline: 'Hızlı-rahat Asya mutfağı: poke bowl, wok ve roll. Franchise ile Türkiye genelinde büyüyoruz.',
+    tagline: 'Fast casual Asya mutfağı: poke bowl, wok ve roll. Franchise modeliyle Türkiye genelinde büyümeyi hedefliyoruz.',
     colFranchise: 'Franchise',
     colGuests: 'Misafirler',
     colCompany: 'Şirket',
     colContact: 'İletişim',
     franchiseLine: 'Franchise hattı',
+    mainLine: 'E-posta ve telefon',
     guestLine: 'Misafir hattı',
     pressLine: 'Basın',
     social: 'Sosyal medya',
@@ -133,7 +141,7 @@ export const tr = {
     necessary: 'Zorunlu',
     necessaryDesc: 'Sitenin çalışması ve tercihlerinizin hatırlanması için gereklidir. Kapatılamaz.',
     analytics: 'Analitik',
-    analyticsDesc: 'Hangi sayfaların ziyaret edildiğini anonim olarak ölçmemize yardımcı olur.',
+    analyticsDesc: 'Hangi sayfaların ziyaret edildiğini toplu (istatistiksel) olarak ölçmemize yardımcı olur.',
     acceptAll: 'Tümünü kabul et',
     rejectAll: 'Yalnızca zorunlu',
     save: 'Seçimi kaydet',
@@ -157,8 +165,8 @@ export const tr = {
     hero: {
       eyebrow: 'Franchise fırsatı · Türkiye',
       title: 'Kendi YumiPokeGo restoranınızı açın',
-      lead: 'Türkiye’de büyüyen hızlı-rahat Asya mutfağı zinciri: poke bowl, wok ve roll. Standart reçeteler, merkezi tedarik ve açılıştan sonra da süren saha desteğiyle.',
-      guest: 'Restoranlarımıza mı geldiniz?',
+      lead: 'Poke bowl, wok ve roll sunan fast casual Asya mutfağı konsepti. Standart reçeteler, merkezi tedarik ve açılıştan sonra da süren saha desteğiyle franchise ağımızı Türkiye genelinde büyütüyoruz.',
+      guest: 'Misafir misiniz?',
       bowlAlt: 'Üstten görünümde poke bowl: pirinç, somon, avokado, edamame, mango ve susam',
       storeAlt: 'YumiPokeGo restoran cephesinin şematik çizimi',
     },
@@ -171,13 +179,13 @@ export const tr = {
     whyPoke: {
       eyebrow: 'Neden poke?',
       title: 'Kolay anlaşılan bir ürün, verimli bir operasyon',
-      lead: 'Poke bowl; taze malzemeyi, hızlı servisi ve kişiselleştirmeyi tek bir kapta buluşturur. İşletme açısından ise karmaşık pişirme gerektirmeyen, öğrenmesi kolay bir hat demektir.',
+      lead: 'Poke bowl; taze malzemeyi, hızlı servisi ve kişiselleştirmeyi tek bir kapta buluşturur. İşletme açısından ise poke hattı karmaşık pişirme gerektirmez ve kolay öğrenilir.',
       items: [
         { title: 'Dengeli beslenmeye artan ilgi', text: 'Misafirler hızlı ama hafif, sebze ve protein dengesi belli öğünler arıyor. Poke bu ihtiyaca doğal olarak cevap verir.', stat: true },
         { title: 'Misafir kendi bowl’unu seçer', text: 'Baz, protein, sos ve topping seçimi her misafire kendi kombinasyonunu sunar; menüyü büyütmeden çeşitlilik sağlar.' },
-        { title: 'Paket servise uygun', text: 'Soğuk ve oda sıcaklığında servis edilen ürünler yolda bozulmaz; kapalı kaplar ve ayrı sos haznesiyle teslimatta kalite korunur.', stat: true },
-        { title: 'Hızlı montaj hattı', text: 'Malzemeler önceden hazırlanır, sipariş hatta saniyeler içinde birleştirilir. Yoğun saatlerde akış kesilmez.' },
-        { title: 'Kompakt mutfak', text: 'Fritöz ve büyük fırın gerektirmeyen ana ürün, küçük metrekarelerde ve sade ekipmanla çalışmayı mümkün kılar.' },
+        { title: 'Paket servise uygun', text: 'Soğuk servis edilen ürünler teslimata uygundur; soğuk zinciri koruyan kapalı ambalaj ve ayrı sos haznesi teslimatta kaliteyi korur.', stat: true },
+        { title: 'Hızlı servis hattı', text: 'Malzemeler önceden hazırlanır, sipariş hatta saniyeler içinde birleştirilir. Yoğun saatlerde akış kesilmez.' },
+        { title: 'Kompakt mutfak', text: 'Poke hattı fritöz ve büyük fırın gerektirmez; wok ve çıtır ürünler formata göre eklenir. Bu sayede küçük metrekarelerde sade ekipmanla çalışılabilir.' },
       ],
       statNote: 'Pazar verisi',
     },
@@ -188,12 +196,12 @@ export const tr = {
       items: [
         { title: 'Standart menü ve reçeteler', text: 'Her ürün gramajı, montaj sırası ve sunum fotoğrafıyla tanımlıdır. Hangi şehirde olursa olsun aynı bowl.' },
         { title: 'Merkezi tedarik', text: 'Ana ürünler, soslar ve ambalaj onaylı tedarikçilerden, planlı sevkiyatla gelir. Fiyat ve kalite takibini merkez yapar.' },
-        { title: 'Eğitim akademisi', text: 'Franchise sahibi ve ekip için açılış öncesi teorik ve uygulamalı eğitim, açılış haftası sahada destek.' },
-        { title: 'Pazarlama', text: 'Açılış kampanyası, sosyal medya içerikleri, paket servis platformlarında görünürlük ve ulusal kampanyalar.' },
+        { title: 'Eğitim programı', text: 'Franchise sahibi ve ekip için açılış öncesi teorik ve uygulamalı eğitim, açılış haftası sahada destek.' },
+        { title: 'Pazarlama', text: 'Açılış kampanyası, sosyal medya içerikleri, paket servis platformlarında görünürlük ve marka kampanyaları.' },
         { title: 'Teknoloji', text: 'POS, paket servis entegrasyonu, stok ve raporlama ekranları tek merkezden.' },
       ],
       detailsTodo: 'Ayrıntılar netleşecek',
-      posCaption: 'POS ve sipariş ekranı (temsilî arayüz)',
+      posCaption: 'POS ve sipariş ekranı tasarımı',
     },
     formats: {
       eyebrow: 'Restoran formatları',
@@ -203,7 +211,7 @@ export const tr = {
     },
     process: {
       eyebrow: 'Açılış süreci',
-      title: 'Başvurudan açılışa dokuz adım',
+      title: 'Başvurudan açılışa ve sonrasına dokuz adım',
       lead: 'Her adımda kimin ne yapacağı belli. Süreç boyunca tek bir franchise yöneticisiyle çalışırsınız.',
       link: 'Süreci ayrıntılı inceleyin',
     },
@@ -227,10 +235,10 @@ export const tr = {
     },
     about: {
       eyebrow: 'Kurumsal',
-      title: 'Bir anonim şirketin süreçleri, bir mutfağın özeni',
-      text: 'YumiPokeGo, franchise ağını yöneten bir anonim şirket olarak yapılandırılmıştır. Reçete geliştirme, tedarik, eğitim ve kalite denetimi merkez ekiplerin sorumluluğundadır; her restoran aynı operasyon el kitabıyla çalışır.',
+      title: 'Kurumsal süreçler, mutfak özeni',
+      text: 'YumiPokeGo, franchise ağını yöneten bir anonim şirket olarak yapılandırılmıştır. Reçete geliştirme, tedarik, eğitim ve kalite denetimi merkez ekiplerin sorumluluğundadır; her franchise restoranı aynı operasyon el kitabıyla çalışır.',
       link: 'Şirketimizi tanıyın',
-      team: 'Yönetim',
+      team: 'Merkez ekipler',
     },
     faq: {
       eyebrow: 'Sık sorulan sorular',
@@ -249,7 +257,7 @@ export const tr = {
   process: [
     { id: 'apply', title: 'Başvuru', text: 'Online formu doldurursunuz. Başvurunuz franchise ekibine ulaşır ve kayda alınır.', who: 'Aday' },
     { id: 'call', title: 'Ön görüşme', text: 'Franchise yöneticisi sizi arar; beklentilerinizi, bölgenizi ve bütçenizi konuşursunuz.', who: 'Aday + YumiPokeGo' },
-    { id: 'nda', title: 'Değerlendirme ve NDA', text: 'Gizlilik sözleşmesi imzalanır, ayrıntılı bilgi paketi paylaşılır. Yüz yüze tanışma ve restoran ziyareti yapılır.', who: 'Aday + YumiPokeGo' },
+    { id: 'nda', title: 'Değerlendirme ve NDA', text: 'Gizlilik sözleşmesi imzalanır, ayrıntılı bilgi paketi paylaşılır ve merkez ekiple yüz yüze görüşme yapılır.', who: 'Aday + YumiPokeGo' },
     { id: 'site', title: 'Lokasyon onayı', text: 'Önerdiğiniz ya da birlikte bulduğumuz lokasyon; trafik, görünürlük, teknik altyapı ve kira koşulları açısından incelenir.', who: 'YumiPokeGo' },
     { id: 'contract', title: 'Franchise sözleşmesi', text: 'Koşullar netleşir, franchise sözleşmesi imzalanır ve franchise bedeli ödenir.', who: 'Aday + YumiPokeGo' },
     { id: 'build', title: 'Proje ve inşaat', text: 'İç mimari proje hazırlanır; dekorasyon, ekipman ve teknoloji kurulumu merkez kontrolünde yürütülür.', who: 'Franchise sahibi + YumiPokeGo' },
@@ -275,7 +283,7 @@ export const tr = {
   supportHub: 'Franchise sahibi',
 
   faq: [
-    { q: 'Bir YumiPokeGo restoranı açmak ne kadara mal olur?', a: 'Toplam yatırım; formata, metrekareye, lokasyonun durumuna ve şehre göre değişir. Güncel yatırım aralığı, ön görüşmenin ardından paylaştığımız bilgi paketinde kalem kalem yer alır. Kira, depozito ve kira öncesi tadilat giderleri lokasyona bağlı olduğundan ayrıca hesaplanır.' },
+    { q: 'Bir YumiPokeGo restoranı açmak ne kadara mal olur?', a: 'Toplam yatırım; formata, metrekareye, lokasyonun durumuna ve şehre göre değişir. Güncel yatırım aralığı, ön görüşmenin ardından paylaştığımız bilgi paketinde kalem kalem yer alır. Kira, depozito ve mal sahibine ait ana yapı tadilatları lokasyona bağlı olduğundan ayrıca hesaplanır.' },
     { q: 'Hangi ödemeler var? Franchise bedeli, royalti, reklam payı nedir?', a: 'Franchise bedeli; marka kullanım hakkı, başlangıç eğitimi ve açılış desteği için bir kez ödenir. Royalti ve reklam payı ise aylık net satışlar üzerinden hesaplanır. Güncel oran ve tutarlar bilgi paketinde ve franchise sözleşmesinde yer alır.' },
     { q: 'Restoran işletmeciliği deneyimi şart mı?', a: 'Şart değil; ancak işletmeyi bizzat yönetecek ya da deneyimli bir müdürle çalışacak olmanız beklenir. Eğitim programı, sektöre yeni girenler düşünülerek hazırlanır. Çoklu ve master franchise için ise yiyecek-içecek ya da perakende deneyimi aranır.' },
     { q: 'Ne kadar alana ihtiyaç var?', a: 'Formata göre değişir: kiosk/express için yaklaşık 15–30 m², AVM yemek katı için 30–60 m², dark kitchen için 40–80 m², cadde mağazası için 80–150 m² öneriyoruz. Kesin ihtiyaç lokasyon incelemesinde belirlenir.' },
@@ -296,7 +304,7 @@ export const tr = {
     tableFormat: 'Format',
     plan: {
       kitchen: 'Hazırlık mutfağı',
-      line: 'Montaj hattı',
+      line: 'Servis hattı',
       pos: 'Kasa',
       seating: 'Oturma alanı',
       pickup: 'Kurye teslim',
@@ -334,7 +342,7 @@ export const tr = {
     posTitle: 'Kasa · Masa 4',
     posItems: ['Klasik Somon Poke', 'Mango Tavuk Poke', 'Ekstra avokado', 'Ev yapımı limonata'],
     posTotal: 'Toplam',
-    posPay: 'Ödeme al',
+    posPay: 'Siparişi gönder',
     posCat: ['Poke', 'Wok', 'Roll', 'İçecek'],
     appTitle: 'Bowl’unu oluştur',
     appSteps: ['Baz', 'Protein', 'Topping', 'Sos'],
@@ -349,7 +357,7 @@ export const tr = {
   franchisePage: {
     eyebrow: 'Franchise',
     title: 'YumiPokeGo franchise modeli',
-    lead: 'Kanıtlanmış bir menüyü, standart süreçleri ve merkezi destek ekiplerini kendi bölgenizde işletin. Aşağıda modelin nasıl çalıştığını, kimleri aradığımızı ve sizden neler beklediğimizi bulacaksınız.',
+    lead: 'Standart menüyü, tanımlı süreçleri ve merkezi destek ekiplerini kendi bölgenizde işletin. YumiPokeGo franchise (bayilik) modelinin nasıl çalıştığını, kimleri aradığımızı ve sizden neler beklediğimizi aşağıda bulacaksınız.',
     modelsTitle: 'Franchise modelleri',
     modelsLead: 'Yatırım kapasitenize ve büyüme hedefinize göre üç model.',
     fitLabel: 'Kimler için',
@@ -360,7 +368,7 @@ export const tr = {
     profileTitle: 'Aradığımız franchise sahibi',
     profile: [
       { title: 'İşletmeci bakışı', text: 'Günlük operasyona dokunan, ekibini yöneten, rakamları takip eden girişimciler.' },
-      { title: 'Finansal hazırlık', text: 'Yatırımın tamamını ve açılış sonrası işletme sermayesini karşılayabilecek yapı. Öz sermaye beklentisi formata göre değişir; ön görüşmede paylaşılır.' },
+      { title: 'Finansal hazırlık', text: 'İşletme sermayesi dahil yatırımın tamamını karşılayabilecek yapı. Öz sermaye beklentisi formata göre değişir; ön görüşmede paylaşılır.' },
       { title: 'Yerel bilgi', text: 'Bölgesini, kira piyasasını ve misafir alışkanlıklarını tanıyan adaylar.' },
       { title: 'Uzun vadeli bakış', text: 'Kısa vadeli getiri yerine sürdürülebilir bir işletme kurmayı hedefleyenler.' },
     ],
@@ -373,9 +381,9 @@ export const tr = {
   formatsPage: {
     eyebrow: 'Formatlar',
     title: 'Restoran formatları',
-    lead: 'Her format aynı menü çekirdeğini ve aynı montaj hattı mantığını kullanır. Fark; alan, oturma kapasitesi ve paket servis ağırlığındadır. Lokasyonunuz için uygun formatı birlikte belirleriz.',
+    lead: 'Her format aynı menü çekirdeğini ve aynı servis hattı mantığını kullanır. Fark; alan, oturma kapasitesi ve paket servis ağırlığındadır. Lokasyonunuz için uygun formatı birlikte belirleriz.',
     compareTitle: 'Karşılaştırma tablosu',
-    photoNote: 'Gerçek restoran fotoğrafı eklendiğinde şemanın yanında gösterilir.',
+    photoNote: '',
   },
 
   investmentPage: {
@@ -390,9 +398,9 @@ export const tr = {
     breakdownLead: 'Toplam yatırım tutarının yaklaşık dağılımı. Oranlar formata göre değişir.',
     excludedTitle: 'Yatırıma dahil olmayanlar',
     excluded: ['Kira, kira depozitosu ve emlak komisyonu', 'Ana yapı tadilatları (mekanik, elektrik altyapısı, cephe izinleri)', 'Belediye ruhsat ve harçları', 'Yatırımcının kendi finansman maliyetleri'],
-    byFormatTitle: 'Formata göre yatırım',
+    byFormatTitle: 'Formatlara genel bakış',
     paybackTitle: 'Geri dönüş süresi hakkında',
-    paybackText: 'Geri dönüş süresi; ciroya, kira oranına, personel maliyetine ve işletme yönetimine bağlıdır. Paylaşacağımız tahminler mevcut restoranlardan elde edilen verilere dayanacak ve varsayımlarıyla birlikte sunulacaktır. Hiçbir gösterge gelir garantisi değildir.',
+    paybackText: 'Geri dönüş süresi; ciroya, kira oranına, personel maliyetine ve işletme yönetimine bağlıdır. Paylaşacağımız tahminler, varsayımlarıyla birlikte yazılı olarak sunulur. Hiçbir gösterge gelir garantisi değildir.',
     financingTitle: 'Finansman',
     financingText: 'YumiPokeGo doğrudan finansman sağlamaz. Bankaların KOBİ ve franchise kredi ürünlerini değerlendirebilirsiniz; kredi başvurunuz için gereken yatırım kırılımını ve iş planı verilerini sizinle paylaşırız.',
   },
@@ -415,19 +423,19 @@ export const tr = {
     trainingTitle: 'Eğitim programı',
     training: [
       { title: 'Teorik eğitim', text: 'Marka, menü, gıda güvenliği, hijyen, maliyet kontrolü ve raporlama.' },
-      { title: 'Uygulamalı eğitim', text: 'Eğitim restoranında hazırlık, montaj hattı, kasa ve paket servis akışı.' },
+      { title: 'Uygulamalı eğitim', text: 'Hazırlık, servis hattı, kasa ve paket servis akışı uygulamalı olarak çalışılır.' },
       { title: 'Açılış haftası', text: 'Saha ekibi restoranda; ilk günlerin akışı birlikte yönetilir.' },
       { title: 'Sürekli eğitim', text: 'Yeni ürünler, yeni personel ve güncellenen prosedürler için eğitim materyalleri.' },
     ],
     trainingDurationTodo: 'Açılış öncesi eğitim yaklaşık 2–3 hafta sürer; yeri ve takvimi açılış planına göre belirlenir.',
     mockupsTitle: 'Teknoloji altyapısı',
-    mockupsLead: 'POS, paket servis ve menü ekranları tek bir sistemden yönetilir. Aşağıdaki arayüzler temsilîdir.',
+    mockupsLead: 'POS, paket servis ve menü ekranları tek bir sistemden yönetilir.',
   },
 
   menuPage: {
     eyebrow: 'Menü',
-    title: 'Taze, renkli, senin bowl’un',
-    lead: 'Her gün hazırlanan malzemelerle poke bowl, yüksek ateşte wok ve roll. Hazır tariflerimizden birini seç ya da bowl’unu kendin oluştur.',
+    title: 'Taze, renkli, size özel bowl',
+    lead: 'Her gün hazırlanan malzemelerle poke bowl, yüksek ateşte wok ve roll. Hazır tariflerimizden birini seçin ya da bowl’unuzu kendiniz oluşturun.',
     sampleNote: 'Menü içeriği restorana ve mevsime göre değişebilir.',
     buildTitle: 'Bowl’unu oluştur',
     buildSteps: [
@@ -439,7 +447,7 @@ export const tr = {
     allergenNote: 'Alerjen bilgisi için lütfen sipariş öncesinde restoran ekibimize danışın.',
     locationsLink: 'Size en yakın restoran',
     brandTitle: 'Marka',
-    brandText: 'YumiPokeGo; taze malzeme, açık mutfak ve hızlı servis üzerine kurulu bir marka. Renkli ama sade bir dil, misafire dönük bir montaj hattı ve “seç, birleştir, keyfini çıkar” fikri.',
+    brandText: 'YumiPokeGo; taze malzeme, açık mutfak ve hızlı servis üzerine kurulu bir marka. Renkli ama sade bir dil, misafire dönük bir servis hattı ve “seç, birleştir, keyfini çıkar” fikri.',
   },
 
   locationsPage: {
@@ -463,7 +471,7 @@ export const tr = {
     lead: 'Franchise ağını yöneten, menüyü geliştiren ve kalite standartlarını koruyan merkez organizasyon.',
     aboutTitle: 'Hakkımızda',
     about: [
-      'YumiPokeGo, poke bowl’u merkezine alan hızlı-rahat (fast-casual) bir Asya mutfağı markasıdır. Menümüzde poke bowl’ların yanında wok ve roll çeşitleri yer alır; tüm ürünler taze hazırlanan malzemelerle, misafirin gözü önünde birleştirilir.',
+      'YumiPokeGo, poke bowl’u merkezine alan fast casual bir Asya mutfağı markasıdır. Menümüzde poke bowl’ların yanında wok ve roll çeşitleri yer alır; tüm ürünler taze hazırlanan malzemelerle, misafirin gözü önünde birleştirilir.',
       'Şirketimiz bir anonim şirket olarak yapılandırılmıştır ve büyümesini franchise modeline dayandırır. Merkez ekiplerimiz menü geliştirme, tedarik, eğitim, pazarlama, teknoloji ve kalite denetimi işlerini yürütür; franchise sahiplerimiz ise restoranlarını bu altyapı üzerinde işletir.',
     ],
     missionTitle: 'Misyon',
@@ -473,23 +481,25 @@ export const tr = {
     valuesTitle: 'Değerlerimiz',
     values: [
       { title: 'Tazelik', text: 'Malzemeyi her gün hazırlarız; tazeliği koruyamadığımız ürünü menüye koymayız.' },
-      { title: 'Şeffaflık', text: 'Franchise adaylarıyla rakamları ve koşulları açıkça konuşur, gerçekçi beklenti oluştururuz.' },
+      { title: 'Şeffaflık', text: 'Franchise adaylarıyla koşulları açıkça konuşur, tüm rakamları varsayımlarıyla birlikte yazılı olarak paylaşırız.' },
       { title: 'Standart', text: 'Bir bowl her restoranda aynı lezzette olmalı. Reçete, gramaj ve sunum tanımlıdır.' },
       { title: 'Ortaklık', text: 'Franchise sahiplerimizin başarısı bizim başarımızdır; kararları veriyle ve birlikte alırız.' },
     ],
     leadershipTitle: 'Yönetim kurulu ve yönetim',
     boardTitle: 'Yönetim kurulu',
     managementTitle: 'Yönetim ekibi',
+    teamsSectionTitle: 'Merkez organizasyon',
+    teamsTitle: 'Merkez ekipler ve sorumlulukları',
     nameTodo: 'İsim eklenecek',
     bioTodo: '',
     qualityTitle: 'Kalite ve gıda güvenliği politikası',
-    qualityLead: 'Gıda güvenliği, YumiPokeGo’da pazarlık konusu olmayan bir başlangıç noktasıdır. Çiğ balık ve taze ürünlerle çalışan bir marka olarak soğuk zinciri, hijyeni ve izlenebilirliği tüm restoranlarda aynı titizlikle uygularız.',
+    qualityLead: 'Gıda güvenliği YumiPokeGo’nun vazgeçilmez önceliğidir. Çiğ balık ve taze ürünlerle çalışan bir marka olarak soğuk zinciri, hijyeni ve izlenebilirliği her franchise restoranında aynı titizlikle uygulanacak standartlar olarak tanımlarız.',
     quality: [
       { title: 'Onaylı tedarikçiler', text: 'Tedarikçiler belirli kriterlere göre seçilir ve düzenli olarak değerlendirilir; ürün spesifikasyonları merkezde tanımlanır.' },
       { title: 'Soğuk zincir', text: 'Balık ve hassas ürünler için teslim alma, depolama ve servis sıcaklıkları tanımlı ve kayıt altındadır.' },
       { title: 'Hijyen ve eğitim', text: 'Tüm ekip hijyen eğitimi alır; temizlik planları ve kontrol listeleri günlük uygulanır.' },
       { title: 'İzlenebilirlik', text: 'Ürün partileri ve son kullanma tarihleri takip edilir; gerektiğinde hızlıca geri çağırma yapılabilir.' },
-      { title: 'Denetim', text: 'Restoranlar düzenli olarak denetlenir; sonuçlar franchise sahibiyle birlikte değerlendirilir ve aksiyona dönüştürülür.' },
+      { title: 'Denetim', text: 'Franchise restoranları düzenli olarak denetlenir; sonuçlar franchise sahibiyle birlikte değerlendirilir ve aksiyona dönüştürülür.' },
       { title: 'Alerjen bilgisi', text: 'Menüdeki alerjenler misafire açıkça bildirilir; çapraz bulaşmayı azaltan hazırlık kuralları uygulanır.' },
     ],
     certTodo: '',
@@ -506,12 +516,13 @@ export const tr = {
     auditorTitle: 'Denetçi',
     documentsEmpty: 'Bu bölümde henüz yayımlanmış belge bulunmamaktadır.',
     download: 'İndir',
+    contactTitle: 'Şirket iletişim',
   },
 
   pressPage: {
     eyebrow: 'Basın',
     title: 'Basın ve haberler',
-    lead: 'Şirket duyuruları, yeni restoran açılışları ve basın bültenleri.',
+    lead: 'Şirket duyuruları, franchise programı haberleri ve basın bültenleri.',
     contactTitle: 'Basın iletişimi',
     contactText: 'Röportaj, görsel ve bilgi talepleriniz için basın iletişim adresimize yazabilirsiniz.',
     kitTitle: 'Basın kiti',
@@ -524,7 +535,7 @@ export const tr = {
   contactPage: {
     eyebrow: 'İletişim',
     title: 'İletişim',
-    lead: 'Sorunuzun konusuna göre doğru ekibe ulaşın. Franchise başvuruları için başvuru formunu kullanmanız süreci hızlandırır.',
+    lead: 'Franchise, misafir ve basın talepleriniz için bize aşağıdaki kanallardan ulaşabilirsiniz. Franchise başvuruları için başvuru formunu kullanmanız süreci hızlandırır.',
     franchise: 'Franchise ve yatırım',
     franchiseText: 'Franchise koşulları, başvuru durumu ve yatırım soruları.',
     guest: 'Misafir ilişkileri',
@@ -532,6 +543,7 @@ export const tr = {
     press: 'Basın',
     pressText: 'Röportaj, görsel ve bilgi talepleri.',
     office: 'Merkez ofis',
+    allTitle: 'Tüm talepleriniz için',
     kep: 'KEP adresi',
     email: 'E-posta',
     phone: 'Telefon',
@@ -539,7 +551,7 @@ export const tr = {
   },
 
   legalPage: {
-    draft: 'Taslak — hukuki inceleme gerekir',
+    draft: 'Yasal bilgilendirme',
   },
 
   form: {
@@ -575,7 +587,7 @@ export const tr = {
       timeline: 'Ne zaman açmayı planlıyorsunuz?',
       timelineOptions: { m3: '3 ay içinde', m6: '3–6 ay içinde', m12: '6–12 ay içinde', later: '12 aydan sonra' },
       experience: 'Restoran veya franchise deneyiminiz',
-      experienceOptions: { none: 'Yok', restaurant: 'Restoran işletmeciliği', franchise: 'Franchise sahibiyim / oldum', both: 'Her ikisi' },
+      experienceOptions: { none: 'Yok', restaurant: 'Restoran işletmeciliği', franchise: 'Franchise sahibiyim / oldum', both: 'Her ikisi de' },
       occupation: 'Şu anki işiniz / faaliyetiniz',
       units: 'Kaç restoran açmayı planlıyorsunuz?',
       unitsOptions: { one: '1', few: '2–3', many: '4 ve üzeri', master: 'Master franchise (bölge/ülke)' },
@@ -599,7 +611,7 @@ export const tr = {
       nextTitle: 'Bundan sonra ne olacak?',
       next: [
         'Başvurunuz franchise ekibine iletildi ve kayda alındı.',
-        'Franchise yöneticimiz 2 iş günü içinde sizi arayarak ön görüşme planlayacak.',
+        'Franchise ekibimiz başvurunuzu inceledikten sonra, genellikle 1–2 hafta içinde sizi arayarak ön görüşme planlayacak.',
         'Uygun görülürse gizlilik sözleşmesi (NDA) sonrası ayrıntılı bilgi paketi paylaşılır.',
       ],
       explore: 'Bu arada açılış sürecini inceleyin',

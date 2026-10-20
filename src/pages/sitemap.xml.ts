@@ -3,9 +3,12 @@ import type { APIRoute } from 'astro';
 import { routes } from '../i18n/routes';
 import { absUrl } from '../i18n/utils';
 import press from '../data/press.json';
+import { restaurants } from '../lib/restaurants';
 
 export const GET: APIRoute = () => {
-  const pairs: { tr: string; en: string }[] = Object.values(routes).map((r) => ({ tr: r.tr, en: r.en }));
+  const pairs: { tr: string; en: string }[] = Object.entries(routes)
+    .filter(([k]) => k !== 'locations' || restaurants.length > 0)
+    .map(([, r]) => ({ tr: r.tr, en: r.en }));
   press.items.forEach((n) => pairs.push({ tr: `${routes.press.tr}${n.slug.tr}/`, en: `${routes.press.en}${n.slug.en}/` }));
   const entry = (loc: string, p: { tr: string; en: string }) => `  <url>
     <loc>${absUrl(loc)}</loc>

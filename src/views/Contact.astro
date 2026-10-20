@@ -6,71 +6,89 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import site from '../config/site.json';
 import PageHero from '../components/ui/PageHero.astro';
 import Icon from '../components/ui/Icon.astro';
-import Todo from '../components/ui/Todo.astro';
 import SocialIcon from '../components/ui/SocialIcon.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useT(lang);
 const p = t.contactPage;
 const c = site.contacts;
-const blocks = [
-  { title: p.franchise, text: p.franchiseText, data: c.franchise, icon: 'Briefcase', primary: true },
-  { title: p.guest, text: p.guestText, data: c.guest, icon: 'UtensilsCrossed', primary: false },
-  { title: p.press, text: p.pressText, data: c.press, icon: 'Newspaper', primary: false },
+const topics = [
+  { title: p.franchise, text: p.franchiseText, data: c.franchise, icon: 'Briefcase' },
+  { title: p.guest, text: p.guestText, data: c.guest, icon: 'UtensilsCrossed' },
+  { title: p.press, text: p.pressText, data: c.press, icon: 'Newspaper' },
 ];
-const socials = (['instagram', 'tiktok', 'youtube', 'linkedin', 'x'] as const);
+// Tüm konular aynı e-posta/telefonu kullanıyorsa tek kart gösterilir (tekrar yok).
+const key = (d: { email: string | null; phone: string | null }) => `${d.email}|${d.phone}`;
+const unified = topics.every((x) => key(x.data) === key(c.franchise));
+const mainPhone = c.franchise.phone;
+const socials = (['instagram', 'tiktok', 'youtube', 'linkedin', 'x'] as const).filter((s) => (site.social as Record<string, string | null>)[s]);
 const socialNames = { instagram: 'Instagram', tiktok: 'TikTok', youtube: 'YouTube', linkedin: 'LinkedIn', x: 'X' };
+const officeAddress = (o: (typeof site.offices)[number]) => `${o.street}, ${o.postalCode} ${o.district} / ${o.city}`;
 ---
 <BaseLayout lang={lang} routeKey="contact">
   <PageHero lang={lang} eyebrow={p.eyebrow} title={p.title} lead={p.lead} crumbs={[{ label: t.nav.contact }]} />
   <section class="container-x py-14">
-    <div class="grid gap-5 lg:grid-cols-3">
-      {blocks.map((b) => (
-        <article class:list={['flex flex-col rounded-[var(--radius-card)] p-6 sm:p-8', b.primary ? 'on-dark bg-ink text-white' : 'card']}>
-          <span class:list={['flex h-12 w-12 items-center justify-center rounded-2xl', b.primary ? 'bg-white/10 text-mango-400' : 'bg-coral-50 text-coral-700']}><Icon name={b.icon} /></span>
-          <h2 class:list={['mt-5 text-2xl font-bold', b.primary && 'text-white']}>{b.title}</h2>
-          <p class:list={['mt-2', b.primary ? 'text-ink-mute' : 'text-ink-soft']}>{b.text}</p>
-          <dl class="mt-6 space-y-3">
-            <div><dt class:list={['text-sm', b.primary ? 'text-ink-mute' : 'text-ink-soft']}>{p.email}</dt><dd class="font-semibold">{b.data.email ? <a class="underline" href={`mailto:${b.data.email}`}>{b.data.email}</a> : <Todo />}</dd></div>
-            <div><dt class:list={['text-sm', b.primary ? 'text-ink-mute' : 'text-ink-soft']}>{p.phone}</dt><dd class="font-semibold">{b.data.phone ? <a class="underline" href={telHref(b.data.phone)}>{b.data.phone}</a> : <Todo />}</dd></div>
+    {unified ? (
+      <div class="on-dark grid gap-8 rounded-[28px] bg-ink p-6 text-white sm:p-10 lg:grid-cols-[1fr_1.2fr]">
+        <div>
+          <h2 class="h-section text-white">{p.allTitle}</h2>
+          <dl class="mt-6 space-y-4 text-lg">
+            {c.franchise.email && <div><dt class="text-sm text-ink-mute">{p.email}</dt><dd class="font-semibold"><a class="underline underline-offset-4" href={`mailto:${c.franchise.email}`}>{c.franchise.email}</a></dd></div>}
+            {mainPhone && <div><dt class="text-sm text-ink-mute">{p.phone}</dt><dd class="font-semibold"><a class="underline underline-offset-4" href={telHref(mainPhone)}>{mainPhone}</a></dd></div>}
+            <div><dt class="text-sm text-ink-mute">{p.hoursTodo}</dt><dd>{site.officeHours[lang]}</dd></div>
           </dl>
-          {b.primary && <a href={path('apply', lang)} class="btn-primary mt-8 self-start">{t.common.apply}</a>}
-        </article>
-      ))}
-    </div>
-
-    <div class="mt-10 grid gap-5 md:grid-cols-2">
-      {site.offices.map((o) => (
-        <article class="card p-6">
-          <h2 class="flex items-center gap-2 text-xl font-bold"><Icon name="MapPin" size={22} class="text-coral-700" />{o.label[lang]}</h2>
-          <address class="mt-3 not-italic">{o.street}<br />{o.postalCode} {o.district} / {o.city}<br />{lang === 'tr' ? 'Türkiye' : 'Turkey'}</address>
-          <p class="mt-3"><span class="text-sm text-ink-soft">{p.phone}:</span> <a class="link font-semibold" href={telHref(o.phone)}>{o.phone}</a></p>
-          <p class="mt-1"><span class="text-sm text-ink-soft">{p.email}:</span> <a class="link font-semibold" href={`mailto:${c.general.email}`}>{c.general.email}</a></p>
-        </article>
-      ))}
-    </div>
-
-    <div class="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]">
-      {(c.whatsapp || site.showTodos) && <div id="whatsapp" class="card scroll-mt-24 p-6">
-        <h2 class="flex items-center gap-2 text-xl font-bold"><span class="text-avocado-700"><SocialIcon name="whatsapp" size={22} /></span>WhatsApp</h2>
-        <p class="mt-2 text-sm text-ink-soft">{t.contactPage.franchise}</p>
-        {c.whatsapp ? <a href={`https://wa.me/${c.whatsapp}`} target="_blank" rel="noopener" class="btn-dark btn-sm mt-4">{t.common.whatsapp}</a> : <p class="mt-4"><Todo label={t.common.whatsappTodo} /></p>}
-      </div>}
-      <div class="card p-6">
-        <h2 class="flex items-center gap-2 text-xl font-bold"><Icon name="Building2" size={22} class="text-coral-700" />{p.office}</h2>
-        <p class="mt-3">{site.headOfficeAddress ?? <Todo label={lang === 'tr' ? 'Merkez adresi: TODO' : 'Address: TODO'} fallback={t.common.updating} />}</p>
-        <p class="mt-2 text-sm text-ink-soft">{p.hoursTodo}: {site.officeHours[lang]}</p>
-        <p class="mt-4 text-sm"><span class="font-semibold">{p.kep}:</span> {c.kep ?? <Todo fallback={t.common.updating} />}</p>
-      </div>
-      <div class="card p-6">
-        <h2 class="text-xl font-bold">{t.footer.social}</h2>
-        <ul class="mt-4 space-y-2">
-          {socials.filter((s) => (site.social as Record<string, string | null>)[s] || site.showTodos).map((s) => {
-            const url = (site.social as Record<string, string | null>)[s];
-            return <li class="flex items-center gap-3"><SocialIcon name={s} size={18} />{url ? <a href={url} target="_blank" rel="noopener" class="link">{socialNames[s]}</a> : <span>{socialNames[s]} <Todo /></span>}</li>;
-          })}
+          <a href={path('apply', lang)} class="btn-primary mt-8">{t.common.apply}</a>
+        </div>
+        <ul class="grid gap-3">
+          {topics.map((x) => (
+            <li class="flex gap-4 rounded-2xl bg-white/5 p-5">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-mango-400"><Icon name={x.icon} /></span>
+              <div><h3 class="text-lg font-bold text-white">{x.title}</h3><p class="mt-1 text-ink-mute">{x.text}</p></div>
+            </li>
+          ))}
         </ul>
       </div>
+    ) : (
+      <div class="grid gap-5 lg:grid-cols-3">
+        {topics.map((b, i) => (
+          <article class:list={['flex flex-col rounded-[var(--radius-card)] p-6 sm:p-8', i === 0 ? 'on-dark bg-ink text-white' : 'card']}>
+            <span class:list={['flex h-12 w-12 items-center justify-center rounded-2xl', i === 0 ? 'bg-white/10 text-mango-400' : 'bg-coral-50 text-coral-700']}><Icon name={b.icon} /></span>
+            <h2 class:list={['mt-5 text-2xl font-bold', i === 0 && 'text-white']}>{b.title}</h2>
+            <p class:list={['mt-2', i === 0 ? 'text-ink-mute' : 'text-ink-soft']}>{b.text}</p>
+            <dl class="mt-6 space-y-3">
+              {b.data.email && <div><dt class="text-sm opacity-80">{p.email}</dt><dd class="font-semibold"><a class="underline" href={`mailto:${b.data.email}`}>{b.data.email}</a></dd></div>}
+              {b.data.phone && <div><dt class="text-sm opacity-80">{p.phone}</dt><dd class="font-semibold"><a class="underline" href={telHref(b.data.phone)}>{b.data.phone}</a></dd></div>}
+            </dl>
+            {i === 0 && <a href={path('apply', lang)} class="btn-primary mt-8 self-start">{t.common.apply}</a>}
+          </article>
+        ))}
+      </div>
+    )}
+
+    <div class="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {site.offices.map((o) => {
+        const isHq = site.headOfficeAddress === officeAddress(o);
+        return (
+          <article class="card p-6">
+            <h2 class="flex flex-wrap items-center gap-2 text-xl font-bold"><Icon name={isHq ? 'Building2' : 'MapPin'} size={22} class="text-coral-700" />{o.label[lang]}
+              {isHq && <span class="rounded-full bg-coral-50 px-2.5 py-0.5 text-xs font-semibold text-coral-700">{p.office}</span>}</h2>
+            <address class="mt-3 not-italic">{o.street}<br />{o.postalCode} {o.district} / {o.city}<br />{lang === 'tr' ? 'Türkiye' : 'Türkiye'}</address>
+            {o.phone !== mainPhone && <p class="mt-3"><span class="text-sm text-ink-soft">{p.phone}:</span> <a class="link font-semibold" href={telHref(o.phone)}>{o.phone}</a></p>}
+            {isHq && c.kep && <p class="mt-1 text-sm"><span class="text-ink-soft">{p.kep}:</span> {c.kep}</p>}
+          </article>
+        );
+      })}
+      {(c.whatsapp || socials.length > 0) && (
+        <div class="card p-6">
+          <h2 class="text-xl font-bold">{t.footer.social}</h2>
+          <ul class="mt-4 space-y-1">
+            {c.whatsapp && <li id="whatsapp"><a href={`https://wa.me/${c.whatsapp}`} target="_blank" rel="noopener" class="flex min-h-11 items-center gap-3 hover:underline"><SocialIcon name="whatsapp" size={18} />WhatsApp</a></li>}
+            {socials.map((s) => (
+              <li><a href={(site.social as Record<string, string | null>)[s] ?? undefined} target="_blank" rel="noopener" class="flex min-h-11 items-center gap-3 hover:underline"><SocialIcon name={s} size={18} />{socialNames[s]}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   </section>
 </BaseLayout>

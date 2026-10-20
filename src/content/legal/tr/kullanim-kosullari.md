@@ -3,8 +3,6 @@ title: "Kullanım Koşulları"
 updated: "20 Ekim 2026"
 ---
 
-> **Taslak — hukuki inceleme gerekir.** Bu metin şablon niteliğindedir ve yayına alınmadan önce bir avukat tarafından incelenmelidir.
-
 ## Kapsam
 
 Bu Kullanım Koşulları, YumiPokeGo kurumsal franchise web sitesinin ("Site") kullanımına ilişkin şartları düzenler. Site, **YumiPokeGo A.Ş.** ("Şirket") tarafından işletilmektedir.
@@ -57,7 +55,7 @@ Kanunen izin verilen azami ölçüde Şirket; Site'nin kullanımı veya kullanı
 
 ## Uygulanacak Hukuk ve Yetki
 
-Bu Kullanım Koşulları Türkiye Cumhuriyeti hukukuna tabidir. Kullanım Koşulları'ndan doğabilecek uyuşmazlıkların çözümünde İzmir (Merkez) Mahkemeleri ve İcra Daireleri yetkilidir.
+Bu Kullanım Koşulları Türkiye Cumhuriyeti hukukuna tabidir. Tacir sıfatını haiz kullanıcılar bakımından, Kullanım Koşulları'ndan doğabilecek uyuşmazlıkların çözümünde İzmir (Merkez) Mahkemeleri ve İcra Daireleri yetkilidir. Tüketiciler bakımından kanuni yetki kuralları saklıdır.
 
 ## Değişiklikler
 

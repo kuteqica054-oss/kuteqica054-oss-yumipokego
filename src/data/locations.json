@@ -5,6 +5,20 @@
     "_comment": "Franchise için açık şehirler/bölgeler. status: open (açık) | limited (sınırlı) | taken (dolu).",
     "items": [
       {
+        "city": "İstanbul",
+        "lat": 41.01,
+        "lon": 28.98,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Ankara",
+        "lat": 39.93,
+        "lon": 32.86,
+        "status": "open",
+        "placeholder": false
+      },
+      {
         "city": "İzmir",
         "lat": 38.42,
         "lon": 27.14,

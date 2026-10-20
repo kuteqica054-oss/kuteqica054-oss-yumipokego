@@ -4,6 +4,7 @@ import { path } from '../i18n/routes';
 import { useT, pick } from '../i18n/utils';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import leadership from '../data/leadership.json';
+import site from '../config/site.json';
 import photos from '../config/photos.json';
 import PageHero from '../components/ui/PageHero.astro';
 import SectionHead from '../components/ui/SectionHead.astro';
@@ -17,6 +18,7 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useT(lang);
 const p = t.corporatePage;
+const hasNames = (list: { name: string | null }[]) => list.some((x) => x.name);
 const qIcons = ['BadgeCheck', 'Snowflake', 'HandHeart', 'ScanBarcode', 'ClipboardCheck', 'TriangleAlert'];
 ---
 <BaseLayout lang={lang} routeKey="corporate">
@@ -64,10 +66,12 @@ const qIcons = ['BadgeCheck', 'Snowflake', 'HandHeart', 'ScanBarcode', 'Clipboar
 
   <section class="border-y border-line bg-white py-16 md:py-24" aria-labelledby="leadership">
     <div class="container-x">
-      <SectionHead title={p.leadershipTitle} id="leadership" />
-      <h3 class="mt-10 text-xl font-bold">{p.boardTitle}</h3>
-      <div class="mt-4"><Leadership lang={lang} people={leadership.board} /></div>
-      <h3 class="mt-12 text-xl font-bold">{p.managementTitle}</h3>
+      <SectionHead title={hasNames(leadership.management) || site.showTodos ? p.leadershipTitle : p.teamsSectionTitle} id="leadership" />
+      {(hasNames(leadership.board) || site.showTodos) && <>
+        <h3 class="mt-10 text-xl font-bold">{p.boardTitle}</h3>
+        <div class="mt-4"><Leadership lang={lang} people={leadership.board} /></div>
+      </>}
+      <h3 class="mt-12 text-xl font-bold">{hasNames(leadership.management) || site.showTodos ? p.managementTitle : p.teamsTitle}</h3>
       <div class="mt-4"><Leadership lang={lang} people={leadership.management} /></div>
     </div>
   </section>

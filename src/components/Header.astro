@@ -5,11 +5,13 @@ import { useT } from '../i18n/utils';
 import Logo from './ui/Logo.astro';
 import LangSwitch from './ui/LangSwitch.astro';
 import Icon from './ui/Icon.astro';
+import { restaurants } from '../lib/restaurants';
 interface Props { lang: Lang; routeKey: RouteKey; alternates: Record<Lang, string> }
 const { lang, routeKey, alternates } = Astro.props;
 const t = useT(lang);
 const main: RouteKey[] = ['franchise', 'formats', 'investment', 'process', 'support', 'corporate'];
-const guests: RouteKey[] = ['menu', 'locations'];
+// Restoran listesi boşken 'Restoranlar' menüde gösterilmez.
+const guests: RouteKey[] = restaurants.length ? ['menu', 'locations'] : ['menu'];
 const label = (k: RouteKey) => (t.nav as Record<string, string>)[k];
 ---
 <header class="sticky top-0 z-40 border-b border-line/80 bg-rice">

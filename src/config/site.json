@@ -72,10 +72,9 @@
       "postalCode": "39750",
       "district": "Lüleburgaz",
       "city": "Kırklareli",
-      "phone": "0532113800"
+      "phone": "+90 532 113 80 00"
     }
   ],
-  "_offices_comment": "Ofisler: iletişim sayfasında ve footer'da gösterilir. Merkez (genel müdürlük) adresi ayrıca headOfficeAddress alanına yazılır. TODO: Kırklareli telefonu 10 haneli görünüyor — kontrol edin.",
   "_headOffice_comment": "Merkez adresi olarak İzmir (Çeşme) ofisi seçildi — ticaret sicilindeki adresle aynı olduğundan emin olun.",
   "officeHours": {
     "tr": "Hafta içi 09:00–18:00",

@@ -20,7 +20,7 @@
       },
       "features": {
         "tr": [
-          "Oturma alanı ve vitrin cephe",
+          "Oturma alanı ve vitrinli cephe",
           "Kurye için ayrı teslim noktası",
           "Tam menü: poke, wok, roll"
         ],
@@ -58,7 +58,7 @@
       },
       "tagline": {
         "tr": "Ortak oturma alanında hızlı servis",
-        "en": "Fast service onto shared seating"
+        "en": "Fast counter service with shared food-court seating"
       },
       "text": {
         "tr": "AVM yemek katları için tezgâh formatı. Oturma alanı AVM'nin ortak alanıdır; mağaza yoğun saatlerde hızlı akışa göre kurgulanır.",
@@ -67,7 +67,7 @@
       "features": {
         "tr": [
           "Kısa kuyruk için çift kasa imkânı",
-          "Montaj hattı müşteriye dönük",
+          "Servis hattı misafire dönük",
           "AVM teknik şartnamesine uyumlu proje"
         ],
         "en": [
@@ -88,6 +88,10 @@
       "investment": {
         "tr": null,
         "en": null
+      },
+      "seatsNote": {
+        "tr": "AVM ortak alanı",
+        "en": "Shared mall seating"
       }
     },
     {
@@ -96,7 +100,7 @@
       "offered": null,
       "photo": null,
       "name": {
-        "tr": "Kiosk / Express",
+        "tr": "Kiosk / Ekspres",
         "en": "Kiosk / Express"
       },
       "tagline": {
@@ -131,6 +135,10 @@
       "investment": {
         "tr": null,
         "en": null
+      },
+      "seatsNote": {
+        "tr": "Oturma alanı yok",
+        "en": "No seating"
       }
     },
     {
@@ -174,6 +182,10 @@
       "investment": {
         "tr": null,
         "en": null
+      },
+      "seatsNote": {
+        "tr": "Salon yok",
+        "en": "No dining room"
       }
     }
   ]

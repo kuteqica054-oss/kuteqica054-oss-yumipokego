@@ -3,8 +3,6 @@ title: "Cookie Policy"
 updated: "20 October 2026"
 ---
 
-> **Draft — legal review required.** This text is a template and must be reviewed by a lawyer before publication.
-
 This Cookie Policy explains how the YumiPokeGo corporate franchise website (the "Site") uses cookies and similar technologies. The Site is operated by **YumiPokeGo A.Ş.** (the "Company", "we", "us"). For more on how we handle personal data, including data collected through cookies, please see our [Privacy Notice](/en/privacy/).
 
 ## What Are Cookies?
@@ -25,13 +23,13 @@ These technologies are needed for the Site to work and cannot be switched off. W
 | --- | --- | --- | --- |
 | `ypg-consent` | localStorage (first-party) | Remembers whether you accepted or rejected optional cookies, so the banner does not reappear on every visit | Until you clear it or change your choice |
 
-Technical records used to protect form submissions also fall into this category. Our form provider (Netlify Forms) does not set cookies.
+Technical records used to protect form submissions also fall into this category. Our application form is processed on our own server and does not set cookies.
 
 ### Analytics
 
 Analytics cookies help us understand, in aggregate, how visitors use the Site — for example which pages are visited, how long people stay, where they came from and what kind of device they use. This helps us improve the Site.
 
-We use Google Analytics 4 for this purpose. Analytics cookies are **only loaded if you give your consent** through the cookie banner. Until you do, no analytics scripts run and no analytics cookies are placed on your device.
+**The Site does not currently use analytics cookies.** If Google Analytics 4 is introduced in future, analytics cookies will **only be loaded if you give your consent** through the cookie banner. Until you do, no analytics scripts run and no analytics cookies are placed on your device.
 
 | Name | Provider | Purpose | Duration |
 | --- | --- | --- | --- |
@@ -44,9 +42,9 @@ Because the analytics provider may process data on servers outside Türkiye, dat
 
 ### On the Site
 
-When you first visit the Site, a cookie banner lets you accept or reject analytics cookies. Rejecting is just as easy as accepting.
+Once analytics cookies are introduced, a cookie banner shown on your first visit will let you accept or reject them. Rejecting is just as easy as accepting.
 
-You can change your mind at any time: click **"Cookie preferences"** in the footer of any page to reopen the banner and update your choice. Withdrawing consent does not affect the lawfulness of any processing carried out before you withdrew it.
+You can then change your mind at any time: click **"Cookie preferences"** in the footer of any page to reopen the banner and update your choice. Withdrawing consent does not affect the lawfulness of any processing carried out before you withdrew it.
 
 ### In Your Browser
 

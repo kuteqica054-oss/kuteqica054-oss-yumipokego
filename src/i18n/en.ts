@@ -7,48 +7,48 @@ export const en: Dict = {
 
   meta: {
     home: {
-      title: 'YumiPokeGo Franchise | Poke & Asian Food Franchise in Turkey',
-      description: 'Open a YumiPokeGo restaurant: a fast-casual Asian food franchise in Turkey serving poke bowls, wok and rolls. Investment, formats, opening process and how to apply.',
+      title: 'Poke Franchise Turkey — Asian Food Franchise | YumiPokeGo',
+      description: 'Open a YumiPokeGo restaurant: a fast casual Asian food franchise in Turkey serving poke bowls, wok and rolls. Investment, formats and how to apply.',
     },
     franchise: {
       title: 'Poke Franchise Turkey — The YumiPokeGo Franchise Model',
-      description: 'The YumiPokeGo franchise model: single-unit, multi-unit and master franchise, ideal franchisee profile, franchise fee, royalty and marketing fund.',
+      description: 'The YumiPokeGo franchise model in Turkey: single-unit, multi-unit and master franchise, ideal franchisee profile, franchise fee, royalty and marketing fund.',
     },
     formats: {
-      title: 'Restaurant Formats — Street, Food Court, Kiosk, Dark Kitchen | YumiPokeGo',
+      title: 'Restaurant Formats: Street, Food Court, Kiosk | YumiPokeGo',
       description: 'YumiPokeGo restaurant formats: street store, mall food court, kiosk/express and dark kitchen. Floor plans, unit size, seating and staffing.',
     },
     investment: {
-      title: 'Investment & Franchise Terms — YumiPokeGo Restaurant Franchise Turkey',
+      title: 'Investment & Fees — Restaurant Franchise Turkey | YumiPokeGo',
       description: 'YumiPokeGo restaurant franchise investment: total investment, franchise fee, royalty, marketing fund, agreement term and estimated payback period.',
     },
     process: {
-      title: 'Franchise Opening Process — From Application to Opening | YumiPokeGo',
+      title: 'Franchise Opening Process | YumiPokeGo',
       description: 'The YumiPokeGo opening process step by step: application, intro call, evaluation and NDA, site approval, agreement, build-out, training and opening.',
     },
     support: {
-      title: 'Franchisee Support — Training, Supply Chain, Marketing | YumiPokeGo',
+      title: 'Franchisee Support & Training | YumiPokeGo',
       description: 'YumiPokeGo supports franchisees with site selection, interior design, staff training, an operations manual, supply chain, marketing and POS.',
     },
     menu: {
       title: 'Menu — Poke Bowls, Wok and Rolls | YumiPokeGo',
-      description: 'The YumiPokeGo menu: poke bowls made with fresh ingredients, high-heat wok dishes and rolls. Build your own bowl.',
+      description: 'The YumiPokeGo menu: poke bowls made with fresh ingredients, high-heat wok dishes and rolls. Pick a signature bowl or build your own.',
     },
     locations: {
       title: 'Locations — YumiPokeGo Restaurants',
-      description: 'Addresses, opening hours and delivery links for YumiPokeGo restaurants. Find your nearest location.',
+      description: 'YumiPokeGo restaurants and cities open for franchising in Turkey. Restaurant addresses, opening hours and delivery links are published here.',
     },
     corporate: {
-      title: 'Corporate — About Us, Leadership and Quality | YumiPokeGo A.Ş.',
-      description: 'About YumiPokeGo A.Ş.: mission, values, board of directors and management, food safety and quality policy.',
+      title: 'Corporate — About, Organisation, Quality | YumiPokeGo',
+      description: 'About YumiPokeGo A.Ş.: mission, vision, values, head-office organisation, food safety and quality policy behind the franchise network.',
     },
     companyInfo: {
       title: 'Company Information | YumiPokeGo A.Ş.',
-      description: 'Statutory company information of YumiPokeGo A.Ş. published under Turkish Commercial Code Article 1524 (in Turkish).',
+      description: 'Statutory company information of YumiPokeGo A.Ş. published under Turkish Commercial Code Article 1524, with company documents and announcements.',
     },
     press: {
       title: 'Press & News | YumiPokeGo',
-      description: 'YumiPokeGo press releases, company news and media contacts.',
+      description: 'YumiPokeGo press releases, franchise programme announcements and company news, plus media contacts for interviews and image requests.',
     },
     apply: {
       title: 'Apply for a Franchise | YumiPokeGo',
@@ -56,11 +56,11 @@ export const en: Dict = {
     },
     contact: {
       title: 'Contact | YumiPokeGo',
-      description: 'Contact YumiPokeGo: franchise development, guest relations and press. Head office address and WhatsApp line.',
+      description: 'Contact YumiPokeGo: e-mail, phone and office addresses for franchise and investment questions, guest relations and press enquiries.',
     },
-    privacy: { title: 'Privacy Notice | YumiPokeGo', description: 'How YumiPokeGo processes and protects personal data under Turkish Law No. 6698 (KVKK).' },
-    cookies: { title: 'Cookie Policy | YumiPokeGo', description: 'Cookies used on the YumiPokeGo website and how to manage your preferences.' },
-    terms: { title: 'Terms of Use | YumiPokeGo', description: 'Terms of use of the YumiPokeGo website.' },
+    privacy: { title: 'Privacy Notice | YumiPokeGo', description: 'How YumiPokeGo processes personal data from franchise applications under Turkish Law No. 6698 (KVKK): purposes, legal grounds and your rights.' },
+    cookies: { title: 'Cookie Policy | YumiPokeGo', description: 'Cookies used on the YumiPokeGo website, the cookie categories involved and how you can manage your cookie preferences at any time.' },
+    terms: { title: 'Terms of Use | YumiPokeGo', description: 'Terms of use of the YumiPokeGo website: nature of the information, intellectual property, the application form and governing law.' },
   },
 
   common: {
@@ -73,6 +73,13 @@ export const en: Dict = {
     readMore: 'Read more',
     todo: 'TODO',
     onRequest: 'Shared in the information pack',
+    figureFacts: [
+      { value: '3', label: 'Franchise models', note: 'Single, multi-unit and master' },
+      { value: '4', label: 'Restaurant formats', note: 'Street, food court, kiosk, dark kitchen' },
+      { value: '9', label: 'Step opening process', note: 'From application to ongoing support' },
+    ],
+    feesOnRequest: 'Current amounts and rates are itemised in the information pack shared after the intro call.',
+    requestPack: 'Request the information pack',
     updating: 'Being updated',
     available: 'Open for applications',
     sample: 'Sample',
@@ -110,17 +117,18 @@ export const en: Dict = {
   },
 
   footer: {
-    tagline: 'Fast-casual Asian food: poke bowls, wok and rolls. Growing across Turkey through franchising.',
+    tagline: 'Fast casual Asian food: poke bowls, wok and rolls. Growing across Turkey through franchising is our goal.',
     colFranchise: 'Franchise',
     colGuests: 'Guests',
     colCompany: 'Company',
     colContact: 'Contact',
     franchiseLine: 'Franchise line',
+    mainLine: 'E-mail and phone',
     guestLine: 'Guest line',
     pressLine: 'Press',
     social: 'Social media',
     legal: 'Legal',
-    cookieSettings: 'Cookie settings',
+    cookieSettings: 'Cookie preferences',
     mersis: 'MERSIS No',
     address: 'Head office',
     rights: 'All rights reserved.',
@@ -133,7 +141,7 @@ export const en: Dict = {
     necessary: 'Strictly necessary',
     necessaryDesc: 'Required for the site to work and to remember your choices. Always on.',
     analytics: 'Analytics',
-    analyticsDesc: 'Helps us measure, anonymously, which pages are visited.',
+    analyticsDesc: 'Helps us measure, in aggregate, which pages are visited.',
     acceptAll: 'Accept all',
     rejectAll: 'Necessary only',
     save: 'Save choices',
@@ -157,8 +165,8 @@ export const en: Dict = {
     hero: {
       eyebrow: 'Franchise opportunity · Turkey',
       title: 'Open your own YumiPokeGo restaurant',
-      lead: 'A growing fast-casual Asian food chain in Turkey: poke bowls, wok and rolls. Standardised recipes, a central supply chain and field support that continues long after opening day.',
-      guest: 'Here for the food?',
+      lead: 'A fast casual Asian food concept serving poke bowls, wok and rolls. We are growing our franchise network across Turkey with standardised recipes, a central supply chain and field support that continues after opening day.',
+      guest: 'Just here for the food?',
       bowlAlt: 'Top view of a poke bowl: rice, salmon, avocado, edamame, mango and sesame',
       storeAlt: 'Schematic drawing of a YumiPokeGo restaurant shopfront',
     },
@@ -171,13 +179,13 @@ export const en: Dict = {
     whyPoke: {
       eyebrow: 'Why poke?',
       title: 'A product guests understand, an operation that runs lean',
-      lead: 'A poke bowl brings fresh ingredients, fast service and personalisation together in one bowl. For the operator, it means a line that is easy to learn and needs no complex cooking.',
+      lead: 'A poke bowl brings fresh ingredients, fast service and personalisation together in one bowl. For the operator, the poke line needs no complex cooking and is easy to learn.',
       items: [
         { title: 'Rising interest in balanced eating', text: 'Guests want meals that are quick yet light, with a clear balance of vegetables and protein. Poke meets that need naturally.', stat: true },
         { title: 'Guests build their own bowl', text: 'Choice of base, protein, sauce and toppings gives every guest their own combination — variety without a longer menu.' },
-        { title: 'Made for delivery', text: 'Served cold or at room temperature, bowls travel well; sealed packaging and separate sauce pots protect quality on the way.', stat: true },
+        { title: 'Made for delivery', text: 'Cold-served bowls suit delivery; sealed, chilled packaging and separate sauce pots protect quality on the way.', stat: true },
         { title: 'A fast assembly line', text: 'Ingredients are prepped in advance and orders are assembled in seconds, keeping the queue moving at peak times.' },
-        { title: 'A compact kitchen', text: 'The core product needs no fryer or large oven, so units can run on small footprints with simple equipment.' },
+        { title: 'A compact kitchen', text: 'The poke line needs no fryer or large oven; wok and crispy items are added depending on the format. Units can run on small footprints with simple equipment.' },
       ],
       statNote: 'Market data',
     },
@@ -188,12 +196,12 @@ export const en: Dict = {
       items: [
         { title: 'Standardised menu and recipes', text: 'Every item is specified by portion weight, build order and a reference photo. The same bowl, in every city.' },
         { title: 'Central supply chain', text: 'Core products, sauces and packaging come from approved suppliers on planned deliveries. Head office manages pricing and quality.' },
-        { title: 'Training academy', text: 'Classroom and hands-on training for franchisees and their teams before opening, with field support during opening week.' },
-        { title: 'Marketing', text: 'Launch campaign, social media content, visibility on delivery platforms and national campaigns.' },
+        { title: 'Training programme', text: 'Classroom and hands-on training for franchisees and their teams before opening, with field support during opening week.' },
+        { title: 'Marketing', text: 'Launch campaign, social media content, visibility on delivery platforms and brand campaigns.' },
         { title: 'Technology', text: 'POS, delivery integrations, inventory and reporting dashboards from one central system.' },
       ],
       detailsTodo: 'Details to be confirmed',
-      posCaption: 'POS and ordering screen (illustrative interface)',
+      posCaption: 'POS and ordering screen design',
     },
     formats: {
       eyebrow: 'Restaurant formats',
@@ -203,7 +211,7 @@ export const en: Dict = {
     },
     process: {
       eyebrow: 'Opening process',
-      title: 'Nine steps from application to opening',
+      title: 'Nine steps from application to opening and beyond',
       lead: 'Clear responsibilities at every stage. You work with one dedicated franchise manager throughout.',
       link: 'See the full process',
     },
@@ -227,10 +235,10 @@ export const en: Dict = {
     },
     about: {
       eyebrow: 'Corporate',
-      title: 'The processes of a corporation, the care of a kitchen',
-      text: 'YumiPokeGo is structured as a joint-stock company (A.Ş.) that manages its franchise network. Recipe development, supply, training and quality audits are run by head-office teams, and every restaurant operates from the same operations manual.',
+      title: 'Corporate processes, kitchen care',
+      text: 'YumiPokeGo is structured as a joint-stock company (A.Ş.) that manages its franchise network. Recipe development, supply, training and quality audits are run by head-office teams, and every franchise restaurant operates from the same operations manual.',
       link: 'About the company',
-      team: 'Leadership',
+      team: 'Head-office teams',
     },
     faq: {
       eyebrow: 'FAQ',
@@ -248,7 +256,7 @@ export const en: Dict = {
   process: [
     { id: 'apply', title: 'Application', text: 'You complete the online form. Your application reaches the franchise team and is logged.', who: 'Candidate' },
     { id: 'call', title: 'Intro call', text: 'A franchise manager calls you to discuss your goals, preferred market and budget.', who: 'Candidate + YumiPokeGo' },
-    { id: 'nda', title: 'Evaluation and NDA', text: 'An NDA is signed and a detailed information pack is shared. We meet in person and visit a restaurant together.', who: 'Candidate + YumiPokeGo' },
+    { id: 'nda', title: 'Evaluation and NDA', text: 'An NDA is signed, a detailed information pack is shared and you meet the head-office team in person.', who: 'Candidate + YumiPokeGo' },
     { id: 'site', title: 'Site approval', text: 'The site you propose, or one we find together, is assessed for footfall, visibility, technical requirements and lease terms.', who: 'YumiPokeGo' },
     { id: 'contract', title: 'Franchise agreement', text: 'Terms are finalised, the franchise agreement is signed and the franchise fee is paid.', who: 'Candidate + YumiPokeGo' },
     { id: 'build', title: 'Design and build-out', text: 'The interior design is prepared; fit-out, equipment and technology installation are carried out under head-office supervision.', who: 'Franchisee + YumiPokeGo' },
@@ -332,7 +340,7 @@ export const en: Dict = {
     posTitle: 'Till · Table 4',
     posItems: ['Classic Salmon Poke', 'Mango Chicken Poke', 'Extra avocado', 'House lemonade'],
     posTotal: 'Total',
-    posPay: 'Take payment',
+    posPay: 'Send order',
     posCat: ['Poke', 'Wok', 'Rolls', 'Drinks'],
     appTitle: 'Build your bowl',
     appSteps: ['Base', 'Protein', 'Toppings', 'Sauce'],
@@ -347,7 +355,7 @@ export const en: Dict = {
   franchisePage: {
     eyebrow: 'Franchise',
     title: 'The YumiPokeGo franchise model',
-    lead: 'Run a proven menu, standard processes and central support teams in your own market. Below you’ll find how the model works, who we are looking for and what we expect.',
+    lead: 'Run a standardised menu, defined processes and central support teams in your own market. Below you’ll find how the model works, who we are looking for and what we expect.',
     modelsTitle: 'Franchise models',
     modelsLead: 'Three models to match your investment capacity and growth plans.',
     fitLabel: 'Best suited to',
@@ -358,7 +366,7 @@ export const en: Dict = {
     profileTitle: 'Our ideal franchisee',
     profile: [
       { title: 'An operator’s mindset', text: 'Entrepreneurs who are close to daily operations, lead their team and know their numbers.' },
-      { title: 'Financial readiness', text: 'Able to fund the full investment plus post-opening working capital. Equity requirements vary by format and are shared during the intro call.' },
+      { title: 'Financial readiness', text: 'Able to fund the full investment, including working capital. Equity requirements vary by format and are shared during the intro call.' },
       { title: 'Local knowledge', text: 'Candidates who know their market, the lease landscape and local guest habits.' },
       { title: 'A long-term view', text: 'Focused on building a sustainable business rather than quick returns.' },
     ],
@@ -373,7 +381,7 @@ export const en: Dict = {
     title: 'Restaurant formats',
     lead: 'Every format shares the same core menu and assembly-line logic. They differ in size, seating and delivery mix. We choose the right format for your site together.',
     compareTitle: 'Comparison table',
-    photoNote: 'Once a real restaurant photo is added, it appears next to the plan.',
+    photoNote: '',
   },
 
   investmentPage: {
@@ -388,9 +396,9 @@ export const en: Dict = {
     breakdownLead: 'Approximate split of the total investment. Shares vary by format.',
     excludedTitle: 'Not included in the investment',
     excluded: ['Rent, lease deposit and agency fees', 'Base-build works (mechanical, electrical, façade permits)', 'Municipal licences and fees', 'Your own financing costs'],
-    byFormatTitle: 'Investment by format',
+    byFormatTitle: 'Formats at a glance',
     paybackTitle: 'About the payback period',
-    paybackText: 'The payback period depends on sales, rent-to-sales ratio, labour cost and how the business is managed. Any estimates we share will be based on data from existing restaurants and presented together with their assumptions. No figure is a guarantee of income.',
+    paybackText: 'The payback period depends on sales, rent-to-sales ratio, labour cost and how the business is managed. Any estimates we share are provided in writing together with their assumptions. No figure is a guarantee of income.',
     financingTitle: 'Financing',
     financingText: 'YumiPokeGo does not provide financing directly. You may consider banks’ SME and franchise loan products; we share the investment breakdown and business-plan data you need for a loan application.',
   },
@@ -413,13 +421,13 @@ export const en: Dict = {
     trainingTitle: 'Training programme',
     training: [
       { title: 'Classroom training', text: 'Brand, menu, food safety, hygiene, cost control and reporting.' },
-      { title: 'Hands-on training', text: 'Prep, assembly line, POS and delivery flow in a training restaurant.' },
+      { title: 'Hands-on training', text: 'Prep, the service line, POS and delivery flow, practised hands-on.' },
       { title: 'Opening week', text: 'Our field team is on site and the first days are run together.' },
       { title: 'Ongoing training', text: 'Materials for new products, new hires and updated procedures.' },
     ],
     trainingDurationTodo: 'Pre-opening training takes around 2–3 weeks; venue and schedule are set according to the opening plan.',
     mockupsTitle: 'Technology stack',
-    mockupsLead: 'POS, delivery and menu screens are managed from one system. The interfaces below are illustrative.',
+    mockupsLead: 'POS, delivery and menu screens are managed from one system.',
   },
 
   menuPage: {
@@ -461,7 +469,7 @@ export const en: Dict = {
     lead: 'The head-office organisation that manages the franchise network, develops the menu and safeguards quality standards.',
     aboutTitle: 'About us',
     about: [
-      'YumiPokeGo is a fast-casual Asian food brand built around the poke bowl. Alongside poke, the menu features wok dishes and rolls; everything is assembled from freshly prepped ingredients in front of the guest.',
+      'YumiPokeGo is a fast casual Asian food brand built around the poke bowl. Alongside poke, the menu features wok dishes and rolls; everything is assembled from freshly prepped ingredients in front of the guest.',
       'The company is structured as a Turkish joint-stock company (A.Ş.) and grows through franchising. Head-office teams run menu development, supply, training, marketing, technology and quality audits, and franchisees operate their restaurants on that platform.',
     ],
     missionTitle: 'Mission',
@@ -471,23 +479,25 @@ export const en: Dict = {
     valuesTitle: 'Our values',
     values: [
       { title: 'Freshness', text: 'We prep every day. If we can’t keep it fresh, it doesn’t go on the menu.' },
-      { title: 'Transparency', text: 'We discuss numbers and terms openly with candidates and set realistic expectations.' },
+      { title: 'Transparency', text: 'We discuss terms openly with candidates and share every figure in writing, together with its assumptions.' },
       { title: 'Consistency', text: 'A bowl should taste the same in every restaurant. Recipes, portions and presentation are specified.' },
       { title: 'Partnership', text: 'Our franchisees’ success is our success; we make decisions together, based on data.' },
     ],
     leadershipTitle: 'Board and management',
     boardTitle: 'Board of directors',
     managementTitle: 'Management team',
+    teamsSectionTitle: 'Head-office organisation',
+    teamsTitle: 'Head-office teams and responsibilities',
     nameTodo: 'Name to be added',
     bioTodo: '',
     qualityTitle: 'Quality and food safety policy',
-    qualityLead: 'At YumiPokeGo, food safety is a non-negotiable starting point. As a brand working with raw fish and fresh produce, we apply cold-chain, hygiene and traceability standards with the same rigour in every restaurant.',
+    qualityLead: 'At YumiPokeGo, food safety is our first priority. As a brand working with raw fish and fresh produce, we define cold-chain, hygiene and traceability standards that every franchise restaurant applies with the same rigour.',
     quality: [
       { title: 'Approved suppliers', text: 'Suppliers are selected against defined criteria and reviewed regularly; product specifications are set by head office.' },
       { title: 'Cold chain', text: 'Receiving, storage and service temperatures for fish and sensitive products are defined and logged.' },
       { title: 'Hygiene and training', text: 'Every team member receives hygiene training; cleaning schedules and checklists are followed daily.' },
       { title: 'Traceability', text: 'Batches and expiry dates are tracked, enabling a fast recall if ever needed.' },
-      { title: 'Audits', text: 'Restaurants are audited regularly; results are reviewed with the franchisee and turned into actions.' },
+      { title: 'Audits', text: 'Franchise restaurants are audited regularly; results are reviewed with the franchisee and turned into actions.' },
       { title: 'Allergen information', text: 'Allergens are clearly communicated to guests, and prep rules reduce the risk of cross-contact.' },
     ],
     certTodo: '',
@@ -504,12 +514,13 @@ export const en: Dict = {
     auditorTitle: 'Auditor',
     documentsEmpty: 'No documents have been published in this section yet.',
     download: 'Download',
+    contactTitle: 'Company contact',
   },
 
   pressPage: {
     eyebrow: 'Press',
     title: 'Press and news',
-    lead: 'Company announcements, new restaurant openings and press releases.',
+    lead: 'Company announcements, franchise programme news and press releases.',
     contactTitle: 'Media contact',
     contactText: 'For interviews, images or information requests, please contact our press office.',
     kitTitle: 'Press kit',
@@ -522,7 +533,7 @@ export const en: Dict = {
   contactPage: {
     eyebrow: 'Contact',
     title: 'Contact',
-    lead: 'Reach the right team for your question. For franchise enquiries, the application form is the fastest route.',
+    lead: 'Reach us through the channels below for franchise, guest and press enquiries. For franchise enquiries, the application form is the fastest route.',
     franchise: 'Franchise and investment',
     franchiseText: 'Franchise terms, application status and investment questions.',
     guest: 'Guest relations',
@@ -530,6 +541,7 @@ export const en: Dict = {
     press: 'Press',
     pressText: 'Interviews, images and information requests.',
     office: 'Head office',
+    allTitle: 'One contact for every enquiry',
     kep: 'Registered e-mail (KEP)',
     email: 'E-mail',
     phone: 'Phone',
@@ -537,7 +549,7 @@ export const en: Dict = {
   },
 
   legalPage: {
-    draft: 'Draft — legal review required',
+    draft: 'Legal information',
   },
 
   form: {
@@ -597,7 +609,7 @@ export const en: Dict = {
       nextTitle: 'What happens next?',
       next: [
         'Your application has been passed to the franchise team and logged.',
-        'A franchise manager will call you within 2 business days to arrange an intro call.',
+        'Once your application has been reviewed, our franchise team will call you — usually within 1–2 weeks — to arrange an intro call.',
         'If there is a fit, we share a detailed information pack after an NDA is signed.',
       ],
       explore: 'Meanwhile, explore the opening process',

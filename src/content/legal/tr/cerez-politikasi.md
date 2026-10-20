@@ -3,8 +3,6 @@ title: "Çerez Politikası"
 updated: "20 Ekim 2026"
 ---
 
-> **Taslak — hukuki inceleme gerekir.** Bu metin şablon niteliğindedir ve yayına alınmadan önce bir avukat tarafından incelenmelidir.
-
 Bu Çerez Politikası, YumiPokeGo kurumsal franchise web sitesinde ("Site") kullanılan çerezler ve benzeri teknolojiler hakkında sizi bilgilendirmek amacıyla, Site'nin işleteni **YumiPokeGo A.Ş.** ("Şirket") tarafından hazırlanmıştır. Çerezler aracılığıyla işlenen kişisel verilere ilişkin ayrıntılı bilgiye [KVKK Aydınlatma Metni](/kvkk/) üzerinden ulaşabilirsiniz.
 
 ## Çerez Nedir?
@@ -25,13 +23,13 @@ Bu teknolojiler Site'nin temel işlevleri için gereklidir ve devre dışı bır
 | --- | --- | --- | --- |
 | `ypg-consent` | localStorage (birinci taraf) | Çerez tercihlerinizi (kabul veya ret) hatırlamak, böylece banner'ın her ziyarette yeniden gösterilmesini önlemek | Siz silene veya tercihinizi değiştirene kadar |
 
-Form gönderimlerinin güvenliğini sağlamak için kullanılan teknik kayıtlar da bu kategoride değerlendirilir. Form altyapımız (Netlify Forms) çerez kullanmamaktadır.
+Form gönderimlerinin güvenliğini sağlamak için kullanılan teknik kayıtlar da bu kategoride değerlendirilir. Başvuru formumuz kendi sunucumuzda işlenir ve çerez kullanmaz.
 
 ### Analitik Çerezler
 
 Analitik çerezler, ziyaretçilerin Site'yi nasıl kullandığını (ziyaret edilen sayfalar, ziyaret süresi, yönlendiren kaynak, cihaz türü gibi) toplu olarak anlamamıza ve Site'yi geliştirmemize yardımcı olur.
 
-Bu amaçla Google Analytics 4 kullanılmaktadır. Analitik çerezler **yalnızca çerez banner'ı üzerinden onay vermeniz halinde** yüklenir; onay vermediğiniz sürece analitik betikler çalıştırılmaz ve bu çerezler cihazınıza yerleştirilmez.
+**Sitede şu anda analitik çerez kullanılmamaktadır.** İleride Google Analytics 4 kullanılması halinde analitik çerezler **yalnızca çerez banner'ı üzerinden onay vermeniz halinde** yüklenir; onay vermediğiniz sürece analitik betikler çalıştırılmaz ve bu çerezler cihazınıza yerleştirilmez.
 
 | Ad | Sağlayıcı | Amaç | Süre |
 | --- | --- | --- | --- |
@@ -44,9 +42,9 @@ Analitik hizmet sağlayıcısının sunucuları yurt dışında bulunabileceğin
 
 ### Site Üzerinden
 
-Site'yi ilk ziyaretinizde görüntülenen çerez banner'ı aracılığıyla analitik çerezleri kabul edebilir veya reddedebilirsiniz. Reddetme seçeneği, kabul etme seçeneği kadar kolay erişilebilir şekilde sunulur.
+Analitik çerezler kullanılmaya başlandığında, Site'yi ilk ziyaretinizde görüntülenecek çerez banner'ı aracılığıyla bu çerezleri kabul edebilir veya reddedebilirsiniz. Reddetme seçeneği, kabul etme seçeneği kadar kolay erişilebilir şekilde sunulur.
 
-Tercihinizi dilediğiniz zaman değiştirmek için sayfanın alt kısmında (footer) yer alan **"Çerez tercihleri"** bağlantısına tıklayarak banner'ı yeniden açabilirsiniz. Daha önce verdiğiniz onayı geri almanız, geri alma tarihine kadar yapılan işlemlerin hukuka uygunluğunu etkilemez.
+Bu durumda tercihinizi dilediğiniz zaman değiştirmek için sayfanın alt kısmında (footer) yer alan **"Çerez tercihleri"** bağlantısına tıklayarak banner'ı yeniden açabilirsiniz. Daha önce verdiğiniz onayı geri almanız, geri alma tarihine kadar yapılan işlemlerin hukuka uygunluğunu etkilemez.
 
 ### Tarayıcı Ayarları Üzerinden
 

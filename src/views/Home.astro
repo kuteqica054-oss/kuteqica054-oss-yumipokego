@@ -6,6 +6,7 @@ import { faqJsonLd } from '../lib/schema';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import photos from '../config/photos.json';
 import formats from '../data/formats.json';
+import { restaurants } from '../lib/restaurants';
 import leadership from '../data/leadership.json';
 import HeroBowl from '../components/art/HeroBowl.astro';
 import Storefront from '../components/art/Storefront.astro';
@@ -122,7 +123,7 @@ const supportIcons: Record<string, string> = { location: 'MapPin', design: 'Penc
         <div class="relative" data-reveal>
           <PosMockup lang={lang} />
           <AppMockup lang={lang} class="-mt-16 ml-auto mr-2 hidden w-fit sm:block lg:-mt-24" />
-          <p class="mt-4 text-center text-xs text-ink-soft">{h.whyUs.posCaption} · {t.mockups.fakeNote}</p>
+          <p class="mt-4 text-center text-xs text-ink-soft">{h.whyUs.posCaption}</p>
         </div>
       </div>
     </div>
@@ -177,7 +178,7 @@ const supportIcons: Record<string, string> = { location: 'MapPin', design: 'Penc
     <div class="container-x">
       <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <SectionHead eyebrow={h.map.eyebrow} title={h.map.title} lead={h.map.lead} id="map-title" />
-        <a href={path('locations', lang)} class="btn-ghost shrink-0">{h.map.link}<Icon name="ArrowRight" size={18} /></a>
+        {restaurants.length > 0 ? <a href={path('locations', lang)} class="btn-ghost shrink-0">{h.map.link}<Icon name="ArrowRight" size={18} /></a> : <a href={path('apply', lang)} class="btn-ghost shrink-0">{t.common.apply}<Icon name="ArrowRight" size={18} /></a>}
       </div>
       <div class="mt-10" data-reveal><TurkeyMap lang={lang} /></div>
     </div>

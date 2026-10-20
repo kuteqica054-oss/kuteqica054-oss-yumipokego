@@ -20,7 +20,7 @@ const sectionsEn: Record<string, string> = { duyurular: 'Announcements', 'genel-
 <BaseLayout lang={lang} routeKey="companyInfo">
   <PageHero lang={lang} eyebrow={p.eyebrow} title={p.title} lead={p.lead} crumbs={[{ label: t.nav.corporate, href: path('corporate', lang) }, { label: p.title }]} />
   <section class="container-x py-14">
-    <p class="flex items-start gap-3 rounded-xl border border-dashed border-coral-600/60 bg-coral-50 p-4 text-sm font-medium text-coral-700"><Icon name="Scale" size={18} class="mt-0.5 shrink-0" />{p.reviewNote}</p>
+    {site.showTodos && <p class="flex items-start gap-3 rounded-xl border border-dashed border-coral-600/60 bg-coral-50 p-4 text-sm font-medium text-coral-700"><Icon name="Scale" size={18} class="mt-0.5 shrink-0" />{p.reviewNote}</p>}
 
     {lang === 'en' && (
       <div class="mt-8 max-w-3xl space-y-3 text-ink-soft">
@@ -32,26 +32,30 @@ const sectionsEn: Record<string, string> = { duyurular: 'Announcements', 'genel-
       <div>
         <h2 class="text-2xl font-bold">{p.fieldsTitle}</h2>
         <dl class="mt-5 divide-y divide-line rounded-[var(--radius-card)] border border-line bg-white">
-          {company.fields.map((f) => (
+          {company.fields.map((f) => ({ ...f, shown: f.value ?? (f.id === 'web' ? siteUrl : f.id === 'adres' ? site.headOfficeAddress : f.id === 'unvan' ? site.legalNameShort : null) })).filter((f) => f.shown || site.showTodos).map((f) => (
             <div class="grid gap-1 px-5 py-3.5 sm:grid-cols-[220px_1fr] sm:gap-4">
               <dt class="text-sm font-semibold text-ink-soft">{lang === 'tr' ? f.label : f.labelEn}</dt>
-              <dd>{f.value ?? (f.id === 'web' ? siteUrl : f.id === 'adres' && site.headOfficeAddress ? site.headOfficeAddress : f.id === 'unvan' && !site.showTodos ? site.legalNameShort : <Todo fallback={t.common.updating} />)}</dd>
+              <dd>{f.shown ?? <Todo />}</dd>
             </div>
           ))}
         </dl>
       </div>
       <div class="space-y-8">
-        <div>
+        {(leadership.board.some((b) => b.name) || site.showTodos) && <div>
           <h2 class="text-2xl font-bold">{p.boardTitle}</h2>
           <ul class="mt-5 divide-y divide-line rounded-[var(--radius-card)] border border-line bg-white">
             {leadership.board.map((b) => (
               <li class="flex flex-wrap items-center justify-between gap-2 px-5 py-3.5"><span>{b.name ?? <Todo fallback={t.common.updating} />}</span><span class="text-sm text-ink-soft">{pick(b.role, lang)}</span></li>
             ))}
           </ul>
-        </div>
-        <div>
+        </div>}
+        {(company.auditor.name || site.showTodos) && <div>
           <h2 class="text-2xl font-bold">{p.auditorTitle}</h2>
-          <p class="mt-4 rounded-[var(--radius-card)] border border-line bg-white px-5 py-3.5">{company.auditor.name ?? <Todo fallback={t.common.updating} />}</p>
+          <p class="mt-4 rounded-[var(--radius-card)] border border-line bg-white px-5 py-3.5">{company.auditor.name ?? <Todo />}</p>
+        </div>}
+        <div class="rounded-[var(--radius-card)] bg-rice-2 p-5 text-sm text-ink-soft">
+          <p class="font-semibold text-ink">{p.contactTitle}</p>
+          <p class="mt-1">{site.contacts.general.email} · {site.contacts.general.phone}</p>
         </div>
       </div>
     </div>

@@ -60,12 +60,12 @@
       "unit": "weeks",
       "value": {
         "tr": {
-          "min": 12,
-          "max": 20
+          "min": 10,
+          "max": 16
         },
         "en": {
-          "min": 12,
-          "max": 20
+          "min": 10,
+          "max": 16
         }
       },
       "label": {
@@ -73,8 +73,8 @@
         "en": "Contract to opening"
       },
       "note": {
-        "tr": "Ortalama süre",
-        "en": "Typical timeframe"
+        "tr": "Tahmini süre",
+        "en": "Estimated timeframe"
       }
     },
     {
@@ -89,7 +89,7 @@
         "en": "Estimated payback period"
       },
       "note": {
-        "tr": "Ön görülen, garanti değildir",
+        "tr": "Öngörülen, garanti değildir",
         "en": "Projected, not guaranteed"
       }
     }
@@ -99,7 +99,7 @@
       "id": "single",
       "offered": null,
       "title": {
-        "tr": "Tekil franchise",
+        "tr": "Tek restoran franchise’ı",
         "en": "Single-unit franchise"
       },
       "text": {
@@ -185,7 +185,7 @@
         "en": null
       },
       "label": {
-        "tr": "Reklam payı",
+        "tr": "Reklam payı (pazarlama fonu)",
         "en": "Marketing fund contribution"
       },
       "detail": {
@@ -296,29 +296,29 @@
     {
       "id": "r1",
       "label": {
-        "tr": "5 milyon ₺'ye kadar",
-        "en": "Up to USD 150,000"
+        "tr": "5 milyon TL’ye kadar",
+        "en": "Up to USD 100,000"
       }
     },
     {
       "id": "r2",
       "label": {
-        "tr": "5 – 10 milyon ₺",
-        "en": "USD 150,000 – 300,000"
+        "tr": "5 – 10 milyon TL",
+        "en": "USD 100,000 – 200,000"
       }
     },
     {
       "id": "r3",
       "label": {
-        "tr": "10 – 20 milyon ₺",
-        "en": "USD 300,000 – 600,000"
+        "tr": "10 – 20 milyon TL",
+        "en": "USD 200,000 – 400,000"
       }
     },
     {
       "id": "r4",
       "label": {
-        "tr": "20 milyon ₺ ve üzeri",
-        "en": "USD 600,000 and above"
+        "tr": "20 milyon TL ve üzeri",
+        "en": "USD 400,000 and above"
       }
     }
   ],

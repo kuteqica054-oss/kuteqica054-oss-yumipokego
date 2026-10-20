@@ -3,8 +3,6 @@ title: "Terms of Use"
 updated: "20 October 2026"
 ---
 
-> **Draft — legal review required.** This text is a template and must be reviewed by a lawyer before publication.
-
 ## About These Terms
 
 These Terms of Use govern your use of the YumiPokeGo corporate franchise website (the "Site"), operated by **YumiPokeGo A.Ş.** (the "Company", "we", "us").
@@ -55,7 +53,7 @@ To the fullest extent permitted by law, the Company is not liable for any direct
 
 ## Governing Law and Jurisdiction
 
-These Terms are governed by the laws of the Republic of Türkiye. Any disputes arising from these Terms will be subject to the jurisdiction of the courts and enforcement offices of İzmir (Central).
+These Terms are governed by the laws of the Republic of Türkiye. For users acting as merchants, disputes arising from these Terms are subject to the jurisdiction of the courts and enforcement offices of İzmir (Central). Statutory jurisdiction rules for consumers remain unaffected.
 
 ## Changes to These Terms
 

@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '../../i18n/routes';
-import { useT, pick, type Num } from '../../i18n/utils';
+import { useT, pick, formatValue, type Num } from '../../i18n/utils';
+import site from '../../config/site.json';
 import data from '../../data/formats.json';
 import Value from '../ui/Value.astro';
 import Todo from '../ui/Todo.astro';
@@ -8,6 +9,7 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useT(lang);
 const L = t.formats.labels;
+const showInv = site.showTodos || data.formats.some((f) => formatValue(pick(f.investment as any, lang) as Num, 'money', lang));
 ---
 <div class="overflow-x-auto rounded-[var(--radius-card)] border border-line bg-white">
   <table class="w-full min-w-[640px] text-left text-[0.95rem]">
@@ -18,7 +20,7 @@ const L = t.formats.labels;
         <th scope="col" class="px-5 py-3 font-semibold">{L.area}</th>
         <th scope="col" class="px-5 py-3 font-semibold">{L.seats}</th>
         <th scope="col" class="px-5 py-3 font-semibold">{L.staff}</th>
-        <th scope="col" class="px-5 py-3 font-semibold">{L.investment}</th>
+        {showInv && <th scope="col" class="px-5 py-3 font-semibold">{L.investment}</th>}
         <th scope="col" class="px-5 py-3 font-semibold">{L.offered}</th>
       </tr>
     </thead>
@@ -27,9 +29,9 @@ const L = t.formats.labels;
         <tr>
           <th scope="row" class="px-5 py-4 font-display text-base font-bold">{pick(f.name, lang)}</th>
           <td class="px-5 py-4"><Value value={f.area as Num} unit="area" lang={lang} /></td>
-          <td class="px-5 py-4">{f.id === 'darkkitchen' ? '—' : <Value value={f.seats as Num} unit="count" lang={lang} />}</td>
+          <td class="px-5 py-4">{f.seats ? <Value value={f.seats as Num} unit="count" lang={lang} /> : (f as any).seatsNote ? pick((f as any).seatsNote, lang) : <Value value={null} unit="count" lang={lang} />}</td>
           <td class="px-5 py-4"><Value value={f.staff as Num} unit="count" lang={lang} /></td>
-          <td class="px-5 py-4"><Value value={pick(f.investment as any, lang) as Num} unit="money" lang={lang} /></td>
+          {showInv && <td class="px-5 py-4"><Value value={pick(f.investment as any, lang) as Num} unit="money" lang={lang} /></td>}
           <td class="px-5 py-4">{f.offered === null ? <Todo label={t.common.toBeConfirmed} fallback={t.common.available} /> : f.offered ? t.common.available : '—'}</td>
         </tr>
       ))}

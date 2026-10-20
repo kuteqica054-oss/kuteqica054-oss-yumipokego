@@ -36,7 +36,7 @@ const organization = {
   '@type': 'Organization',
   '@id': absUrl('/#organization'),
   name: site.brand,
-  legalName: site.legalName,
+  legalName: site.legalName.includes('TODO') ? site.legalNameShort : site.legalName,
   url: absUrl('/'),
   logo: absUrl('/favicon.svg'),
   ...(site.headOfficeAddress ? { address: site.headOfficeAddress } : {}),
@@ -93,7 +93,7 @@ const organization = {
     </main>
     <Footer lang={lang} alternates={alternates} />
     <WhatsAppButton lang={lang} />
-    <CookieBanner lang={lang} />
+    {site.analytics.ga4Id && <CookieBanner lang={lang} />}
     <script>
       // Kaydırınca beliren öğeler
       const els = document.querySelectorAll('[data-reveal]');

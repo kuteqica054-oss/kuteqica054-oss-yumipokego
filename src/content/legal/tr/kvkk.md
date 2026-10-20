@@ -3,9 +3,7 @@ title: "KVKK Aydınlatma Metni"
 updated: "20 Ekim 2026"
 ---
 
-> **Taslak — hukuki inceleme gerekir.** Bu metin şablon niteliğindedir ve yayına alınmadan önce bir avukat tarafından incelenmelidir.
-
-Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun ("KVKK") 10. maddesi ve Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ uyarınca, YumiPokeGo kurumsal franchise web sitesini ziyaret eden, iletişim veya franchise başvuru formunu dolduran kişilere ait kişisel verilerin işlenmesine ilişkin olarak sizi bilgilendirmek amacıyla hazırlanmıştır.
+Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu'nun ("KVKK") 10. maddesi ve Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ uyarınca, YumiPokeGo kurumsal franchise web sitesini ziyaret eden, franchise başvuru formunu dolduran kişilere ait kişisel verilerin işlenmesine ilişkin olarak sizi bilgilendirmek amacıyla hazırlanmıştır.
 
 ## Veri Sorumlusu
 
@@ -21,10 +19,11 @@ KVKK kapsamında veri sorumlusu, YumiPokeGo markasının sahibi ve işleteni ola
 Web sitemiz aracılığıyla aşağıdaki kişisel veri kategorileri işlenebilmektedir:
 
 - **Kimlik bilgileri:** Ad, soyad.
-- **İletişim bilgileri:** E-posta adresi, telefon numarası, yaşadığınız il/ilçe.
-- **Franchise başvuru bilgileri:** Planlanan yatırım bütçesi, işletme açılması düşünülen lokasyon, gıda/perakende sektöründeki veya işletmecilik alanındaki deneyiminiz, mevcut mesleğiniz ve formda kendi isteğinizle paylaştığınız diğer açıklamalar.
+- **İletişim bilgileri:** E-posta adresi, telefon numarası, yaşadığınız şehir ve ülke.
+- **Franchise başvuru bilgileri:** İlgilenilen format, işletme açılması düşünülen şehir/bölge, mülk durumu ve alanı, planlanan açılış zamanı ve restoran sayısı, gıda/perakende sektöründeki veya işletmecilik alanındaki deneyiminiz, mevcut mesleğiniz ve formda kendi isteğinizle paylaştığınız diğer açıklamalar.
+- **Finansal bilgiler:** Planlanan yatırım bütçesi aralığı ve finansman kaynağı (öz kaynak, kredi, ortaklık).
 - **İşlem güvenliği bilgileri:** IP adresi, tarayıcı ve cihaz bilgileri, form gönderim tarihi ve saati, güvenlik amaçlı kayıtlar.
-- **Pazarlama ve çerez verileri:** Çerez tercihleriniz ile, yalnızca onay vermeniz halinde, site kullanımına ilişkin analitik veriler (ziyaret edilen sayfalar, ziyaret süresi, yönlendiren kaynak gibi). Ayrıntılar için [Çerez Politikası](/cerez-politikasi/) metnimizi inceleyebilirsiniz.
+- **Pazarlama ve çerez verileri:** Ticari elektronik ileti onayınız ve çerez tercihleriniz. Sitede şu anda analitik araç kullanılmamaktadır; ileride kullanılması halinde analitik veriler yalnızca onayınızla işlenir. Ayrıntılar için [Çerez Politikası](/cerez-politikasi/) metnimizi inceleyebilirsiniz.
 
 Başvuru formunda sağlık, din, etnik köken gibi özel nitelikli kişisel verilerinizi paylaşmamanızı rica ederiz. Bu tür veriler tarafımızca talep edilmemektedir.
 
@@ -49,26 +48,25 @@ Kişisel verileriniz KVKK'nın 5. maddesinde yer alan aşağıdaki hukuki sebepl
 - **Md. 5/2 (c):** Bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması kaydıyla, sözleşmenin taraflarına ait kişisel verilerin işlenmesinin gerekli olması (franchise başvurusunun değerlendirilmesi ve sözleşme öncesi görüşmeler).
 - **Md. 5/2 (ç):** Veri sorumlusunun hukuki yükümlülüğünü yerine getirebilmesi için zorunlu olması.
 - **Md. 5/2 (f):** İlgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla, veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması (site güvenliği, başvuruların yönetimi, iletişim).
-- **Md. 5/1 – Açık rıza:** Analitik çerezlerin kullanımı, ticari elektronik ileti gönderimi ve yurt dışına aktarımın açık rızaya dayandığı haller.
+- **Md. 5/1 – Açık rıza:** Ticari elektronik ileti gönderimi ve (kullanılması halinde) analitik çerezler.
 
 ## Kişisel Verilerin Aktarılması
 
-Kişisel verileriniz, yukarıda belirtilen amaçlarla sınırlı olarak; web sitesi barındırma (hosting) hizmeti sağlayıcılarına, form altyapısı ve e-posta hizmeti sağlayıcılarına, analitik hizmet sağlayıcılarına (yalnızca onayınız halinde), hukuki ve mali danışmanlarımıza ve kanunen yetkili kamu kurum ve kuruluşlarına aktarılabilecektir. Kullanılan hizmet sağlayıcıların listesi: Netlify, Inc. (barındırma ve form altyapısı) ve Google LLC (Google Analytics 4 — yalnızca analitik çerezlere onay vermeniz halinde).
+Kişisel verileriniz, yukarıda belirtilen amaçlarla sınırlı olarak; web sitesi barındırma (hosting) hizmeti sağlayıcılarına, form altyapısı ve e-posta hizmeti sağlayıcılarına, hukuki ve mali danışmanlarımıza ve kanunen yetkili kamu kurum ve kuruluşlarına aktarılabilecektir. Kullanılan hizmet sağlayıcı: Hostinger International Ltd. (web sitesi barındırma, başvuru formunun işlenmesi ve e-posta).
 
-**Yurt dışına aktarım:** Form altyapısı, barındırma ve analitik hizmet sağlayıcılarımızın bir kısmının sunucuları yurt dışında bulunabilmektedir. Bu durumda kişisel verileriniz, KVKK'nın 9. maddesi uyarınca; yeterlilik kararı bulunan ülkelere, Kurul tarafından ilan edilen standart sözleşmelerin imzalanması gibi uygun güvencelerin sağlanması suretiyle veya bunların bulunmadığı arızi hallerde açık rızanıza dayanılarak aktarılabilecektir.
+**Yurt dışına aktarım:** Barındırma ve e-posta hizmet sağlayıcımızın sunucularının yurt dışında bulunması halinde kişisel verileriniz, KVKK'nın 9. maddesi uyarınca yeterlilik kararı bulunan ülkelere veya Kurul tarafından ilan edilen standart sözleşmenin imzalanıp Kurul'a bildirilmesi suretiyle aktarılır.
 
 ## Kişisel Verilerin Toplanma Yöntemi
 
-Kişisel verileriniz; web sitemizdeki franchise başvuru formu ve iletişim formu, e-posta ve telefon yoluyla yaptığınız başvurular ile çerezler ve benzeri teknolojiler aracılığıyla, tamamen veya kısmen otomatik yollarla elektronik ortamda toplanmaktadır.
+Kişisel verileriniz; web sitemizdeki franchise başvuru formları, e-posta ve telefon yoluyla yaptığınız başvurular ile çerezler ve benzeri teknolojiler aracılığıyla, tamamen veya kısmen otomatik yollarla elektronik ortamda toplanmaktadır.
 
 ## Saklama Süreleri
 
 Kişisel verileriniz, işlenme amaçlarının gerektirdiği süre ve ilgili mevzuatta öngörülen süreler boyunca saklanır; sürenin sona ermesiyle silinir, yok edilir veya anonim hale getirilir.
 
 - Sonuçlanmayan franchise başvurularına ilişkin veriler: başvuru tarihinden itibaren 2 yıl
-- İletişim formu kayıtları: talebin sonuçlandırılmasından itibaren 1 yıl
+- E-posta ve telefonla iletilen talepler: talebin sonuçlandırılmasından itibaren 1 yıl
 - İşlem güvenliği kayıtları: 2 yıl
-- Analitik veriler: 14 ay
 - Ticari elektronik ileti onay kayıtları: onayın geri alınmasından itibaren 3 yıl
 
 ## İlgili Kişinin Hakları

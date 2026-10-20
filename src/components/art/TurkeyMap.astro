@@ -41,7 +41,7 @@ const anyPlaceholder = [...restaurants, ...cities].some((x) => x.placeholder);
           <g transform={`translate(${c.xy[0].toFixed(1)} ${c.xy[1].toFixed(1)})`} class="map-pt" tabindex="0" role="img" aria-label={`${c.city} — ${statusLabel(c.status)}${c.placeholder ? ` (${t.common.sample})` : ''}`}>
             <title>{c.city} — {statusLabel(c.status)}{c.placeholder ? ` (${t.common.sample})` : ''}</title>
             <circle r="9" fill="#e3edd3" stroke="#3f6b22" stroke-width="2.5" stroke-dasharray={c.placeholder ? '3 2.5' : undefined} />
-            <text x="13" y="4.5" text-anchor="start" font-size="13" font-weight="600" fill="#3f6b22" font-family="DM Sans Variable, sans-serif">{c.city}</text>
+            <text x="13" y="4.5" text-anchor="start" paint-order="stroke" stroke="#fbf7f0" stroke-width="4" stroke-linejoin="round" font-size="13" font-weight="600" fill="#3f6b22" font-family="DM Sans Variable, sans-serif">{c.city}</text>
           </g>
         ))}
       </g>
@@ -51,7 +51,7 @@ const anyPlaceholder = [...restaurants, ...cities].some((x) => x.placeholder);
             <title>{r.name} — {r.city}{r.placeholder ? ` (${t.common.sample})` : ''}</title>
             <circle r="16" fill="#ee6a4e" opacity=".2" />
             <circle r="9" fill="#c4442a" stroke="#fff" stroke-width="2.5" stroke-dasharray={r.placeholder ? '3 2.5' : undefined} />
-            <text y="-18" text-anchor="middle" font-size="14" font-weight="700" fill="#0e2a3b" font-family="DM Sans Variable, sans-serif">{r.city}</text>
+            <text y="-18" text-anchor="middle" paint-order="stroke" stroke="#fbf7f0" stroke-width="4" stroke-linejoin="round" font-size="14" font-weight="700" fill="#0e2a3b" font-family="DM Sans Variable, sans-serif">{r.city}</text>
           </g>
         ))}
       </g>

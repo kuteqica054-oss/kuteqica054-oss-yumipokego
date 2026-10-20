@@ -167,11 +167,11 @@
       },
       "name": {
         "tr": "Acılı Karidesli Udon",
-        "en": "Spicy Shrimp Udon"
+        "en": "Spicy Prawn Udon"
       },
       "desc": {
         "tr": "Kalın udon, karides, sebzeler ve hafif acılı sarımsaklı sos.",
-        "en": "Thick udon with shrimp, vegetables and a gently spicy garlic sauce."
+        "en": "Thick udon with prawn, vegetables and a gently spicy garlic sauce."
       }
     },
     {
@@ -211,11 +211,11 @@
       },
       "name": {
         "tr": "Çıtır Karides Roll",
-        "en": "Crispy Shrimp Roll"
+        "en": "Crispy Prawn Roll"
       },
       "desc": {
         "tr": "Panko karides, avokado ve mango; üzerinde tatlı acı sos. 8 parça.",
-        "en": "Panko shrimp, avocado and mango with sweet chilli on top. 8 pieces."
+        "en": "Panko prawn, avocado and mango with sweet chilli on top. 8 pieces."
       }
     }
   ]

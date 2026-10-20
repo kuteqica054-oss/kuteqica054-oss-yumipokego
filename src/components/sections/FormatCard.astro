@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '../../i18n/routes';
-import { useT, pick, type Num } from '../../i18n/utils';
+import { useT, pick, formatValue, type Num } from '../../i18n/utils';
+import site from '../../config/site.json';
 import FloorPlan from '../art/FloorPlan.astro';
 import PhotoSlot from '../ui/PhotoSlot.astro';
 import Value from '../ui/Value.astro';
@@ -34,9 +35,9 @@ const name = pick(f.name, lang) as string;
     )}
     <dl class="mt-auto grid grid-cols-2 gap-x-4 gap-y-3 border-t border-line pt-4 text-sm" style="margin-top:1.25rem">
       <div><dt class="text-ink-soft">{L.area}</dt><dd class="font-semibold"><Value value={f.area as Num} unit="area" lang={lang} /></dd></div>
-      <div><dt class="text-ink-soft">{L.seats}</dt><dd class="font-semibold">{f.id === 'darkkitchen' ? '—' : <Value value={f.seats as Num} unit="count" lang={lang} />}</dd></div>
+      <div><dt class="text-ink-soft">{L.seats}</dt><dd class="font-semibold">{f.seats ? <Value value={f.seats as Num} unit="count" lang={lang} /> : f.seatsNote ? pick(f.seatsNote, lang) : <Value value={null} unit="count" lang={lang} />}</dd></div>
       <div><dt class="text-ink-soft">{L.staff}</dt><dd class="font-semibold"><Value value={f.staff as Num} unit="count" lang={lang} /></dd></div>
-      <div><dt class="text-ink-soft">{L.investment}</dt><dd class="font-semibold"><Value value={pick(f.investment, lang) as Num} unit="money" lang={lang} /></dd></div>
+      {(site.showTodos || formatValue(pick(f.investment, lang) as Num, 'money', lang)) && <div><dt class="text-ink-soft">{L.investment}</dt><dd class="font-semibold"><Value value={pick(f.investment, lang) as Num} unit="money" lang={lang} /></dd></div>}
     </dl>
   </div>
 </article>

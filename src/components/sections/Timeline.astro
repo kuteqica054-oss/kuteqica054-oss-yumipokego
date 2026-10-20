@@ -17,7 +17,7 @@ const dur = (id: string) => { const d = durations[id]; return d ? pick(d, lang) 
       <li class="relative flex gap-4 xl:block" data-reveal>
         <span class:list={['relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full font-display text-lg font-bold', i === 0 ? 'bg-coral-600 text-white' : i === t.process.length - 1 ? 'bg-avocado-700 text-white' : 'bg-white text-ink ring-2 ring-ink/15']}>{i + 1}</span>
         <div class="xl:mt-4">
-          <p class="font-display text-lg font-bold leading-tight hyphens-auto xl:text-[1.02rem]" lang={lang}>{s.title}</p>
+          <p class="font-display text-lg font-bold leading-tight hyphens-auto xl:text-[0.94rem]" lang={lang}>{s.title}</p>
           <p class="mt-1 text-sm text-ink-soft xl:hidden">{s.text}</p>
           <p class="mt-1 text-xs text-ink-soft">{dur(s.id) ?? <Todo label={t.processDurationTodo} />}</p>
         </div>

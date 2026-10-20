@@ -1,7 +1,8 @@
 ---
 import type { Lang } from '../i18n/routes';
 import { path } from '../i18n/routes';
-import { useT, pick, type Num } from '../i18n/utils';
+import { useT, pick, formatValue, type Num } from '../i18n/utils';
+import site from '../config/site.json';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import franchise from '../data/franchise.json';
 import formats from '../data/formats.json';
@@ -42,9 +43,9 @@ const hasShares = shares.every((s) => typeof s.share === 'number');
   <section class="container-x grid gap-10 py-16 lg:grid-cols-[1.2fr_1fr]" aria-labelledby="breakdown">
     <div>
       <SectionHead title={p.breakdownTitle} lead={p.breakdownLead} id="breakdown" />
-      <div class="mt-8 flex h-5 overflow-hidden rounded-full bg-rice-3" role="img" aria-label={p.breakdownTitle}>
-        {shares.map((s, i) => <span style={`width:${hasShares ? s.share : 100 / shares.length}%;background:${colors[i]};opacity:${hasShares ? 1 : 0.35}`} class="border-r-2 border-rice last:border-0"></span>)}
-      </div>
+      {hasShares && <div class="mt-8 flex h-5 overflow-hidden rounded-full bg-rice-3" role="img" aria-label={p.breakdownTitle}>
+        {shares.map((s, i) => <span style={`width:${s.share}%;background:${colors[i]}`} class="border-r-2 border-rice last:border-0"></span>)}
+      </div>}
       <ul class="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
         {shares.map((s, i) => (
           <li class="flex items-center justify-between gap-3 border-b border-line pb-3">
@@ -69,8 +70,12 @@ const hasShares = shares.every((s) => typeof s.share === 'number');
         {formats.formats.map((f) => (
           <a href={`${path('formats', lang)}#${f.id}`} class="card group block p-5 transition-colors hover:border-ink/30">
             <p class="font-display text-lg font-bold">{pick(f.name, lang)}</p>
-            <p class="mt-3 font-display text-2xl font-bold text-coral-700"><Value value={pick(f.investment, lang) as Num} unit="money" lang={lang} /></p>
-            <p class="mt-1 text-sm text-ink-soft">{t.formats.labels.area}: <Value value={f.area as Num} unit="area" lang={lang} /></p>
+            {(formatValue(pick(f.investment, lang) as Num, 'money', lang) || site.showTodos) && <p class="mt-3 font-display text-2xl font-bold text-coral-700"><Value value={pick(f.investment, lang) as Num} unit="money" lang={lang} /></p>}
+            <dl class="mt-3 space-y-1 text-sm">
+              <div class="flex justify-between gap-2"><dt class="text-ink-soft">{t.formats.labels.area}</dt><dd class="font-semibold"><Value value={f.area as Num} unit="area" lang={lang} /></dd></div>
+              <div class="flex justify-between gap-2"><dt class="text-ink-soft">{t.formats.labels.seats}</dt><dd class="font-semibold">{f.seats ? <Value value={f.seats as Num} unit="count" lang={lang} /> : pick((f as any).seatsNote, lang)}</dd></div>
+              <div class="flex justify-between gap-2"><dt class="text-ink-soft">{t.formats.labels.staff}</dt><dd class="font-semibold"><Value value={f.staff as Num} unit="count" lang={lang} /></dd></div>
+            </dl>
             <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold group-hover:underline">{t.common.learnMore}<Icon name="ArrowRight" size={16} /></span>
           </a>
         ))}
