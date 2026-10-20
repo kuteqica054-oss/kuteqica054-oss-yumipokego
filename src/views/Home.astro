@@ -1,0 +1,242 @@
+---
+import type { Lang } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT, pick } from '../i18n/utils';
+import { faqJsonLd } from '../lib/schema';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import photos from '../config/photos.json';
+import formats from '../data/formats.json';
+import leadership from '../data/leadership.json';
+import HeroBowl from '../components/art/HeroBowl.astro';
+import Storefront from '../components/art/Storefront.astro';
+import PosMockup from '../components/art/PosMockup.astro';
+import AppMockup from '../components/art/AppMockup.astro';
+import TurkeyMap from '../components/art/TurkeyMap.astro';
+import PhotoSlot from '../components/ui/PhotoSlot.astro';
+import SectionHead from '../components/ui/SectionHead.astro';
+import Icon from '../components/ui/Icon.astro';
+import Todo from '../components/ui/Todo.astro';
+import KeyFigures from '../components/sections/KeyFigures.astro';
+import Timeline from '../components/sections/Timeline.astro';
+import SupportDiagram from '../components/sections/SupportDiagram.astro';
+import FormatCard from '../components/sections/FormatCard.astro';
+import FormatsTable from '../components/sections/FormatsTable.astro';
+import MenuGrid from '../components/sections/MenuGrid.astro';
+import Leadership from '../components/sections/Leadership.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import Disclaimer from '../components/sections/Disclaimer.astro';
+import QuickForm from '../components/form/QuickForm.astro';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const h = t.home;
+const whyUsIcons = ['ClipboardList', 'Truck', 'GraduationCap', 'Megaphone', 'MonitorSmartphone'];
+const supportIcons: Record<string, string> = { location: 'MapPin', design: 'PencilRuler', training: 'GraduationCap', manual: 'BookOpen', supply: 'Truck', marketing: 'Megaphone', it: 'MonitorSmartphone', quality: 'ShieldCheck' };
+---
+<BaseLayout lang={lang} routeKey="home" jsonld={[faqJsonLd(lang)]}>
+  <!-- 1. HERO -->
+  <section class="pattern-rice relative overflow-hidden bg-rice">
+    <div class="container-x grid items-center gap-10 pb-16 pt-10 md:pt-14 lg:grid-cols-[1.05fr_1fr] lg:pb-24">
+      <div>
+        <p class="eyebrow">{h.hero.eyebrow}</p>
+        <h1 class="h-display mt-4 max-w-[14ch]">{h.hero.title}</h1>
+        <p class="lead mt-6 max-w-xl">{h.hero.lead}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={path('apply', lang)} class="btn-primary">{t.common.apply}<Icon name="ArrowRight" size={18} /></a>
+          <a href={path('investment', lang)} class="btn-ghost">{t.common.investmentDetails}</a>
+        </div>
+        <p class="mt-8 flex items-center gap-2 text-[0.95rem] text-ink-soft">
+          <Icon name="UtensilsCrossed" size={18} />
+          {h.hero.guest} <a href={path('menu', lang)} class="link font-semibold text-ink">{t.common.seeMenu}</a>
+        </p>
+      </div>
+      <div class="relative mx-auto w-full max-w-[560px]">
+        <!-- FOTO: photos.json → heroBowl (1400×1400, üstten poke bowl) -->
+        <PhotoSlot src={photos.heroBowl.src} alt={pick(photos.heroBowl.alt, lang)} size={photos.heroBowl.size} class="ml-auto w-[88%] sm:w-[82%]" eager width={1400} height={1400} imgClass="aspect-square w-full rounded-full object-cover">
+          <HeroBowl alt={h.hero.bowlAlt} />
+        </PhotoSlot>
+        <!-- FOTO: photos.json → heroStore (1200×900, mağaza cephesi) -->
+        <div class="absolute -bottom-8 left-0 w-[46%] rotate-[-3deg] rounded-2xl border border-line bg-white p-2 shadow-[var(--shadow-card)] sm:w-[42%]">
+          <PhotoSlot src={photos.heroStore.src} alt={pick(photos.heroStore.alt, lang)} size={photos.heroStore.size} class="overflow-hidden rounded-xl bg-rice-2" width={1200} height={900} imgClass="aspect-[4/3] w-full object-cover">
+            <Storefront alt={h.hero.storeAlt} openLabel={lang === 'tr' ? 'AÇIK' : 'OPEN'} />
+          </PhotoSlot>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ANAHTAR RAKAMLAR -->
+  <section class="on-dark pattern-rice-dark bg-ink py-16 text-white md:py-20" aria-labelledby="figures-title">
+    <div class="container-x">
+      <div class="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div class="max-w-2xl" data-reveal>
+          <p class="eyebrow">{h.figures.eyebrow}</p>
+          <h2 id="figures-title" class="h-section mt-3 text-white">{h.figures.title}</h2>
+        </div>
+        <a href={path('investment', lang)} class="btn-ghost-light shrink-0">{h.figures.link}<Icon name="ArrowRight" size={18} /></a>
+      </div>
+      <KeyFigures lang={lang} />
+      <p class="mt-5 max-w-3xl text-sm text-ink-mute">{h.figures.note}</p>
+    </div>
+  </section>
+
+  <!-- 3. NEDEN POKE -->
+  <section class="py-20 md:py-28" aria-labelledby="whypoke-title">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <div class="lg:sticky lg:top-28 lg:self-start">
+        <SectionHead eyebrow={h.whyPoke.eyebrow} title={h.whyPoke.title} lead={h.whyPoke.lead} id="whypoke-title" />
+      </div>
+      <ol class="space-y-0">
+        {h.whyPoke.items.map((it, i) => (
+          <li class="grid grid-cols-[auto_1fr] gap-x-6 border-t border-line py-7 last:border-b" data-reveal>
+            <span class="w-14 font-display text-4xl font-bold leading-none text-coral-600 sm:w-20 sm:text-5xl" aria-hidden="true">0{i + 1}</span>
+            <div>
+              <h3 class="text-xl font-bold sm:text-2xl">{it.title}</h3>
+              <p class="mt-2 text-ink-soft">{it.text}</p>
+              {it.stat && <Todo label={`${h.whyPoke.statNote}: TODO — ${t.common.sourceTodo}`} class="mt-3" />}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4. NEDEN YUMIPOKEGO -->
+  <section class="bg-rice-2 py-20 md:py-28" aria-labelledby="whyus-title">
+    <div class="container-x">
+      <SectionHead eyebrow={h.whyUs.eyebrow} title={h.whyUs.title} lead={h.whyUs.lead} id="whyus-title" />
+      <div class="mt-12 grid grid-cols-1 items-start gap-12 lg:grid-cols-2 [&>*]:min-w-0">
+        <ul class="grid gap-x-8 sm:grid-cols-2 lg:grid-cols-1">
+          {h.whyUs.items.map((it, i) => (
+            <li class="flex gap-4 border-t border-ink/10 py-5" data-reveal>
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-coral-700 ring-1 ring-line"><Icon name={whyUsIcons[i]} /></span>
+              <div>
+                <h3 class="text-lg font-bold">{it.title}</h3>
+                <p class="mt-1 text-[0.95rem] text-ink-soft">{it.text}</p>
+              </div>
+            </li>
+          ))}
+          
+        </ul>
+        <div class="relative" data-reveal>
+          <PosMockup lang={lang} />
+          <AppMockup lang={lang} class="-mt-16 ml-auto mr-2 hidden w-fit sm:block lg:-mt-24" />
+          <p class="mt-4 text-center text-xs text-ink-soft">{h.whyUs.posCaption} · {t.mockups.fakeNote}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FORMATLAR -->
+  <section class="py-20 md:py-28" aria-labelledby="formats-title">
+    <div class="container-x">
+      <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <SectionHead eyebrow={h.formats.eyebrow} title={h.formats.title} lead={h.formats.lead} id="formats-title" />
+        <a href={path('formats', lang)} class="btn-ghost shrink-0">{h.formats.link}<Icon name="ArrowRight" size={18} /></a>
+      </div>
+      <div class="mt-12 grid gap-5 md:grid-cols-2">
+        {formats.formats.map((f, i) => <FormatCard lang={lang} format={f} index={i} />)}
+      </div>
+      <div class="mt-8" data-reveal><FormatsTable lang={lang} /></div>
+    </div>
+  </section>
+
+  <!-- 6. AÇILIŞ SÜRECİ -->
+  <section class="border-y border-line bg-white py-20 md:py-28" aria-labelledby="process-title">
+    <div class="container-x">
+      <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <SectionHead eyebrow={h.process.eyebrow} title={h.process.title} lead={h.process.lead} id="process-title" />
+        <a href={path('process', lang)} class="btn-ghost shrink-0">{h.process.link}<Icon name="ArrowRight" size={18} /></a>
+      </div>
+      <div class="mt-14"><Timeline lang={lang} compact /></div>
+    </div>
+  </section>
+
+  <!-- 7. DESTEK -->
+  <section class="py-20 md:py-28" aria-labelledby="support-title">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
+      <div>
+        <SectionHead eyebrow={h.support.eyebrow} title={h.support.title} lead={h.support.lead} id="support-title" />
+        <ul class="mt-8 grid gap-x-6 gap-y-4 sm:grid-cols-2">
+          {t.support.map((s) => (
+            <li class="flex gap-3" data-reveal>
+              <span class="mt-0.5 text-avocado-700"><Icon name={supportIcons[s.id]} size={20} /></span>
+              <div><p class="font-semibold">{s.title}</p><p class="text-sm text-ink-soft">{s.text}</p></div>
+            </li>
+          ))}
+        </ul>
+        <a href={path('support', lang)} class="btn-ghost mt-8">{h.support.link}<Icon name="ArrowRight" size={18} /></a>
+      </div>
+      <div class="rounded-[28px] bg-white p-4 ring-1 ring-line sm:p-8" data-reveal><SupportDiagram lang={lang} /></div>
+    </div>
+  </section>
+
+  <!-- 8. HARİTA -->
+  <section class="bg-rice-2 py-20 md:py-28" aria-labelledby="map-title">
+    <div class="container-x">
+      <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <SectionHead eyebrow={h.map.eyebrow} title={h.map.title} lead={h.map.lead} id="map-title" />
+        <a href={path('locations', lang)} class="btn-ghost shrink-0">{h.map.link}<Icon name="ArrowRight" size={18} /></a>
+      </div>
+      <div class="mt-10" data-reveal><TurkeyMap lang={lang} /></div>
+    </div>
+  </section>
+
+  <!-- 9. MARKA VE MENÜ -->
+  <section class="py-20 md:py-28" aria-labelledby="menu-title">
+    <div class="container-x">
+      <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <SectionHead eyebrow={h.menu.eyebrow} title={h.menu.title} lead={h.menu.lead} id="menu-title" />
+        <a href={path('menu', lang)} class="btn-primary shrink-0">{h.menu.link}<Icon name="ArrowRight" size={18} /></a>
+      </div>
+      <div class="mt-12"><MenuGrid lang={lang} ids={['klasik-somon', 'yesil-tofu', 'teriyaki-wok', 'somon-roll']} /></div>
+      <p class="mt-6 text-sm text-ink-soft">{t.menuPage.sampleNote}</p>
+    </div>
+  </section>
+
+  <!-- 10. KURUMSAL -->
+  <section class="on-dark pattern-rice-dark bg-ink py-20 text-white md:py-28" aria-labelledby="about-title">
+    <div class="container-x grid gap-12 lg:grid-cols-[1fr_1.2fr]">
+      <div data-reveal>
+        <p class="eyebrow">{h.about.eyebrow}</p>
+        <h2 id="about-title" class="h-section mt-3 text-white">{h.about.title}</h2>
+        <p class="lead mt-5">{h.about.text}</p>
+        <a href={path('corporate', lang)} class="btn-ghost-light mt-8">{h.about.link}<Icon name="ArrowRight" size={18} /></a>
+      </div>
+      <div>
+        <p class="mb-4 text-sm font-semibold text-ink-mute">{h.about.team}</p>
+        <div class="[&_.card]:border-white/10 [&_.card]:bg-ink-2 [&_.card_p]:text-white [&_.card_.text-coral-700]:text-coral-300 [&_.card_.text-ink-soft]:text-ink-mute">
+          <Leadership lang={lang} people={leadership.management} compact />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. SSS -->
+  <section class="py-20 md:py-28" aria-labelledby="faq-title">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+      <div class="lg:sticky lg:top-28 lg:self-start">
+        <SectionHead eyebrow={h.faq.eyebrow} title={h.faq.title} id="faq-title" />
+        <a href={path('contact', lang)} class="btn-ghost mt-8">{t.cta.secondary}</a>
+      </div>
+      <FAQ lang={lang} />
+    </div>
+  </section>
+
+  <!-- 12. ÖN BAŞVURU -->
+  <section id="on-basvuru" class="scroll-mt-20 pb-20 md:pb-28" aria-labelledby="form-title">
+    <div class="container-x">
+      <div class="grid gap-10 rounded-[28px] bg-coral-50 p-6 ring-1 ring-coral-100 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:p-14">
+        <div>
+          <p class="eyebrow">{h.form.eyebrow}</p>
+          <h2 id="form-title" class="h-section mt-3">{h.form.title}</h2>
+          <p class="lead mt-4">{h.form.lead}</p>
+          <Disclaimer lang={lang} class="mt-8 hidden lg:flex" />
+        </div>
+        <QuickForm lang={lang} />
+        <Disclaimer lang={lang} class="lg:hidden" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

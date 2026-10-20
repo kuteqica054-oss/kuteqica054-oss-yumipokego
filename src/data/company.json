@@ -1,0 +1,27 @@
+{
+  "_comment": "Bilgi Toplumu Hizmetleri (6102 sayılı TTK md. 1524) sayfası. Tüm alanlar TODO. Zorunlu içerik listesini avukat / mali müşavir ile teyit edin.",
+  "fields": [
+    { "id": "unvan", "label": "Ticaret unvanı", "labelEn": "Trade name", "value": null },
+    { "id": "mersis", "label": "MERSİS numarası", "labelEn": "MERSIS number", "value": null },
+    { "id": "sicilMudurlugu", "label": "Ticaret sicil müdürlüğü", "labelEn": "Trade registry office", "value": null },
+    { "id": "sicilNo", "label": "Ticaret sicil numarası", "labelEn": "Trade registry number", "value": null },
+    { "id": "adres", "label": "Merkez adresi", "labelEn": "Head office address", "value": null },
+    { "id": "taahhutSermaye", "label": "Taahhüt edilen sermaye", "labelEn": "Subscribed capital", "value": null },
+    { "id": "odenenSermaye", "label": "Ödenen sermaye", "labelEn": "Paid-in capital", "value": null },
+    { "id": "vergiDairesi", "label": "Vergi dairesi", "labelEn": "Tax office", "value": null },
+    { "id": "vergiNo", "label": "Vergi numarası", "labelEn": "Tax number", "value": null },
+    { "id": "kep", "label": "KEP adresi", "labelEn": "Registered e-mail (KEP)", "value": null },
+    { "id": "web", "label": "İnternet sitesi", "labelEn": "Website", "value": null }
+  ],
+  "board": { "_comment": "Yönetim kurulu bilgisi leadership.json → board dizisinden okunur." },
+  "auditor": { "name": null, "address": null },
+  "sections": [
+    { "id": "duyurular", "title": "Duyurular", "documents": [] },
+    { "id": "genel-kurul", "title": "Genel kurul belgeleri", "documents": [], "hint": "Toplantıya çağrı ilanı, gündem, hazır bulunanlar listesi, toplantı tutanağı, vekâletname örneği" },
+    { "id": "finansal", "title": "Finansal tablolar ve denetim raporları", "documents": [] },
+    { "id": "esas-sozlesme", "title": "Esas sözleşme ve tadilleri", "documents": [] },
+    { "id": "ttsg", "title": "Türkiye Ticaret Sicili Gazetesi ilanları", "documents": [] },
+    { "id": "pay-sahipleri", "title": "Pay sahipliği ve diğer bilgiler", "documents": [] }
+  ],
+  "_documents_comment": "Belge eklemek için: { \"title\": \"2025 Olağan Genel Kurul Toplantı Tutanağı\", \"date\": \"2026-04-30\", \"file\": \"/documents/2025-genel-kurul-tutanak.pdf\" } — PDF'leri public/documents/ klasörüne koyun."
+}

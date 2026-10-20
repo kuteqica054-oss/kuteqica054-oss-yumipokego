@@ -1,0 +1,9 @@
+---
+import { bowlSvg, wokSvg, rollSvg, type Topping } from '../../lib/art';
+interface Props { kind: 'bowl' | 'wok' | 'roll'; toppings: string[]; alt: string; seed?: number; class?: string; id?: string }
+const { kind, toppings, alt, seed = 3, class: cls = '', id = 'd' } = Astro.props;
+const tps = toppings as Topping[];
+const svg = kind === 'bowl' ? bowlSvg({ toppings: tps, seed, idPrefix: id }) : kind === 'wok' ? wokSvg(tps, seed) : rollSvg(tps, seed);
+const vb = kind === 'bowl' ? '-132 -132 264 264' : '0 0 260 260';
+---
+<svg viewBox={vb} class:list={['block h-auto w-full', cls]} role={alt ? "img" : undefined} aria-label={alt || undefined} aria-hidden={alt ? undefined : "true"} set:html={svg} />

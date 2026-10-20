@@ -1,0 +1,46 @@
+---
+import type { Lang } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT, pick, type Num } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import franchise from '../data/franchise.json';
+import photos from '../config/photos.json';
+import PageHero from '../components/ui/PageHero.astro';
+import SectionHead from '../components/ui/SectionHead.astro';
+import PhotoSlot from '../components/ui/PhotoSlot.astro';
+import Icon from '../components/ui/Icon.astro';
+import Value from '../components/ui/Value.astro';
+import Timeline from '../components/sections/Timeline.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import Storefront from '../components/art/Storefront.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const p = t.processPage;
+const opening = franchise.keyFigures.find((k) => k.id === 'opening')!;
+---
+<BaseLayout lang={lang} routeKey="process">
+  <PageHero lang={lang} eyebrow={p.eyebrow} title={p.title} lead={p.lead} crumbs={[{ label: t.nav.franchise, href: path('franchise', lang) }, { label: t.nav.process }]}>
+    <div slot="art" class="mx-auto w-full max-w-[420px]">
+      <PhotoSlot src={photos.opening.src} alt={pick(photos.opening.alt, lang)} size={photos.opening.size} class="overflow-hidden rounded-[28px] bg-white p-4 ring-1 ring-line">
+        <Storefront alt={t.home.hero.storeAlt} openLabel={lang === 'tr' ? 'AÇIK' : 'OPEN'} />
+      </PhotoSlot>
+    </div>
+  </PageHero>
+  <section class="container-x py-14">
+    <div class="on-dark mb-12 flex flex-col gap-2 rounded-2xl bg-ink p-6 text-white sm:flex-row sm:items-center sm:justify-between">
+      <p class="font-semibold">{p.totalLabel}</p>
+      <p class="font-display text-3xl font-bold text-mango-400"><Value value={pick(opening.value as any, lang) as Num} unit="weeks" lang={lang} /></p>
+    </div>
+    <div class="max-w-4xl"><Timeline lang={lang} /></div>
+  </section>
+  <section class="bg-rice-2 py-16">
+    <div class="container-x grid gap-10 lg:grid-cols-2">
+      <SectionHead title={p.docsTitle} lead={p.docsNote} />
+      <ul class="space-y-3">
+        {p.docs.map((d) => <li class="card flex items-center gap-4 p-4"><span class="text-coral-700"><Icon name="FileText" /></span>{d}</li>)}
+      </ul>
+    </div>
+  </section>
+  <CtaBand lang={lang} />
+</BaseLayout>

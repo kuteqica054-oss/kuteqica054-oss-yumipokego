@@ -1,0 +1,133 @@
+{
+  "_comment": "Yönetim ve yönetim kurulu. name/bio null → TODO kartı. photo: /photos/team/xxx.jpg (kare, en az 800×800, nötr zemin). desc: görev tanımı (isim yokken kartta gösterilir).",
+  "board": [
+    {
+      "id": "chair",
+      "name": null,
+      "photo": null,
+      "role": {
+        "tr": "Yönetim Kurulu Başkanı",
+        "en": "Chair of the Board"
+      },
+      "bio": {
+        "tr": null,
+        "en": null
+      },
+      "linkedin": null,
+      "desc": {
+        "tr": "Şirketin stratejik yönünü ve kurumsal yönetim ilkelerini belirler.",
+        "en": "Sets the company’s strategic direction and corporate governance principles."
+      }
+    },
+    {
+      "id": "vicechair",
+      "name": null,
+      "photo": null,
+      "role": {
+        "tr": "Yönetim Kurulu Başkan Vekili",
+        "en": "Vice Chair"
+      },
+      "bio": {
+        "tr": null,
+        "en": null
+      },
+      "linkedin": null,
+      "desc": {
+        "tr": "Yönetim kurulunun çalışmalarını koordine eder, büyüme ve yatırım kararlarına liderlik eder.",
+        "en": "Coordinates the board’s work and leads growth and investment decisions."
+      }
+    },
+    {
+      "id": "member",
+      "name": null,
+      "photo": null,
+      "role": {
+        "tr": "Yönetim Kurulu Üyesi",
+        "en": "Board Member"
+      },
+      "bio": {
+        "tr": null,
+        "en": null
+      },
+      "linkedin": null,
+      "desc": {
+        "tr": "Finansal denetim, risk yönetimi ve uyum konularını takip eder.",
+        "en": "Oversees financial control, risk management and compliance."
+      }
+    }
+  ],
+  "management": [
+    {
+      "id": "ceo",
+      "name": null,
+      "photo": null,
+      "role": {
+        "tr": "Genel Müdür",
+        "en": "Chief Executive Officer"
+      },
+      "bio": {
+        "tr": null,
+        "en": null
+      },
+      "linkedin": null,
+      "desc": {
+        "tr": "Merkez ekipleri ve franchise ağının günlük yönetiminden sorumludur.",
+        "en": "Responsible for day-to-day management of head-office teams and the franchise network."
+      }
+    },
+    {
+      "id": "franchise",
+      "name": null,
+      "photo": null,
+      "role": {
+        "tr": "Franchise Direktörü",
+        "en": "Franchise Director"
+      },
+      "bio": {
+        "tr": null,
+        "en": null
+      },
+      "linkedin": null,
+      "desc": {
+        "tr": "Franchise adaylarıyla süreci başvurudan açılışa kadar yönetir.",
+        "en": "Manages the candidate journey from application to opening."
+      }
+    },
+    {
+      "id": "ops",
+      "name": null,
+      "photo": null,
+      "role": {
+        "tr": "Operasyon Direktörü",
+        "en": "Operations Director"
+      },
+      "bio": {
+        "tr": null,
+        "en": null
+      },
+      "linkedin": null,
+      "desc": {
+        "tr": "Operasyon standartlarını, eğitimleri ve saha denetimlerini yürütür.",
+        "en": "Runs operating standards, training and field audits."
+      }
+    },
+    {
+      "id": "supply",
+      "name": null,
+      "photo": null,
+      "role": {
+        "tr": "Tedarik Zinciri Müdürü",
+        "en": "Supply Chain Manager"
+      },
+      "bio": {
+        "tr": null,
+        "en": null
+      },
+      "linkedin": null,
+      "desc": {
+        "tr": "Tedarikçi seçimi, ürün spesifikasyonları ve sevkiyat planlamasını yönetir.",
+        "en": "Manages supplier selection, product specifications and delivery planning."
+      }
+    }
+  ]
+}

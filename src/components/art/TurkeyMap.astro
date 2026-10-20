@@ -1,0 +1,94 @@
+---
+// Türkiye haritası. Ana hat: world-atlas (Natural Earth, kamu malı) → scripts/build-map.mjs.
+// Noktalar: src/data/locations.json
+import map from '../../data/turkey-map.json';
+import locations from '../../data/locations.json';
+import site from '../../config/site.json';
+import { restaurants as restaurantList } from '../../lib/restaurants';
+import type { Lang } from '../../i18n/routes';
+import { useT } from '../../i18n/utils';
+interface Props { lang: Lang; class?: string; showList?: boolean }
+const { lang, class: cls = '', showList = true } = Astro.props;
+const t = useT(lang);
+const project = (lon: number, lat: number): [number, number] => {
+  const l = (lon * Math.PI) / 180, p = (lat * Math.PI) / 180;
+  return [map.scale * l + map.translate[0], map.translate[1] - map.scale * Math.log(Math.tan(Math.PI / 4 + p / 2))];
+};
+const restaurants = restaurantList.map((r) => ({ ...r, xy: project(r.lon, r.lat) }));
+const cities = locations.franchiseCities.items.map((c) => ({ ...c, xy: project(c.lon, c.lat) }));
+const statusLabel = (s: string) => (s === 'open' ? t.map.open : s === 'limited' ? t.map.limited : t.map.taken);
+const anyPlaceholder = [...restaurants, ...cities].some((x) => x.placeholder);
+---
+<div class:list={['tr-map', cls]} data-map>
+  <div class="mb-4 flex flex-wrap items-center gap-2" role="group" aria-label={t.map.legend}>
+    {restaurants.length > 0 && <button type="button" class="map-filter inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-3 py-1.5 text-sm font-medium" aria-pressed="true" data-layer="restaurants">
+      <span class="h-3 w-3 rounded-full bg-coral-600 ring-2 ring-coral-100"></span>{t.map.restaurants}
+    </button>}
+    <button type="button" class="map-filter inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-3 py-1.5 text-sm font-medium" aria-pressed="true" data-layer="cities">
+      <span class="h-3 w-3 rounded-full border-2 border-avocado-700 bg-avocado-100"></span>{t.map.open}
+    </button>
+    {anyPlaceholder && site.showTodos && <span class="todo">{t.common.sampleData}</span>}
+  </div>
+  <div class="relative overflow-hidden rounded-[var(--radius-card)] border border-line bg-[#e9f0f2]">
+    <svg viewBox={map.viewBox} class="block h-auto w-full" role="img" aria-label={t.map.ariaLabel}>
+      <g stroke="#cfdde2" stroke-width="2" fill="none" stroke-linecap="round" aria-hidden="true">
+        <path d="M300 30 q15 -10 30 0 t30 0 M560 22 q15 -10 30 0 t30 0 M700 40 q15 -10 30 0 t30 0" />
+        <path d="M250 420 q15 -10 30 0 t30 0 M520 412 q15 -10 30 0 t30 0 M60 300 q15 -10 30 0 t30 0" />
+      </g>
+      <path d={map.path} fill="#fbf7f0" stroke="#24506c" stroke-width="1.6" stroke-linejoin="round" />
+      <g data-layer-group="cities">
+        {cities.map((c) => (
+          <g transform={`translate(${c.xy[0].toFixed(1)} ${c.xy[1].toFixed(1)})`} class="map-pt" tabindex="0" role="img" aria-label={`${c.city} — ${statusLabel(c.status)}${c.placeholder ? ` (${t.common.sample})` : ''}`}>
+            <title>{c.city} — {statusLabel(c.status)}{c.placeholder ? ` (${t.common.sample})` : ''}</title>
+            <circle r="9" fill="#e3edd3" stroke="#3f6b22" stroke-width="2.5" stroke-dasharray={c.placeholder ? '3 2.5' : undefined} />
+            <text x="13" y="4.5" text-anchor="start" font-size="13" font-weight="600" fill="#3f6b22" font-family="DM Sans Variable, sans-serif">{c.city}</text>
+          </g>
+        ))}
+      </g>
+      <g data-layer-group="restaurants">
+        {restaurants.map((r) => (
+          <g transform={`translate(${r.xy[0].toFixed(1)} ${r.xy[1].toFixed(1)})`} class="map-pt" tabindex="0" role="img" aria-label={`${r.name} — ${r.city}${r.placeholder ? ` (${t.common.sample})` : ''}`}>
+            <title>{r.name} — {r.city}{r.placeholder ? ` (${t.common.sample})` : ''}</title>
+            <circle r="16" fill="#ee6a4e" opacity=".2" />
+            <circle r="9" fill="#c4442a" stroke="#fff" stroke-width="2.5" stroke-dasharray={r.placeholder ? '3 2.5' : undefined} />
+            <text y="-18" text-anchor="middle" font-size="14" font-weight="700" fill="#0e2a3b" font-family="DM Sans Variable, sans-serif">{r.city}</text>
+          </g>
+        ))}
+      </g>
+    </svg>
+  </div>
+  {showList && (
+    <div class="mt-6 grid gap-6 md:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold text-ink">{t.map.regions}</p>
+        <ul class="mt-2 grid grid-cols-2 gap-x-4 gap-y-1.5 text-[0.95rem]">
+          {locations.regions.items.map((r) => (
+            <li class="flex items-center justify-between gap-2 border-b border-line py-1.5">
+              <span>{r.name[lang]}</span>
+              {r.status ? <span class="text-sm font-semibold text-avocado-700">{r.status === 'open' ? t.common.available : statusLabel(r.status)}</span> : site.showTodos ? <span class="todo">TODO</span> : null}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p class="text-sm font-semibold text-ink">{t.map.open}</p>
+        <p class="mt-2 text-[0.95rem] text-ink-soft">{cities.map((c) => c.city).join(' · ')} {anyPlaceholder && <span class="todo ml-1">{t.common.sample}</span>}</p>
+      </div>
+    </div>
+  )}
+</div>
+<style>
+  .map-pt { cursor: default; outline: none; }
+  .map-pt:focus-visible circle:last-of-type, .map-pt:hover circle:last-of-type { stroke-width: 4; }
+  .map-filter[aria-pressed='false'] { opacity: .5; text-decoration: line-through; }
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-map]').forEach((root) => {
+    root.querySelectorAll<HTMLButtonElement>('.map-filter').forEach((btn) => btn.addEventListener('click', () => {
+      const on = btn.getAttribute('aria-pressed') !== 'true';
+      btn.setAttribute('aria-pressed', String(on));
+      const g = root.querySelector<SVGGElement>(`[data-layer-group="${btn.dataset.layer}"]`);
+      if (g) g.style.display = on ? '' : 'none';
+    }));
+  });
+</script>

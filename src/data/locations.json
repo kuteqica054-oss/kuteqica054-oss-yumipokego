@@ -1,0 +1,154 @@
+{
+  "_comment": "Haritadaki noktalar. lat/lon ondalık derece. placeholder: true olanlar sitede 'Örnek' olarak işaretlenir ve schema.org verisine eklenmez. Gerçek restoranları ekledikten sonra örnekleri silin.",
+  "restaurants": [],
+  "franchiseCities": {
+    "_comment": "Franchise için açık şehirler/bölgeler. status: open (açık) | limited (sınırlı) | taken (dolu).",
+    "items": [
+      {
+        "city": "İzmir",
+        "lat": 38.42,
+        "lon": 27.14,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Bursa",
+        "lat": 40.19,
+        "lon": 29.06,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Antalya",
+        "lat": 36.9,
+        "lon": 30.7,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Muğla",
+        "lat": 37.04,
+        "lon": 27.43,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Eskişehir",
+        "lat": 39.78,
+        "lon": 30.52,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Kocaeli",
+        "lat": 40.77,
+        "lon": 29.92,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Adana",
+        "lat": 37.0,
+        "lon": 35.32,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Kayseri",
+        "lat": 38.73,
+        "lon": 35.48,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Gaziantep",
+        "lat": 37.07,
+        "lon": 37.38,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Samsun",
+        "lat": 41.29,
+        "lon": 36.33,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Trabzon",
+        "lat": 41.0,
+        "lon": 39.72,
+        "status": "open",
+        "placeholder": false
+      },
+      {
+        "city": "Konya",
+        "lat": 37.87,
+        "lon": 32.48,
+        "status": "open",
+        "placeholder": false
+      }
+    ]
+  },
+  "regions": {
+    "_comment": "Türkiye'nin 7 coğrafi bölgesi için franchise durumu. status: open | limited | taken | null (TODO).",
+    "items": [
+      {
+        "id": "marmara",
+        "name": {
+          "tr": "Marmara",
+          "en": "Marmara"
+        },
+        "status": "open"
+      },
+      {
+        "id": "ege",
+        "name": {
+          "tr": "Ege",
+          "en": "Aegean"
+        },
+        "status": "open"
+      },
+      {
+        "id": "akdeniz",
+        "name": {
+          "tr": "Akdeniz",
+          "en": "Mediterranean"
+        },
+        "status": "open"
+      },
+      {
+        "id": "icanadolu",
+        "name": {
+          "tr": "İç Anadolu",
+          "en": "Central Anatolia"
+        },
+        "status": "open"
+      },
+      {
+        "id": "karadeniz",
+        "name": {
+          "tr": "Karadeniz",
+          "en": "Black Sea"
+        },
+        "status": "open"
+      },
+      {
+        "id": "doguanadolu",
+        "name": {
+          "tr": "Doğu Anadolu",
+          "en": "Eastern Anatolia"
+        },
+        "status": "open"
+      },
+      {
+        "id": "guneydogu",
+        "name": {
+          "tr": "Güneydoğu Anadolu",
+          "en": "Southeastern Anatolia"
+        },
+        "status": "open"
+      }
+    ]
+  }
+}

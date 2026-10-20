@@ -1,0 +1,10 @@
+{
+  "_comment": "Genel fotoğraf alanları. src null ise yerine çizim gösterilir. Fotoğrafları public/photos/ altına koyup yolu yazın (örn. \"/photos/hero-bowl.webp\"). Önerilen boyutlar her alanda belirtilmiştir. WebP veya kaliteli JPG (80–85) kullanın.",
+  "heroBowl": { "src": null, "size": "1400×1400 (kare), üstten çekilmiş poke bowl, sade zemin", "alt": { "tr": "Somon, avokado ve edamameli poke bowl, üstten görünüm", "en": "Poke bowl with salmon, avocado and edamame, top view" } },
+  "heroStore": { "src": null, "size": "1200×900 (4:3), mağaza cephesi gündüz", "alt": { "tr": "YumiPokeGo restoran cephesi", "en": "YumiPokeGo restaurant shopfront" } },
+  "interior": { "src": null, "size": "1600×1000 (16:10), salon ve montaj hattı", "alt": { "tr": "YumiPokeGo restoranında montaj hattı ve oturma alanı", "en": "Assembly line and seating inside a YumiPokeGo restaurant" } },
+  "assemblyLine": { "src": null, "size": "1600×1000 (16:10), bowl hazırlayan ekip", "alt": { "tr": "Montaj hattında bowl hazırlayan ekip", "en": "Team preparing bowls on the assembly line" } },
+  "training": { "src": null, "size": "1600×1000 (16:10), eğitim mutfağı", "alt": { "tr": "Franchise ekibi eğitimi", "en": "Franchise team training" } },
+  "team": { "src": null, "size": "1800×1000, merkez ofis / yönetim ekibi toplu fotoğraf", "alt": { "tr": "YumiPokeGo merkez ekibi", "en": "YumiPokeGo head office team" } },
+  "opening": { "src": null, "size": "1600×1000, açılış günü fotoğrafı", "alt": { "tr": "Restoran açılış günü", "en": "Restaurant opening day" } }
+}

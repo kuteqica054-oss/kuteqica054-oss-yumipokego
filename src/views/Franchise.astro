@@ -1,0 +1,103 @@
+---
+import type { Lang } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT, pick } from '../i18n/utils';
+import { faqJsonLd } from '../lib/schema';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import franchise from '../data/franchise.json';
+import photos from '../config/photos.json';
+import PageHero from '../components/ui/PageHero.astro';
+import SectionHead from '../components/ui/SectionHead.astro';
+import PhotoSlot from '../components/ui/PhotoSlot.astro';
+import Icon from '../components/ui/Icon.astro';
+import Todo from '../components/ui/Todo.astro';
+import KeyFigures from '../components/sections/KeyFigures.astro';
+import FeesTable from '../components/sections/FeesTable.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import Disclaimer from '../components/sections/Disclaimer.astro';
+import DishArt from '../components/art/DishArt.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const p = t.franchisePage;
+const modelIcons = ['Store', 'Network', 'Globe2'];
+---
+<BaseLayout lang={lang} routeKey="franchise" jsonld={[faqJsonLd(lang)]}>
+  <PageHero lang={lang} eyebrow={p.eyebrow} title={p.title} lead={p.lead} crumbs={[{ label: t.nav.franchise }]}>
+    <div slot="actions" class="mt-8 flex flex-wrap gap-3">
+      <a href={path('apply', lang)} class="btn-primary">{t.common.apply}</a>
+      <a href={path('investment', lang)} class="btn-ghost">{t.common.investmentDetails}</a>
+    </div>
+    <div slot="art" class="mx-auto w-full max-w-[420px]">
+      <PhotoSlot src={photos.assemblyLine.src} alt={pick(photos.assemblyLine.alt, lang)} size={photos.assemblyLine.size} class="overflow-hidden rounded-[28px]">
+        <DishArt kind="bowl" toppings={['tuna', 'mango', 'edamame', 'avocado', 'corn', 'cucumber']} alt={t.dishes.bowlAlt} seed={31} id="fr-hero" />
+      </PhotoSlot>
+    </div>
+  </PageHero>
+
+  <section class="container-x -mt-2 py-14">
+    <div class="on-dark rounded-[28px] bg-ink p-4 sm:p-6"><KeyFigures lang={lang} /></div>
+  </section>
+
+  <section class="container-x py-14 md:py-20" aria-labelledby="models">
+    <SectionHead eyebrow={p.eyebrow} title={p.modelsTitle} lead={p.modelsLead} id="models" />
+    <div class="mt-10 grid gap-5 lg:grid-cols-3">
+      {franchise.models.map((m, i) => (
+        <article class:list={['flex flex-col rounded-[var(--radius-card)] p-6 sm:p-8', i === 1 ? 'on-dark bg-ink text-white' : 'card']} data-reveal>
+          <span class:list={['flex h-12 w-12 items-center justify-center rounded-2xl', i === 1 ? 'bg-white/10 text-mango-400' : 'bg-coral-50 text-coral-700']}><Icon name={modelIcons[i]} /></span>
+          <h3 class:list={['mt-5 text-2xl font-bold', i === 1 && 'text-white']}>{pick(m.title, lang)}</h3>
+          <p class:list={['mt-3', i === 1 ? 'text-ink-mute' : 'text-ink-soft']}>{pick(m.text, lang)}</p>
+          <p class:list={['mt-auto border-t pt-4 text-sm', i === 1 ? 'border-white/15 text-ink-mute' : 'border-line text-ink-soft']} style="margin-top:1.5rem"><span class:list={['font-semibold', i === 1 ? 'text-white' : 'text-ink']}>{p.fitLabel}:</span> {pick(m.fit, lang)}</p>
+          {m.offered === null && <p class="mt-3"><Todo label={t.common.offeredTodo} /></p>}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-rice-2 py-16 md:py-24">
+    <div class="container-x grid gap-6 lg:grid-cols-2">
+      <div class="card p-6 sm:p-8" data-reveal>
+        <h2 class="text-2xl font-bold">{p.whatYouGet}</h2>
+        <ul class="mt-5 space-y-3">
+          {p.whatYouGetItems.map((x) => <li class="flex gap-3"><span class="mt-0.5 text-avocado-700"><Icon name="CircleCheck" size={20} /></span>{x}</li>)}
+        </ul>
+      </div>
+      <div class="card p-6 sm:p-8" data-reveal>
+        <h2 class="text-2xl font-bold">{p.whatWeExpect}</h2>
+        <ul class="mt-5 space-y-3">
+          {p.whatWeExpectItems.map((x) => <li class="flex gap-3"><span class="mt-0.5 text-coral-700"><Icon name="ArrowRight" size={20} /></span>{x}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-x py-16 md:py-24" aria-labelledby="profile">
+    <SectionHead title={p.profileTitle} id="profile" />
+    <dl class="mt-10 grid gap-x-10 sm:grid-cols-2">
+      {p.profile.map((x, i) => (
+        <div class="border-t-2 border-ink py-6" data-reveal>
+          <dt class="flex items-baseline gap-3 font-display text-xl font-bold"><span class="text-coral-600">{String(i + 1).padStart(2, '0')}</span>{x.title}</dt>
+          <dd class="mt-2 text-ink-soft" set:html={x.text.replace('TODO', '<span class="todo">TODO</span>')} />
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="container-x pb-16 md:pb-24" aria-labelledby="fees">
+    <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <SectionHead title={p.feesTitle} lead={p.feesLead} id="fees" />
+      <a href={path('investment', lang)} class="btn-ghost shrink-0">{p.feesLink}<Icon name="ArrowRight" size={18} /></a>
+    </div>
+    <div class="mt-8"><FeesTable lang={lang} ids={['fee', 'royalty', 'marketing', 'term']} /></div>
+    <Disclaimer lang={lang} class="mt-6" />
+  </section>
+
+  <section class="border-t border-line bg-white py-16 md:py-24" aria-labelledby="ffaq">
+    <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <SectionHead title={p.faqTitle} id="ffaq" />
+      <FAQ lang={lang} />
+    </div>
+  </section>
+  <CtaBand lang={lang} />
+</BaseLayout>

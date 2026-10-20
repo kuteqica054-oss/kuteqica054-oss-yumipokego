@@ -1,0 +1,29 @@
+---
+import type { Lang } from '../i18n/routes';
+import { path, routes } from '../i18n/routes';
+import { useT, pick, formatDate, absUrl } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+import PhotoSlot from '../components/ui/PhotoSlot.astro';
+import Icon from '../components/ui/Icon.astro';
+import site from '../config/site.json';
+interface Props { lang: Lang; item: any }
+const { lang, item } = Astro.props;
+const t = useT(lang);
+const title = pick(item.title, lang) as string;
+const summary = pick(item.summary, lang) as string;
+const alternates = { tr: `${routes.press.tr}${item.slug.tr}/`, en: `${routes.press.en}${item.slug.en}/` };
+const render = (s: string) => s.replace(/\[TODO: ([^\]]+)\]/g, '<span class="todo">TODO: $1</span>');
+const ld = { '@context': 'https://schema.org', '@type': 'NewsArticle', headline: title, datePublished: item.date, inLanguage: lang, publisher: { '@id': absUrl('/#organization') }, description: summary };
+---
+<BaseLayout lang={lang} routeKey="press" title={`${title} | ${site.brand}`} description={summary} alternates={alternates} jsonld={item.sample ? [] : [ld]} ogType="article">
+  <PageHero lang={lang} eyebrow={formatDate(item.date, lang)} title={title} lead={summary} crumbs={[{ label: t.nav.press, href: path('press', lang) }, { label: title }]} />
+  <article class="container-x max-w-3xl py-14">
+    {item.sample && <p class="mb-8 rounded-xl border border-dashed border-coral-600/60 bg-coral-50 p-4 text-sm font-semibold text-coral-700">{t.common.sample}: {t.pressPage.sampleBanner}</p>}
+    {item.image && <PhotoSlot src={item.image} alt={title} class="mb-8 aspect-[16/9] overflow-hidden rounded-[var(--radius-card)]" />}
+    <div class="space-y-5 text-lg text-ink-soft">
+      {(pick(item.body, lang) as string[]).map((para) => <p set:html={render(para)} />)}
+    </div>
+    <a href={path('press', lang)} class="btn-ghost mt-10"><Icon name="ArrowLeft" size={18} />{t.pressPage.back}</a>
+  </article>
+</BaseLayout>

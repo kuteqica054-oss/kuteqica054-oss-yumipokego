@@ -1,0 +1,102 @@
+name: Deploy YumiPokeGo to Hostinger
+
+# Runs on every push to main (and manually from the Actions tab).
+# Builds the Astro site and uploads dist/ to the hosting over SSH.
+#
+# Required repository secrets (Settings → Secrets and variables → Actions → Secrets):
+#   YUMI_SSH_HOST      e.g. 147.93.73.70
+#   YUMI_SSH_PORT      e.g. 65002
+#   YUMI_SSH_USER      e.g. u203670668
+#   YUMI_SSH_PASSWORD  hosting SSH password
+# Domain: repository variable (or secret) SITE_URL, e.g. https://yumipokego.com.tr.
+#   If it is not set and the hosting has exactly one domain in ~/domains, that one is used.
+# Optional variable:
+#   YUMI_DEPLOY_PATH   default: domains/<host from SITE_URL>/public_html (relative to the SSH home dir)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-yumipokego
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL_VAR: ${{ vars.SITE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Check settings and resolve domain
+        env:
+          SSHPASS: ${{ secrets.YUMI_SSH_PASSWORD }}
+          SSH_HOST: ${{ secrets.YUMI_SSH_HOST }}
+          SSH_PORT: ${{ secrets.YUMI_SSH_PORT || '22' }}
+          SSH_USER: ${{ secrets.YUMI_SSH_USER }}
+          SITE_URL_SECRET: ${{ secrets.SITE_URL }}
+          DEPLOY_PATH_VAR: ${{ vars.YUMI_DEPLOY_PATH }}
+        run: |
+          for v in SSH_HOST SSH_USER SSHPASS; do
+            [ -n "${!v}" ] || { echo "::error::Secret YUMI_${v/SSHPASS/SSH_PASSWORD} is not set"; exit 1; }
+          done
+          sudo apt-get install -y -qq sshpass rsync >/dev/null
+          SSH="sshpass -e ssh -p $SSH_PORT -o StrictHostKeyChecking=accept-new"
+          echo "Domains on the hosting:"
+          DOMAINS=$($SSH "$SSH_USER@$SSH_HOST" "ls -1 domains 2>/dev/null" || true)
+          echo "$DOMAINS"
+          URL="${SITE_URL_VAR:-$SITE_URL_SECRET}"
+          if [ -z "$URL" ]; then
+            COUNT=$(echo "$DOMAINS" | grep -c . || true)
+            if [ "$COUNT" = "1" ]; then
+              URL="https://$DOMAINS"
+              echo "::notice::SITE_URL not set — using the only domain on the hosting: $URL"
+            else
+              echo "::error::Set repository variable SITE_URL (e.g. https://yumipokego.com.tr). Domains found: $(echo $DOMAINS)"
+              exit 1
+            fi
+          fi
+          HOST=$(echo "$URL" | sed -E 's#^https?://##; s#/.*$##; s#^www\.##')
+          echo "SITE_URL=https://$HOST" >> "$GITHUB_ENV"
+          echo "SITE_HOST=$HOST" >> "$GITHUB_ENV"
+          echo "DEPLOY_PATH=${DEPLOY_PATH_VAR:-domains/$HOST/public_html}" >> "$GITHUB_ENV"
+
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Upload over SSH
+        env:
+          SSHPASS: ${{ secrets.YUMI_SSH_PASSWORD }}
+          SSH_HOST: ${{ secrets.YUMI_SSH_HOST }}
+          SSH_PORT: ${{ secrets.YUMI_SSH_PORT || '22' }}
+          SSH_USER: ${{ secrets.YUMI_SSH_USER }}
+        run: |
+          SSH="sshpass -e ssh -p $SSH_PORT -o StrictHostKeyChecking=accept-new"
+          echo "Deploying $SITE_URL to $DEPLOY_PATH"
+          $SSH "$SSH_USER@$SSH_HOST" "mkdir -p '$DEPLOY_PATH'"
+          # Upload/overwrite site files. Files that exist only on the server are kept
+          # (no --delete) so nothing unrelated in public_html is ever removed.
+          rsync -az --stats -e "$SSH" dist/ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
+          $SSH "$SSH_USER@$SSH_HOST" "ls -la '$DEPLOY_PATH' | head -30"
+
+      - name: Smoke test live site
+        run: |
+          sleep 5
+          for u in / /en/ /franchise/ /en/franchise/ /basvuru/ /iletisim/ /og/og-tr.png /sitemap.xml /robots.txt /form.php; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://$SITE_HOST$u" || true)
+            echo "$code https://$SITE_HOST$u"
+          done
+          echo "--- title of /:"
+          curl -s "https://$SITE_HOST/" | grep -o '<title>[^<]*</title>' || echo "(no title found)"
+          echo "--- redirects:"
+          curl -s -o /dev/null -w '%{http_code} -> %{redirect_url}\n' "http://$SITE_HOST/" || true
+          curl -s -o /dev/null -w '%{http_code} -> %{redirect_url}\n' "https://www.$SITE_HOST/" || true

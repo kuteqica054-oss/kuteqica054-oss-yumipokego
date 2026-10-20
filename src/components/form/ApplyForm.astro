@@ -1,0 +1,121 @@
+---
+// Çok adımlı franchise başvuru formu (3 adım). Netlify Forms için statik HTML'de data-netlify bulunur.
+// Formspree kullanacaksanız src/config/site.json → form.provider = "formspree" ve form.formspreeId girin.
+import type { Lang } from '../../i18n/routes';
+import { path } from '../../i18n/routes';
+import { useT, pick } from '../../i18n/utils';
+import site from '../../config/site.json';
+import formats from '../../data/formats.json';
+import franchise from '../../data/franchise.json';
+import Field from './Field.astro';
+import Icon from '../ui/Icon.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const F = t.form.fields;
+const common = { requiredText: t.form.required, optionalText: t.form.optional, selectText: t.form.select, idPrefix: 'ap' };
+const opts = (o: Record<string, string>) => Object.entries(o).map(([value, label]) => ({ value, label }));
+const formatOpts = [...formats.formats.map((f) => ({ value: f.id, label: pick(f.name, lang) })), { value: 'unsure', label: F.formatUnsure }];
+const budgetOpts = [...franchise.budgetRanges.map((b) => ({ value: b.id, label: pick(b.label, lang) })), { value: 'unsure', label: F.budgetUnsure }];
+const formName = 'franchise-basvuru';
+const kvkkParts = F.kvkk.split('{link}');
+const msgs = { ...t.form.errors, sending: t.form.sending, stepOf: t.form.stepOf };
+---
+<div data-form-wrap class="scroll-mt-24">
+  <div data-progress class="mb-8">
+    <p class="text-sm font-semibold text-ink-soft" data-step-label aria-live="polite"></p>
+    <ol class="mt-3 grid grid-cols-3 gap-2">
+      {t.form.steps.map((s, i) => (
+        <li data-progress-item data-state={i === 0 ? 'current' : 'todo'} class="group">
+          <span class="block h-1.5 rounded-full bg-line transition-colors group-data-[state=current]:bg-coral-600 group-data-[state=done]:bg-avocado-500"></span>
+          <span class="mt-2 flex items-center gap-1.5 text-sm font-semibold text-ink-soft group-data-[state=current]:text-ink">
+            <span class="hidden group-data-[state=done]:inline text-avocado-700"><Icon name="Check" size={16} /></span>{i + 1}. {s}
+          </span>
+        </li>
+      ))}
+    </ol>
+  </div>
+
+  <form name={formName} method="POST" action={site.form.provider === 'php' ? '/form.php' : `${path('apply', lang)}?sent=1`} data-netlify="true" netlify-honeypot="bot-field" novalidate
+        data-apply-form data-provider={site.form.provider} data-formspree={site.form.formspreeId ?? ''} data-msgs={JSON.stringify(msgs)} class="space-y-8">
+    <input type="hidden" name="form-name" value={formName} />
+    <input type="hidden" name="site_language" value={lang} />
+    <input type="hidden" name="form_type" value="full" />
+    <input type="hidden" name="page" value="" />
+    <p class="hidden" aria-hidden="true"><label>Bot <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+    <p data-summary role="alert" tabindex="-1" class="hidden rounded-xl border border-coral-600 bg-coral-50 px-4 py-3 font-semibold text-coral-700"></p>
+
+    <fieldset data-step class="grid gap-5 sm:grid-cols-2">
+      <legend tabindex="-1" class="mb-5 font-display text-2xl font-bold sm:col-span-2">1. {t.form.steps[0]}</legend>
+      <Field name="first_name" label={F.firstName} required autocomplete="given-name" {...common} />
+      <Field name="last_name" label={F.lastName} required autocomplete="family-name" {...common} />
+      <Field name="phone" type="tel" label={F.phone} required autocomplete="tel" hint={F.phoneHint} inputmode="tel" {...common} />
+      <Field name="email" type="email" label={F.email} required autocomplete="email" {...common} />
+      <Field name="city" label={F.city} required autocomplete="address-level2" {...common} />
+      <Field name="country" label={F.country} required autocomplete="country-name" value={F.countryDefault || undefined} {...common} />
+      <div class="flex justify-end sm:col-span-2">
+        <button type="button" class="btn-dark" data-nav="next">{t.form.next}<Icon name="ArrowRight" size={18} /></button>
+      </div>
+    </fieldset>
+
+    <fieldset data-step class="grid gap-5 sm:grid-cols-2">
+      <legend tabindex="-1" class="mb-5 font-display text-2xl font-bold sm:col-span-2">2. {t.form.steps[1]}</legend>
+      <Field name="format" label={F.format} required options={formatOpts} {...common} />
+      <Field name="region" label={F.region} required {...common} />
+      <Field name="premises" label={F.premises} required radios={opts(F.premisesOptions)} class="sm:col-span-2" {...common} />
+      <Field name="area" type="number" label={F.area} hint={F.areaHint} inputmode="numeric" min={0} {...common} />
+      <Field name="budget" label={F.budget} required options={budgetOpts} {...common} />
+      <Field name="funding" label={F.funding} required radios={opts(F.fundingOptions)} class="sm:col-span-2" {...common} />
+      <Field name="timeline" label={F.timeline} required options={opts(F.timelineOptions)} {...common} />
+      <div class="flex justify-between gap-3 sm:col-span-2">
+        <button type="button" class="btn-ghost" data-nav="back"><Icon name="ArrowLeft" size={18} />{t.form.back}</button>
+        <button type="button" class="btn-dark" data-nav="next">{t.form.next}<Icon name="ArrowRight" size={18} /></button>
+      </div>
+    </fieldset>
+
+    <fieldset data-step class="grid gap-5 sm:grid-cols-2">
+      <legend tabindex="-1" class="mb-5 font-display text-2xl font-bold sm:col-span-2">3. {t.form.steps[2]}</legend>
+      <Field name="experience" label={F.experience} required radios={opts(F.experienceOptions)} class="sm:col-span-2" {...common} />
+      <Field name="occupation" label={F.occupation} required {...common} />
+      <Field name="units" label={F.units} required options={opts(F.unitsOptions)} {...common} />
+      <Field name="message" label={F.message} textarea class="sm:col-span-2" {...common} />
+      <div class="space-y-3 sm:col-span-2">
+        <div class="field" data-field="kvkk_consent">
+          <label class="flex cursor-pointer items-start gap-3 rounded-xl bg-white p-4 ring-1 ring-line">
+            <input type="checkbox" name="kvkk_consent" value="yes" required class="mt-1 h-5 w-5 shrink-0 accent-[#c4442a]" aria-describedby="ap-kvkk-err" />
+            <span class="text-[0.95rem]">{kvkkParts[0]}<a href={path('privacy', lang)} target="_blank" class="link font-semibold">{F.kvkkLink}</a>{kvkkParts[1]} <span class="text-sm text-ink-soft">({t.form.required})</span></span>
+          </label>
+          <p id="ap-kvkk-err" class="mt-1 hidden text-sm font-medium text-coral-700" data-error></p>
+        </div>
+        <label class="flex cursor-pointer items-start gap-3 rounded-xl bg-white p-4 ring-1 ring-line">
+          <input type="checkbox" name="marketing_consent" value="yes" class="mt-1 h-5 w-5 shrink-0 accent-[#c4442a]" />
+          <span class="text-[0.95rem] text-ink-soft">{F.marketing} <span class="text-sm">({t.form.optional})</span></span>
+        </label>
+      </div>
+      <div class="flex justify-between gap-3 sm:col-span-2">
+        <button type="button" class="btn-ghost" data-nav="back"><Icon name="ArrowLeft" size={18} />{t.form.back}</button>
+        <button type="submit" class="btn-primary">{t.form.submit}</button>
+      </div>
+    </fieldset>
+  </form>
+
+  <div data-thanks hidden class="card p-6 sm:p-10">
+    <span class="flex h-14 w-14 items-center justify-center rounded-full bg-avocado-100 text-avocado-700"><Icon name="Check" size={28} stroke={2.5} /></span>
+    <h2 tabindex="-1" class="mt-5 text-3xl font-bold">{t.form.thanks.title}</h2>
+    <p class="lead mt-2">{t.form.thanks.text}</p>
+    <h3 class="mt-8 text-xl font-bold">{t.form.thanks.nextTitle}</h3>
+    <ol class="mt-4 space-y-3">
+      {t.form.thanks.next.map((s, i) => (
+        <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ink font-display text-sm font-bold text-white">{i + 1}</span><span class="pt-0.5" set:html={s.replace(/\[TODO: ([^\]]+)\]/g, '<span class="todo">TODO: $1</span>')} /></li>
+      ))}
+    </ol>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href={path('process', lang)} class="btn-dark">{t.form.thanks.explore}</a>
+      <a href={path('home', lang)} class="btn-ghost">{t.form.thanks.home}</a>
+    </div>
+  </div>
+</div>
+<script>
+  import { initForms } from '../../scripts/forms';
+  initForms();
+</script>

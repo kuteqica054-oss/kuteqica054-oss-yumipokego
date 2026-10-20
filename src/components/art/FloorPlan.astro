@@ -1,0 +1,104 @@
+---
+// Format yerleşim planları (şematik, üstten). Ölçek yoktur; alanlar formats.json'dan gelir.
+import type { Lang } from '../../i18n/routes';
+import { useT } from '../../i18n/utils';
+interface Props { type: 'street' | 'foodcourt' | 'kiosk' | 'darkkitchen'; lang: Lang; title: string; class?: string }
+const { type, lang, title, class: cls = '' } = Astro.props;
+const L = useT(lang).formats.plan;
+type Kind = 'kitchen' | 'line' | 'pos' | 'seating' | 'pickup' | 'store' | 'shared' | 'wc';
+type Zone = { x: number; y: number; w: number; h: number; k: Kind; label: string; vertical?: boolean };
+const fills: Record<Kind, string> = {
+  kitchen: 'url(#hatch-' + type + ')', line: '#e3edd3', pos: '#fcebc4', seating: '#ffffff', pickup: '#ebe1cf', store: '#e4ecf0', shared: '#fbf7f0', wc: '#e4ecf0',
+};
+const plans: Record<Props['type'], { zones: Zone[]; tables: [number, number, number][]; door: [number, number, number, number]; walls?: string }> = {
+  street: {
+    zones: [
+      { x: 14, y: 14, w: 140, h: 92, k: 'kitchen', label: L.kitchen },
+      { x: 14, y: 106, w: 70, h: 52, k: 'store', label: L.cold },
+      { x: 84, y: 106, w: 70, h: 52, k: 'store', label: L.storage },
+      { x: 14, y: 158, w: 52, h: 40, k: 'wc', label: L.wc },
+      { x: 164, y: 24, w: 30, h: 150, k: 'line', label: L.line, vertical: true },
+      { x: 164, y: 178, w: 30, h: 34, k: 'pos', label: L.pos, vertical: true },
+      { x: 66, y: 198, w: 88, h: 48, k: 'pickup', label: L.pickup },
+      { x: 208, y: 14, w: 178, h: 190, k: 'seating', label: L.seating },
+    ],
+    tables: [[240, 64, 13], [290, 64, 13], [340, 64, 13], [240, 118, 13], [290, 118, 13], [340, 118, 13], [265, 170, 13], [330, 170, 13]],
+    door: [300, 246, 60, 0],
+  },
+  foodcourt: {
+    zones: [
+      { x: 14, y: 14, w: 230, h: 58, k: 'kitchen', label: L.kitchen },
+      { x: 244, y: 14, w: 70, h: 58, k: 'store', label: L.storage },
+      { x: 314, y: 14, w: 72, h: 58, k: 'store', label: L.cold },
+      { x: 40, y: 96, w: 230, h: 28, k: 'line', label: L.line },
+      { x: 284, y: 96, w: 76, h: 28, k: 'pos', label: L.pos },
+      { x: 14, y: 156, w: 372, h: 90, k: 'shared', label: L.shared },
+    ],
+    tables: [[70, 210, 12], [130, 210, 12], [190, 210, 12], [250, 210, 12], [310, 210, 12]],
+    door: [0, 0, 0, 0],
+    walls: 'M14 140 V14 H386 V140',
+  },
+  kiosk: {
+    zones: [
+      { x: 140, y: 64, w: 120, h: 70, k: 'kitchen', label: L.kitchen },
+      { x: 120, y: 134, w: 160, h: 28, k: 'line', label: L.line },
+      { x: 120, y: 162, w: 70, h: 28, k: 'pos', label: L.pos },
+      { x: 190, y: 162, w: 90, h: 28, k: 'pickup', label: L.screen },
+      { x: 120, y: 34, w: 160, h: 30, k: 'store', label: L.storage },
+    ],
+    tables: [],
+    door: [0, 0, 0, 0],
+    walls: 'M120 34 H280 V190 H120 Z',
+  },
+  darkkitchen: {
+    zones: [
+      { x: 14, y: 14, w: 200, h: 120, k: 'kitchen', label: L.kitchen },
+      { x: 214, y: 14, w: 90, h: 70, k: 'line', label: L.wok },
+      { x: 304, y: 14, w: 82, h: 70, k: 'store', label: L.cold },
+      { x: 214, y: 84, w: 172, h: 50, k: 'line', label: L.line },
+      { x: 14, y: 134, w: 120, h: 60, k: 'store', label: L.storage },
+      { x: 134, y: 134, w: 150, h: 60, k: 'pos', label: L.packing },
+      { x: 284, y: 134, w: 102, h: 112, k: 'pickup', label: L.riders },
+      { x: 14, y: 194, w: 52, h: 52, k: 'wc', label: L.wc },
+    ],
+    tables: [],
+    door: [326, 246, 46, 0],
+  },
+};
+const p = plans[type];
+const words = (s: string) => s.split(' ');
+---
+<svg viewBox="0 0 400 260" class:list={['block h-auto w-full', cls]} role="img" aria-label={title}>
+  <defs>
+    <pattern id={`hatch-${type}`} width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#fbe1d8" /><line x1="0" y1="0" x2="0" y2="8" stroke="#f4a088" stroke-width="1.5" />
+    </pattern>
+  </defs>
+  {p.walls ? <path d={p.walls} fill="none" stroke="#0e2a3b" stroke-width="4" stroke-linejoin="round" /> : <rect x="12" y="12" width="376" height="236" rx="4" fill="#fbf7f0" stroke="#0e2a3b" stroke-width="4" />}
+  {p.zones.map((z) => (
+    <g>
+      <rect x={z.x} y={z.y} width={z.w} height={z.h} fill={fills[z.k]} stroke="#0e2a3b" stroke-width={z.k === 'shared' ? 1.5 : 1.2} stroke-dasharray={z.k === 'shared' ? '6 5' : undefined} rx="2" />
+      {z.vertical ? (
+        <text transform={`translate(${z.x + z.w / 2 + 4} ${z.y + z.h / 2}) rotate(-90)`} text-anchor="middle" font-size="11" font-weight="600" fill="#0e2a3b" font-family="DM Sans Variable, sans-serif">{z.label}</text>
+      ) : (
+        <text x={z.x + z.w / 2} y={z.k === 'shared' || z.k === 'seating' ? z.y + 18 : z.y + z.h / 2 - (words(z.label).length > 1 && z.w < 80 ? 2 : -4)} text-anchor="middle" font-size="11" font-weight="600" fill="#0e2a3b" font-family="DM Sans Variable, sans-serif">
+          {words(z.label).length > 1 && z.w < 80
+            ? words(z.label).map((w, i) => <tspan x={z.x + z.w / 2} dy={i === 0 ? -2 : 12}>{w}</tspan>)
+            : z.label}
+        </text>
+      )}
+    </g>
+  ))}
+  {p.tables.map(([x, y, r]) => (
+    <g><circle cx={x} cy={y} r={r} fill="#fff" stroke="#24506c" stroke-width="1.5" /><circle cx={x - r - 5} cy={y} r="4" fill="#9fc46a" /><circle cx={x + r + 5} cy={y} r="4" fill="#9fc46a" /></g>
+  ))}
+  {p.door[2] > 0 && (
+    <g>
+      <line x1={p.door[0]} y1={p.door[1] + 2} x2={p.door[0] + p.door[2]} y2={p.door[1] + 2} stroke="#fbf7f0" stroke-width="6" />
+      <path d={`M${p.door[0]} ${p.door[1]} a${p.door[2] / 2} ${p.door[2] / 2} 0 0 1 ${p.door[2] / 2} -${p.door[2] / 2}`} fill="none" stroke="#c4442a" stroke-width="1.5" stroke-dasharray="3 3" />
+      <text x={p.door[0] + p.door[2] / 2} y={p.door[1] + 1} dy="-4" text-anchor="middle" font-size="10" fill="#a93b22" font-weight="700" font-family="DM Sans Variable, sans-serif">{L.entrance}</text>
+    </g>
+  )}
+  {type === 'kiosk' && <text x="200" y="222" text-anchor="middle" font-size="11" fill="#3d5566" font-family="DM Sans Variable, sans-serif">← {L.entrance} →</text>}
+  {type === 'foodcourt' && <text x="200" y="152" text-anchor="middle" font-size="10" fill="#a93b22" font-weight="700" font-family="DM Sans Variable, sans-serif">↓ {L.entrance} ↓</text>}
+</svg>

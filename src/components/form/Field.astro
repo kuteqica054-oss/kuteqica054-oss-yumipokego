@@ -1,0 +1,45 @@
+---
+interface Option { value: string; label: string }
+interface Props {
+  name: string; label: string; type?: string; required?: boolean; options?: Option[]; radios?: Option[];
+  hint?: string; autocomplete?: string; class?: string; placeholder?: string; value?: string; textarea?: boolean;
+  requiredText: string; optionalText: string; selectText?: string; inputmode?: string; min?: number; idPrefix?: string;
+}
+const { name, label, type = 'text', required = false, options, radios, hint, autocomplete, class: cls = '', placeholder, value, textarea = false, requiredText, optionalText, selectText = '—', inputmode, min, idPrefix = 'f' } = Astro.props;
+const id = `${idPrefix}-${name}`;
+const hintId = hint ? `${id}-hint` : undefined;
+const errId = `${id}-err`;
+const describedBy = [hintId, errId].filter(Boolean).join(' ');
+const base = 'mt-1.5 block w-full rounded-xl border border-ink/20 bg-white px-4 py-3 text-base text-ink placeholder:text-ink-soft/60 transition-colors hover:border-ink/40 focus:border-ink focus:outline-none focus-visible:outline-3 focus-visible:outline-coral-600 aria-[invalid=true]:border-coral-600 aria-[invalid=true]:bg-coral-50';
+---
+<div class:list={['field', cls]} data-field={name}>
+  {radios ? (
+    <fieldset aria-describedby={describedBy}>
+      <legend class="text-[0.95rem] font-semibold">{label} <span class="text-sm font-normal text-ink-soft">({required ? requiredText : optionalText})</span></legend>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {radios.map((o, i) => (
+          <label class="relative inline-flex cursor-pointer items-center">
+            <input type="radio" name={name} value={o.value} required={required && i === 0} class="peer sr-only" />
+            <span class="rounded-full border border-ink/20 bg-white px-4 py-2.5 text-[0.95rem] transition-colors hover:border-ink peer-checked:border-ink peer-checked:bg-ink peer-checked:text-white peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-coral-600">{o.label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  ) : (
+    <>
+      <label for={id} class="text-[0.95rem] font-semibold">{label} <span class="text-sm font-normal text-ink-soft">({required ? requiredText : optionalText})</span></label>
+      {options ? (
+        <select id={id} name={name} required={required} class={base + ' appearance-none bg-[url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 fill=%27none%27 stroke=%27%230e2a3b%27 stroke-width=%272%27%3E%3Cpath d=%27m4 6 4 4 4-4%27/%3E%3C/svg%3E")] bg-[right_1rem_center] bg-no-repeat pr-10'} aria-describedby={describedBy}>
+          <option value="">{selectText}</option>
+          {options.map((o) => <option value={o.value}>{o.label}</option>)}
+        </select>
+      ) : textarea ? (
+        <textarea id={id} name={name} rows="4" required={required} class={base} placeholder={placeholder} aria-describedby={describedBy}></textarea>
+      ) : (
+        <input id={id} name={name} type={type as any} required={required} autocomplete={autocomplete} class={base} placeholder={placeholder} value={value} aria-describedby={describedBy} inputmode={inputmode as any} min={min} />
+      )}
+    </>
+  )}
+  {hint && <p id={hintId} class="mt-1 text-sm text-ink-soft">{hint}</p>}
+  <p id={errId} class="mt-1 hidden text-sm font-medium text-coral-700" data-error></p>
+</div>

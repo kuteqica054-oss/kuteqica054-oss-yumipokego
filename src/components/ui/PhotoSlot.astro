@@ -1,0 +1,22 @@
+---
+/*
+  FOTOĞRAF ALANI
+  - src doluysa gerçek fotoğraf gösterilir, boşsa içindeki çizim (slot) gösterilir.
+  - Fotoğrafları public/photos/ altına koyun ve yolu ilgili JSON dosyasına yazın
+    (src/config/photos.json, src/data/menu.json, formats.json, leadership.json, locations.json, press.json).
+  - Önerilen boyut her alanın "size" açıklamasında; WebP/JPG, 200–400 KB altı.
+*/
+interface Props { src?: string | null; alt: string; size?: string; class?: string; imgClass?: string; eager?: boolean; width?: number; height?: number }
+const { src, alt, size, class: cls = '', imgClass = 'h-full w-full object-cover', eager = false, width = 1600, height = 1000 } = Astro.props;
+const dev = import.meta.env.DEV;
+---
+<div class:list={['relative', cls]} data-photo-slot={size}>
+  {src ? (
+    <img src={src} alt={alt} class={imgClass} loading={eager ? 'eager' : 'lazy'} decoding="async" width={width} height={height} />
+  ) : (
+    <>
+      <slot />
+      {dev && size && <span class="absolute left-2 top-2 rounded bg-ink/80 px-2 py-1 font-mono text-[10px] text-white">FOTO · {size}</span>}
+    </>
+  )}
+</div>

@@ -1,0 +1,86 @@
+{
+  "_comment": "Genel site ayarları. TODO işaretli tüm alanları doldurun. Boş bırakılan (null) değerler sitede 'TODO' olarak görünür.",
+  "brand": "YumiPokeGo",
+  "legalName": "[TODO: YumiPokeGo … Gıda Sanayi ve Ticaret A.Ş.]",
+  "legalNameShort": "YumiPokeGo A.Ş.",
+  "url": "https://yumipokego.com.tr",
+  "_url_comment": "Canlı alan adı (sonunda / olmadan). Derlemede SITE_URL ortam değişkeni ile değiştirilebilir (GitHub Actions bunu otomatik yapar).",
+  "mersis": null,
+  "headOfficeAddress": "1137. Sokak, 35930 Çeşme / İzmir",
+  "contacts": {
+    "franchise": {
+      "email": "contact@yumipokego.com.tr",
+      "phone": "+90 232 722 48 47"
+    },
+    "guest": {
+      "email": "contact@yumipokego.com.tr",
+      "phone": "+90 232 722 48 47"
+    },
+    "press": {
+      "email": "contact@yumipokego.com.tr",
+      "phone": "+90 232 722 48 47"
+    },
+    "general": {
+      "email": "contact@yumipokego.com.tr",
+      "phone": "+90 232 722 48 47"
+    },
+    "kep": null,
+    "whatsapp": null,
+    "_whatsapp_comment": "TODO: Ülke kodu ile, boşluksuz, + olmadan. Örn. 905xxxxxxxxx"
+  },
+  "social": {
+    "instagram": null,
+    "tiktok": null,
+    "youtube": null,
+    "linkedin": null,
+    "x": "https://x.com/yumipokego"
+  },
+  "form": {
+    "provider": "php",
+    "_provider_comment": "php (Hostinger: /form.php başvuruyu contacts.general.email adresine e-postayla gönderir) | netlify | formspree",
+    "formspreeId": null
+  },
+  "analytics": {
+    "ga4Id": null,
+    "_comment": "TODO: Google Analytics 4 ölçüm kimliği (G-XXXXXXX). Yalnızca kullanıcı analitik çerezlerine onay verdikten sonra yüklenir."
+  },
+  "currency": {
+    "tr": "TRY",
+    "en": "USD",
+    "_comment": "İngilizce sürüm para birimi: USD veya EUR."
+  },
+  "offices": [
+    {
+      "id": "izmir",
+      "label": {
+        "tr": "İzmir ofisi",
+        "en": "İzmir office"
+      },
+      "street": "1137. Sokak",
+      "postalCode": "35930",
+      "district": "Çeşme",
+      "city": "İzmir",
+      "phone": "+90 232 722 48 47"
+    },
+    {
+      "id": "kirklareli",
+      "label": {
+        "tr": "Kırklareli ofisi",
+        "en": "Kırklareli office"
+      },
+      "street": "Eskitaşlı Yolu No: 149/3",
+      "postalCode": "39750",
+      "district": "Lüleburgaz",
+      "city": "Kırklareli",
+      "phone": "0532113800"
+    }
+  ],
+  "_offices_comment": "Ofisler: iletişim sayfasında ve footer'da gösterilir. Merkez (genel müdürlük) adresi ayrıca headOfficeAddress alanına yazılır. TODO: Kırklareli telefonu 10 haneli görünüyor — kontrol edin.",
+  "_headOffice_comment": "Merkez adresi olarak İzmir (Çeşme) ofisi seçildi — ticaret sicilindeki adresle aynı olduğundan emin olun.",
+  "officeHours": {
+    "tr": "Hafta içi 09:00–18:00",
+    "en": "Weekdays 09:00–18:00"
+  },
+  "showTodos": false,
+  "_showTodos_comment": "true: boş alanlar sitede TODO rozetiyle görünür (geliştirme için). false: boş sayısal/finansal alanlar 'Bilgi paketinde paylaşılır', boş resmi alanlar 'Güncelleniyor' olarak görünür."
+}

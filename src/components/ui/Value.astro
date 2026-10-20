@@ -1,0 +1,13 @@
+---
+import { formatValue, emptyValue, useT, type Num, type Unit } from '../../i18n/utils';
+import type { Lang } from '../../i18n/routes';
+import site from '../../config/site.json';
+import Todo from './Todo.astro';
+interface Props { value: Num | undefined | string; unit: Unit; lang: Lang; class?: string; todoClass?: string; emptyClass?: string }
+const { value, unit, lang, class: cls = '', todoClass = '', emptyClass = '' } = Astro.props;
+const text = typeof value === 'string' ? value : formatValue(value as Num, unit, lang);
+// Boş değer: showTodos açıkken "— ₺ TODO", kapalıyken "Bilgi paketinde paylaşılır"
+---
+{text ? <span class={cls}>{text}</span>
+  : site.showTodos ? <span class={cls}><span class="whitespace-nowrap">{emptyValue(unit, lang)}</span> <Todo class={todoClass} /></span>
+  : <span class:list={[cls, 'font-sans font-semibold', emptyClass]}>{useT(lang).common.onRequest}</span>}

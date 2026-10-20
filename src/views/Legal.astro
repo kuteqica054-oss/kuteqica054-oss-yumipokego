@@ -1,0 +1,21 @@
+---
+// Hukuki metinler: src/content/legal/{tr,en}/*.md (taslak — hukuki inceleme gerekir).
+import type { Lang, RouteKey } from '../i18n/routes';
+import { useT } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/ui/PageHero.astro';
+interface Props { lang: Lang; routeKey: RouteKey; file: string }
+const { lang, routeKey, file } = Astro.props;
+const t = useT(lang);
+const docs = import.meta.glob<{ Content: any; frontmatter: { title: string; updated?: string } }>('../content/legal/*/*.md', { eager: true });
+const doc = docs[`../content/legal/${lang}/${file}.md`];
+if (!doc) throw new Error(`Missing legal doc ${lang}/${file}`);
+const { Content, frontmatter } = doc;
+---
+<BaseLayout lang={lang} routeKey={routeKey}>
+  <PageHero lang={lang} eyebrow={t.legalPage.draft} title={frontmatter.title} crumbs={[{ label: frontmatter.title }]} />
+  <section class="container-x py-14">
+    <p class="mb-8 text-sm text-ink-soft">{t.common.updated}: {frontmatter.updated === 'TODO' || !frontmatter.updated ? <span class="todo">TODO</span> : frontmatter.updated}</p>
+    <div class="prose-legal"><Content /></div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,77 @@
+---
+import type { Lang } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT, pick } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import photos from '../config/photos.json';
+import PageHero from '../components/ui/PageHero.astro';
+import SectionHead from '../components/ui/SectionHead.astro';
+import PhotoSlot from '../components/ui/PhotoSlot.astro';
+import Icon from '../components/ui/Icon.astro';
+import Todo from '../components/ui/Todo.astro';
+import SupportDiagram from '../components/sections/SupportDiagram.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import PosMockup from '../components/art/PosMockup.astro';
+import AppMockup from '../components/art/AppMockup.astro';
+import MenuBoardMockup from '../components/art/MenuBoardMockup.astro';
+import DishArt from '../components/art/DishArt.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const p = t.supportPage;
+const icons: Record<string, string> = { location: 'MapPin', design: 'PencilRuler', training: 'GraduationCap', manual: 'BookOpen', supply: 'Truck', marketing: 'Megaphone', it: 'MonitorSmartphone', quality: 'ShieldCheck' };
+const phaseColor: Record<string, string> = { before: 'bg-coral-50 text-coral-700', during: 'bg-mango-100 text-ink', after: 'bg-avocado-100 text-avocado-700' };
+---
+<BaseLayout lang={lang} routeKey="support">
+  <PageHero lang={lang} eyebrow={p.eyebrow} title={p.title} lead={p.lead} crumbs={[{ label: t.nav.franchise, href: path('franchise', lang) }, { label: t.nav.support }]} />
+  <section class="container-x grid items-center gap-10 py-16 lg:grid-cols-[1.1fr_1fr]">
+    <div class="rounded-[28px] bg-white p-4 ring-1 ring-line sm:p-8"><SupportDiagram lang={lang} /></div>
+    <ol class="space-y-0">
+      {t.support.map((s) => (
+        <li class="flex gap-4 border-t border-line py-4 last:border-b" data-reveal>
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-ink ring-1 ring-line"><Icon name={icons[s.id]} size={20} /></span>
+          <div>
+            <div class="flex flex-wrap items-center gap-2"><h3 class="text-lg font-bold">{s.title}</h3><span class:list={['rounded-full px-2 py-0.5 text-xs font-semibold', phaseColor[s.phase]]}>{(t.supportPhases as Record<string, string>)[s.phase]}</span></div>
+            <p class="mt-1 text-[0.95rem] text-ink-soft">{s.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="bg-rice-2 py-16 md:py-24" aria-labelledby="training">
+    <div class="container-x grid gap-10 lg:grid-cols-2">
+      <div>
+        <SectionHead title={p.trainingTitle} id="training" />
+        <p class="lead mt-4">{p.trainingDurationTodo}</p>
+        <PhotoSlot src={photos.training.src} alt={pick(photos.training.alt, lang)} size={photos.training.size} class="mt-8 flex aspect-[16/10] items-center justify-center overflow-hidden rounded-[var(--radius-card)] bg-white ring-1 ring-line">
+          <div class="grid w-full grid-cols-3 items-end gap-4 p-8">
+            <DishArt kind="bowl" toppings={['salmon', 'avocado', 'edamame']} alt="" seed={8} id="tr1" />
+            <DishArt kind="wok" toppings={['chicken', 'carrot']} alt="" seed={9} />
+            <DishArt kind="roll" toppings={['salmon', 'avocado']} alt="" seed={10} />
+          </div>
+        </PhotoSlot>
+      </div>
+      <ol class="grid gap-4 sm:grid-cols-2">
+        {p.training.map((x, i) => (
+          <li class="card p-6" data-reveal>
+            <span class="font-display text-3xl font-bold text-coral-600">{i + 1}</span>
+            <h3 class="mt-2 text-xl font-bold">{x.title}</h3>
+            <p class="mt-2 text-ink-soft">{x.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="container-x py-16 md:py-24" aria-labelledby="tech">
+    <SectionHead title={p.mockupsTitle} lead={p.mockupsLead} id="tech" />
+    <div class="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-[1.3fr_0.7fr_1.1fr] [&>*]:min-w-0">
+      <PosMockup lang={lang} />
+      <AppMockup lang={lang} />
+      <MenuBoardMockup lang={lang} />
+    </div>
+    <p class="mt-6 text-center text-xs text-ink-soft">{t.mockups.fakeNote}</p>
+  </section>
+  <CtaBand lang={lang} />
+</BaseLayout>

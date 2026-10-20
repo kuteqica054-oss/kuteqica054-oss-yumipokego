@@ -1,0 +1,9 @@
+---
+import PressArticle from '../../../views/PressArticle.astro';
+import press from '../../../data/press.json';
+export function getStaticPaths() {
+  return press.items.map((item) => ({ params: { slug: item.slug.en }, props: { item } }));
+}
+const { item } = Astro.props;
+---
+<PressArticle lang="en" item={item} />

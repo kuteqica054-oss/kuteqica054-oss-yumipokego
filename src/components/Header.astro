@@ -1,0 +1,70 @@
+---
+import type { Lang, RouteKey } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT } from '../i18n/utils';
+import Logo from './ui/Logo.astro';
+import LangSwitch from './ui/LangSwitch.astro';
+import Icon from './ui/Icon.astro';
+interface Props { lang: Lang; routeKey: RouteKey; alternates: Record<Lang, string> }
+const { lang, routeKey, alternates } = Astro.props;
+const t = useT(lang);
+const main: RouteKey[] = ['franchise', 'formats', 'investment', 'process', 'support', 'corporate'];
+const guests: RouteKey[] = ['menu', 'locations'];
+const label = (k: RouteKey) => (t.nav as Record<string, string>)[k];
+---
+<header class="sticky top-0 z-40 border-b border-line/80 bg-rice">
+  <div class="container-x flex h-[68px] items-center justify-between gap-4">
+    <a href={path('home', lang)} class="shrink-0" aria-label={`YumiPokeGo — ${t.common.home}`}><Logo /></a>
+
+    <nav class="hidden xl:block" aria-label={t.nav.main}>
+      <ul class="flex items-center gap-1 text-[0.95rem] font-medium">
+        {main.map((k) => (
+          <li><a href={path(k, lang)} class:list={['whitespace-nowrap rounded-full px-2.5 py-2 transition-colors hover:bg-rice-2', k === routeKey ? 'text-coral-700' : 'text-ink']} aria-current={k === routeKey ? 'page' : undefined}>{label(k)}</a></li>
+        ))}
+        <li class="mx-1 h-5 w-px bg-line" aria-hidden="true"></li>
+        {guests.map((k) => (
+          <li><a href={path(k, lang)} class:list={['whitespace-nowrap rounded-full px-2.5 py-2 text-ink-soft transition-colors hover:bg-rice-2 hover:text-ink', k === routeKey && 'text-coral-700']} aria-current={k === routeKey ? 'page' : undefined}>{label(k)}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <LangSwitch lang={lang} alternates={alternates} class="hidden sm:inline-flex" />
+      <a href={path('apply', lang)} class="btn-primary btn-sm hidden sm:inline-flex">{t.common.applyShort}</a>
+      <details class="group relative xl:hidden" data-mobile-nav>
+        <summary class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-full border border-ink/15 [&::-webkit-details-marker]:hidden" aria-label={t.common.menuOpen}>
+          <span class="group-open:hidden"><Icon name="Menu" /></span>
+          <span class="hidden group-open:inline"><Icon name="X" /></span>
+        </summary>
+        <div class="fixed inset-x-0 top-[68px] bottom-0 overflow-y-auto border-t border-line bg-rice px-4 pb-10 pt-4">
+          <nav aria-label={t.nav.main}>
+            <ul class="divide-y divide-line text-lg font-medium">
+              {main.map((k) => (
+                <li><a href={path(k, lang)} class="flex items-center justify-between py-3.5" aria-current={k === routeKey ? 'page' : undefined}>{label(k)}<Icon name="ChevronRight" size={18} class="text-ink-soft" /></a></li>
+              ))}
+              <li><a href={path('press', lang)} class="flex items-center justify-between py-3.5">{t.nav.press}<Icon name="ChevronRight" size={18} class="text-ink-soft" /></a></li>
+              <li><a href={path('contact', lang)} class="flex items-center justify-between py-3.5">{t.nav.contact}<Icon name="ChevronRight" size={18} class="text-ink-soft" /></a></li>
+            </ul>
+            <p class="mt-6 text-sm font-semibold text-ink-soft">{t.nav.guestsLabel}</p>
+            <ul class="mt-2 flex gap-2">
+              {guests.map((k) => <li><a href={path(k, lang)} class="btn-ghost btn-sm">{label(k)}</a></li>)}
+            </ul>
+            <div class="mt-8 flex flex-wrap items-center gap-3">
+              <a href={path('apply', lang)} class="btn-primary">{t.common.apply}</a>
+              <LangSwitch lang={lang} alternates={alternates} />
+            </div>
+          </nav>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+<script>
+  // Mobil menü: Escape ile kapat, açıkken sayfa kaydırmasını kilitle.
+  const d = document.querySelector<HTMLDetailsElement>('[data-mobile-nav]');
+  if (d) {
+    d.addEventListener('toggle', () => document.documentElement.classList.toggle('overflow-hidden', d.open));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && d.open) { d.open = false; d.querySelector('summary')?.focus(); } });
+    window.matchMedia('(min-width: 1280px)').addEventListener('change', (m) => { if (m.matches) d.open = false; });
+  }
+</script>

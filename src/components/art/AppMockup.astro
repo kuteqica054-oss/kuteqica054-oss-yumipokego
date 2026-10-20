@@ -1,0 +1,32 @@
+---
+// Temsilî paket servis / sipariş uygulaması ekranı. Veriler hayalîdir.
+import type { Lang } from '../../i18n/routes';
+import { useT } from '../../i18n/utils';
+import { bowlSvg } from '../../lib/art';
+interface Props { lang: Lang; class?: string }
+const { lang, class: cls = '' } = Astro.props;
+const m = useT(lang).mockups;
+---
+<figure class:list={['select-none', cls]} aria-hidden="true">
+  <div class="mx-auto w-[220px] rounded-[34px] bg-ink p-2 shadow-[0_30px_60px_-30px_rgb(14_42_59/0.6)]">
+    <div class="overflow-hidden rounded-[27px] bg-rice text-[11px] text-ink">
+      <div class="flex justify-center pt-2"><span class="h-1.5 w-14 rounded-full bg-ink/80"></span></div>
+      <div class="px-3 pt-2">
+        <p class="font-display text-[15px] font-bold">{m.appTitle}</p>
+        <div class="mt-2 flex gap-1">
+          {m.appSteps.map((s, i) => <span class:list={['flex-1 rounded-full py-0.5 text-center font-semibold', i < 2 ? 'bg-coral-600 text-white' : 'bg-white text-ink-soft']}>{s}</span>)}
+        </div>
+        <svg viewBox="-132 -132 264 264" class="mx-auto my-3 block w-[150px]" set:html={bowlSvg({ toppings: ['salmon', 'avocado', 'edamame', 'mango', 'cucumber'], seed: 21, idPrefix: 'app' })} />
+        <ul class="space-y-1.5">
+          {m.appBase.map((b, i) => (
+            <li class:list={['flex items-center justify-between rounded-xl px-2.5 py-2', i === 0 ? 'bg-white ring-2 ring-coral-600' : 'bg-white']}>
+              <span class="font-medium">{b}</span>
+              <span class:list={['h-3.5 w-3.5 rounded-full border-2', i === 0 ? 'border-coral-600 bg-coral-600' : 'border-line']}></span>
+            </li>
+          ))}
+        </ul>
+        <div class="my-3 rounded-full bg-ink py-2 text-center font-semibold text-white">{m.appCta}</div>
+      </div>
+    </div>
+  </div>
+</figure>

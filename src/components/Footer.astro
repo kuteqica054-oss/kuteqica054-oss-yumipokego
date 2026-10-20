@@ -1,0 +1,102 @@
+---
+import type { Lang } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT, telHref } from '../i18n/utils';
+import site from '../config/site.json';
+import Logo from './ui/Logo.astro';
+import LangSwitch from './ui/LangSwitch.astro';
+import SocialIcon from './ui/SocialIcon.astro';
+import Todo from './ui/Todo.astro';
+interface Props { lang: Lang; alternates: Record<Lang, string> }
+const { lang, alternates } = Astro.props;
+const t = useT(lang);
+const socials = (['instagram', 'tiktok', 'youtube', 'linkedin', 'x'] as const).map((k) => ({ k, url: (site.social as Record<string, string | null>)[k] }));
+const socialNames = { instagram: 'Instagram', tiktok: 'TikTok', youtube: 'YouTube', linkedin: 'LinkedIn', x: 'X' };
+const c = site.contacts;
+const year = new Date().getFullYear();
+---
+<footer class="on-dark pattern-rice-dark bg-ink text-ink-mute">
+  <div class="container-x grid gap-10 py-14 md:grid-cols-12">
+    <div class="md:col-span-4">
+      <Logo dark size="lg" />
+      <p class="mt-4 max-w-sm text-[0.95rem]">{t.footer.tagline}</p>
+      <a href={path('apply', lang)} class="btn-primary mt-6">{t.common.apply}</a>
+      <div class="mt-8">
+        <p class="text-sm font-semibold text-white">{t.footer.social}</p>
+        <ul class="mt-3 flex gap-2">
+          {socials.filter(({ url }) => url || site.showTodos).map(({ k, url }) => (
+            <li>
+              <a href={url ?? '#'} class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-white hover:bg-white/10"
+                 aria-label={`${socialNames[k]}${url ? '' : ' (TODO)'}`} target={url ? '_blank' : undefined} rel={url ? 'noopener' : undefined} data-todo={url ? undefined : 'social-link'}>
+                <SocialIcon name={k} size={18} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <nav class="grid grid-cols-2 gap-8 text-[0.95rem] sm:grid-cols-3 md:col-span-8" aria-label="Footer">
+      <div>
+        <p class="font-semibold text-white">{t.footer.colFranchise}</p>
+        <ul class="mt-3 space-y-2">
+          <li><a class="hover:text-white" href={path('franchise', lang)}>{t.nav.franchise}</a></li>
+          <li><a class="hover:text-white" href={path('formats', lang)}>{t.nav.formats}</a></li>
+          <li><a class="hover:text-white" href={path('investment', lang)}>{t.nav.investment}</a></li>
+          <li><a class="hover:text-white" href={path('process', lang)}>{t.nav.process}</a></li>
+          <li><a class="hover:text-white" href={path('support', lang)}>{t.nav.support}</a></li>
+          <li><a class="hover:text-white" href={path('apply', lang)}>{t.common.applyShort}</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-white">{t.footer.colCompany}</p>
+        <ul class="mt-3 space-y-2">
+          <li><a class="hover:text-white" href={path('corporate', lang)}>{t.nav.corporate}</a></li>
+          <li><a class="hover:text-white" href={path('companyInfo', 'tr')} lang="tr">Bilgi Toplumu Hizmetleri</a></li>
+          <li><a class="hover:text-white" href={path('press', lang)}>{t.nav.press}</a></li>
+          <li><a class="hover:text-white" href={path('contact', lang)}>{t.nav.contact}</a></li>
+        </ul>
+        <p class="mt-6 font-semibold text-white">{t.footer.colGuests}</p>
+        <ul class="mt-3 space-y-2">
+          <li><a class="hover:text-white" href={path('menu', lang)}>{t.nav.menu}</a></li>
+          <li><a class="hover:text-white" href={path('locations', lang)}>{t.nav.locations}</a></li>
+        </ul>
+      </div>
+      <div class="col-span-2 sm:col-span-1">
+        <p class="font-semibold text-white">{t.footer.colContact}</p>
+        <dl class="mt-3 space-y-3 [overflow-wrap:anywhere]">
+          <div><dt class="text-xs text-ink-mute/80">{t.footer.franchiseLine}</dt>
+            <dd class="text-white">{c.franchise.email ? <a href={`mailto:${c.franchise.email}`} class="hover:underline">{c.franchise.email}</a> : <Todo label="e-mail TODO" />}</dd>
+            <dd class="text-white">{c.franchise.phone ? <a href={telHref(c.franchise.phone)} class="hover:underline">{c.franchise.phone}</a> : <Todo label="tel TODO" />}</dd></div>
+          <div><dt class="text-xs text-ink-mute/80">{t.footer.guestLine}</dt>
+            <dd class="text-white">{c.guest.phone ? <a href={telHref(c.guest.phone)} class="hover:underline">{c.guest.phone}</a> : <Todo label="tel TODO" />}</dd></div>
+          <div><dt class="text-xs text-ink-mute/80">{t.footer.pressLine}</dt>
+            <dd class="text-white">{c.press.email ? <a href={`mailto:${c.press.email}`} class="hover:underline">{c.press.email}</a> : <Todo label="e-mail TODO" />}</dd></div>
+          {site.offices.map((o) => (
+            <div><dt class="text-xs text-ink-mute/80">{o.label[lang]}</dt>
+              <dd class="text-white">{o.street}, {o.postalCode} {o.district} / {o.city}</dd>
+              <dd class="text-white"><a href={telHref(o.phone)} class="hover:underline">{o.phone}</a></dd></div>
+          ))}
+        </dl>
+        <div class="mt-6"><LangSwitch lang={lang} alternates={alternates} dark /></div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-x flex flex-col gap-4 py-6 text-[0.82rem] lg:flex-row lg:items-start lg:justify-between">
+      <div class="space-y-1">
+        <p class="text-white">{site.legalName.includes('TODO') ? (site.showTodos ? <><span>YumiPokeGo … A.Ş.</span> <Todo label="ticaret unvanı TODO" /></> : site.legalNameShort) : site.legalName}</p>
+        <p>{t.footer.mersis}: {site.mersis ?? <Todo fallback={t.common.updating} />} · {t.footer.address}: {site.headOfficeAddress ?? <Todo fallback={t.common.updating} />}</p>
+        <p>© {year} {site.legalNameShort} {t.footer.rights}</p>
+      </div>
+      <ul class="flex flex-wrap gap-x-5 gap-y-2" aria-label={t.footer.legal}>
+        <li><a class="hover:text-white" href={path('privacy', lang)}>{lang === 'tr' ? 'KVKK Aydınlatma Metni' : 'Privacy Notice'}</a></li>
+        <li><a class="hover:text-white" href={path('cookies', lang)}>{t.cookie.policy}</a></li>
+        <li><a class="hover:text-white" href={path('terms', lang)}>{lang === 'tr' ? 'Kullanım Koşulları' : 'Terms of Use'}</a></li>
+        <li><a class="hover:text-white" href={path('companyInfo', 'tr')} lang="tr">Bilgi Toplumu Hizmetleri</a></li>
+        <li><button type="button" class="cursor-pointer hover:text-white" data-cookie-open>{t.footer.cookieSettings}</button></li>
+      </ul>
+    </div>
+  </div>
+</footer>

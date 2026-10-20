@@ -1,0 +1,75 @@
+---
+// Bilgi Toplumu Hizmetleri (TR) ve İngilizce açıklama sayfası (EN).
+// Zorunlu içerik listesini avukat / mali müşavir ile teyit edin.
+import type { Lang } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT, pick, formatDate, siteUrl } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import company from '../data/company.json';
+import leadership from '../data/leadership.json';
+import site from '../config/site.json';
+import PageHero from '../components/ui/PageHero.astro';
+import Todo from '../components/ui/Todo.astro';
+import Icon from '../components/ui/Icon.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const p = t.companyInfoPage;
+const sectionsEn: Record<string, string> = { duyurular: 'Announcements', 'genel-kurul': 'General assembly documents', finansal: 'Financial statements and audit reports', 'esas-sozlesme': 'Articles of association', ttsg: 'Trade Registry Gazette notices', 'pay-sahipleri': 'Shareholding and other information' };
+---
+<BaseLayout lang={lang} routeKey="companyInfo">
+  <PageHero lang={lang} eyebrow={p.eyebrow} title={p.title} lead={p.lead} crumbs={[{ label: t.nav.corporate, href: path('corporate', lang) }, { label: p.title }]} />
+  <section class="container-x py-14">
+    <p class="flex items-start gap-3 rounded-xl border border-dashed border-coral-600/60 bg-coral-50 p-4 text-sm font-medium text-coral-700"><Icon name="Scale" size={18} class="mt-0.5 shrink-0" />{p.reviewNote}</p>
+
+    {lang === 'en' && (
+      <div class="mt-8 max-w-3xl space-y-3 text-ink-soft">
+        <p>The page below lists the items the Turkish page will contain. The official page is available in Turkish: <a href={path('companyInfo', 'tr')} lang="tr" hreflang="tr" class="link font-semibold text-ink">Bilgi Toplumu Hizmetleri</a>.</p>
+      </div>
+    )}
+
+    <div class="mt-10 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        <h2 class="text-2xl font-bold">{p.fieldsTitle}</h2>
+        <dl class="mt-5 divide-y divide-line rounded-[var(--radius-card)] border border-line bg-white">
+          {company.fields.map((f) => (
+            <div class="grid gap-1 px-5 py-3.5 sm:grid-cols-[220px_1fr] sm:gap-4">
+              <dt class="text-sm font-semibold text-ink-soft">{lang === 'tr' ? f.label : f.labelEn}</dt>
+              <dd>{f.value ?? (f.id === 'web' ? siteUrl : f.id === 'adres' && site.headOfficeAddress ? site.headOfficeAddress : f.id === 'unvan' && !site.showTodos ? site.legalNameShort : <Todo fallback={t.common.updating} />)}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+      <div class="space-y-8">
+        <div>
+          <h2 class="text-2xl font-bold">{p.boardTitle}</h2>
+          <ul class="mt-5 divide-y divide-line rounded-[var(--radius-card)] border border-line bg-white">
+            {leadership.board.map((b) => (
+              <li class="flex flex-wrap items-center justify-between gap-2 px-5 py-3.5"><span>{b.name ?? <Todo fallback={t.common.updating} />}</span><span class="text-sm text-ink-soft">{pick(b.role, lang)}</span></li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold">{p.auditorTitle}</h2>
+          <p class="mt-4 rounded-[var(--radius-card)] border border-line bg-white px-5 py-3.5">{company.auditor.name ?? <Todo fallback={t.common.updating} />}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-14 grid gap-5 md:grid-cols-2">
+      {company.sections.map((s) => (
+        <section class="card p-6" aria-labelledby={`s-${s.id}`}>
+          <h2 id={`s-${s.id}`} class="flex items-center gap-2 text-xl font-bold"><Icon name="Folder" size={20} class="text-coral-700" />{lang === 'tr' ? s.title : sectionsEn[s.id]}</h2>
+          {lang === 'tr' && (s as any).hint && <p class="mt-1 text-sm text-ink-soft">{(s as any).hint}</p>}
+          {s.documents.length === 0 ? <p class="mt-4 text-sm text-ink-soft" set:html={p.documentsEmpty} /> : (
+            <ul class="mt-4 divide-y divide-line">
+              {(s.documents as any[]).map((d) => (
+                <li class="flex items-center justify-between gap-3 py-2.5"><span>{d.title}<span class="block text-xs text-ink-soft">{d.date && formatDate(d.date, lang)}</span></span><a href={d.file} class="btn-ghost btn-sm" download><Icon name="Download" size={16} />{p.download}</a></li>
+              ))}
+            </ul>
+          )}
+        </section>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

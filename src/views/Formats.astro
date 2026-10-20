@@ -1,0 +1,39 @@
+---
+import type { Lang } from '../i18n/routes';
+import { useT } from '../i18n/utils';
+import { path } from '../i18n/routes';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import formats from '../data/formats.json';
+import PageHero from '../components/ui/PageHero.astro';
+import SectionHead from '../components/ui/SectionHead.astro';
+import FormatCard from '../components/sections/FormatCard.astro';
+import FormatsTable from '../components/sections/FormatsTable.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import Disclaimer from '../components/sections/Disclaimer.astro';
+import MenuBoardMockup from '../components/art/MenuBoardMockup.astro';
+import { pick } from '../i18n/utils';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const p = t.formatsPage;
+---
+<BaseLayout lang={lang} routeKey="formats">
+  <PageHero lang={lang} eyebrow={p.eyebrow} title={p.title} lead={p.lead} crumbs={[{ label: t.nav.franchise, href: path('franchise', lang) }, { label: t.nav.formats }]}>
+    <div slot="art" class="mx-auto w-full max-w-[460px]"><MenuBoardMockup lang={lang} /></div>
+  </PageHero>
+  <nav class="container-x pt-10" aria-label={p.title}>
+    <ul class="flex flex-wrap gap-2">
+      {formats.formats.map((f, i) => <li><a href={`#${f.id}`} class="btn-ghost btn-sm">0{i + 1} · {pick(f.name, lang)}</a></li>)}
+    </ul>
+  </nav>
+  <section class="container-x space-y-6 py-10">
+    {formats.formats.map((f, i) => <FormatCard lang={lang} format={f} index={i} detailed />)}
+  </section>
+  <section class="container-x py-12" aria-labelledby="cmp">
+    <SectionHead title={p.compareTitle} id="cmp" />
+    <div class="mt-8"><FormatsTable lang={lang} /></div>
+    <p class="mt-3 text-sm text-ink-soft">{t.formats.planNote} {p.photoNote}</p>
+    <Disclaimer lang={lang} class="mt-6" />
+  </section>
+  <CtaBand lang={lang} />
+</BaseLayout>

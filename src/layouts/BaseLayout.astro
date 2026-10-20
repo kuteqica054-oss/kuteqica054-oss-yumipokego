@@ -1,0 +1,108 @@
+---
+import '../styles/global.css';
+import type { Lang, RouteKey } from '../i18n/routes';
+import { routes } from '../i18n/routes';
+import { useT, absUrl, siteUrl } from '../i18n/utils';
+import site from '../config/site.json';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+
+interface Props {
+  lang: Lang;
+  routeKey: RouteKey;
+  title?: string;
+  description?: string;
+  /** Dinamik sayfalar (ör. haber detayı) için dil karşılıkları */
+  alternates?: Record<Lang, string>;
+  jsonld?: object[];
+  /** Yalnızca tek dilde mevcut sayfalar için (hreflang yazılmaz) */
+  noAlternates?: boolean;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+}
+const { lang, routeKey, alternates: altOverride, jsonld = [], noAlternates = false, ogType = 'website', noindex = false } = Astro.props;
+const t = useT(lang);
+const meta = t.meta[routeKey];
+const title = Astro.props.title ?? meta.title;
+const description = Astro.props.description ?? meta.description;
+const alternates = altOverride ?? { tr: routes[routeKey].tr, en: routes[routeKey].en };
+const canonical = absUrl(Astro.url.pathname);
+const ogImage = absUrl(`/og/og-${lang}.png`);
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': absUrl('/#organization'),
+  name: site.brand,
+  legalName: site.legalName,
+  url: absUrl('/'),
+  logo: absUrl('/favicon.svg'),
+  ...(site.headOfficeAddress ? { address: site.headOfficeAddress } : {}),
+  ...(site.contacts.general.email ? { email: site.contacts.general.email } : {}),
+  sameAs: Object.values(site.social).filter(Boolean),
+};
+---
+<!doctype html>
+<html lang={lang} class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {!noAlternates && <>
+      <link rel="alternate" hreflang="tr" href={absUrl(alternates.tr)} />
+      <link rel="alternate" hreflang="en" href={absUrl(alternates.en)} />
+      <link rel="alternate" hreflang="x-default" href={absUrl(alternates.tr)} />
+    </>}
+    {/* TODO: site.json → url gerçek alan adıyla değiştirilene kadar arama motorlarına kapalı */}
+    {(siteUrl.includes('.example') || noindex) && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#fbf7f0" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.brand} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={t.home.hero.title} />
+    <meta property="og:locale" content={lang === 'tr' ? 'tr_TR' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'tr' ? 'en_US' : 'tr_TR'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script is:inline>document.documentElement.classList.replace('no-js', 'js');</script>
+    <script type="application/ld+json" set:html={JSON.stringify([organization, ...jsonld])} />
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white">{t.common.skip}</a>
+    <Header lang={lang} routeKey={routeKey} alternates={alternates} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} alternates={alternates} />
+    <WhatsAppButton lang={lang} />
+    <CookieBanner lang={lang} />
+    <script>
+      // Kaydırınca beliren öğeler
+      const els = document.querySelectorAll('[data-reveal]');
+      if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+        }), { rootMargin: '0px 0px -8% 0px' });
+        els.forEach((el) => io.observe(el));
+      } else els.forEach((el) => el.classList.add('is-in'));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+---
+import type { Lang } from '../../i18n/routes';
+import { useT } from '../../i18n/utils';
+import Icon from '../ui/Icon.astro';
+interface Props { lang: Lang; limit?: number }
+const { lang, limit } = Astro.props;
+const items = useT(lang).faq.slice(0, limit);
+const render = (s: string) => s.replace(/\[TODO\]/g, '<span class="todo">TODO</span>').replace(/\[TODO: ([^\]]+)\]/g, '<span class="todo">TODO: $1</span>');
+---
+<div class="divide-y divide-line border-y border-line">
+  {items.map((f) => (
+    <details class="group py-1" name="faq">
+      <summary class="flex cursor-pointer list-none items-start justify-between gap-6 py-4 text-left font-display text-lg font-semibold leading-snug [&::-webkit-details-marker]:hidden sm:text-xl">
+        <span>{f.q}</span>
+        <span class="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-ink/15 transition-transform group-open:rotate-45"><Icon name="Plus" size={18} /></span>
+      </summary>
+      <p class="max-w-3xl pb-5 pr-12 text-ink-soft" set:html={render(f.a)} />
+    </details>
+  ))}
+</div>

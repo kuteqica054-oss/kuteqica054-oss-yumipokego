@@ -1,0 +1,12 @@
+---
+import type { Lang } from '../../i18n/routes';
+import { useT } from '../../i18n/utils';
+import Icon from '../ui/Icon.astro';
+interface Props { lang: Lang; class?: string }
+const { lang, class: cls = '' } = Astro.props;
+const t = useT(lang).disclaimer;
+---
+<aside class:list={['flex gap-4 rounded-2xl border border-line bg-white p-5 text-sm text-ink-soft sm:p-6', cls]} aria-label={t.title}>
+  <Icon name="Info" class="mt-0.5 shrink-0 text-ink" />
+  <div><p class="font-semibold text-ink">{t.title}</p><p class="mt-1">{t.text}</p></div>
+</aside>

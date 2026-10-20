@@ -1,0 +1,56 @@
+---
+import type { Lang } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT, pick, formatDate } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import press from '../data/press.json';
+import site from '../config/site.json';
+import PageHero from '../components/ui/PageHero.astro';
+import PhotoSlot from '../components/ui/PhotoSlot.astro';
+import Todo from '../components/ui/Todo.astro';
+import Icon from '../components/ui/Icon.astro';
+import DishArt from '../components/art/DishArt.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const p = t.pressPage;
+const items = [...press.items].sort((a, b) => b.date.localeCompare(a.date));
+---
+<BaseLayout lang={lang} routeKey="press">
+  <PageHero lang={lang} eyebrow={p.eyebrow} title={p.title} lead={p.lead} crumbs={[{ label: t.nav.press }]} />
+  <section class="container-x grid gap-10 py-14 lg:grid-cols-[1fr_320px]">
+    <ul class="space-y-6">
+      {items.map((n, i) => (
+        <li>
+          <article class="card grid overflow-hidden sm:grid-cols-[240px_1fr]">
+            <PhotoSlot src={n.image} alt={pick(n.title, lang)} size="1600×900 — press.json → image" class="aspect-[16/10] bg-rice-2 sm:aspect-auto">
+              <div class="flex h-full items-center justify-center p-6"><div class="w-28"><DishArt kind={i % 2 ? 'wok' : 'bowl'} toppings={['salmon', 'avocado', 'mango', 'edamame']} alt="" seed={70 + i} id={`pr${i}`} /></div></div>
+            </PhotoSlot>
+            <div class="p-6">
+              <div class="flex flex-wrap items-center gap-2 text-sm text-ink-soft">
+                <time datetime={n.date}>{formatDate(n.date, lang)}</time>
+                {n.sample && <Todo label={t.common.sample} />}
+              </div>
+              <h2 class="mt-2 text-2xl font-bold"><a href={`${path('press', lang)}${pick(n.slug, lang)}/`} class="hover:underline">{pick(n.title, lang)}</a></h2>
+              <p class="mt-2 text-ink-soft">{pick(n.summary, lang)}</p>
+              <a href={`${path('press', lang)}${pick(n.slug, lang)}/`} class="mt-4 inline-flex items-center gap-1 font-semibold text-coral-700 hover:underline" aria-label={`${t.common.readMore}: ${pick(n.title, lang)}`}>{t.common.readMore}<Icon name="ArrowRight" size={16} /></a>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+    <aside class="space-y-5">
+      <div class="on-dark rounded-[var(--radius-card)] bg-ink p-6 text-white">
+        <h2 class="text-xl font-bold text-white">{p.contactTitle}</h2>
+        <p class="mt-2 text-sm text-ink-mute">{p.contactText}</p>
+        <p class="mt-4 flex items-center gap-2"><Icon name="Mail" size={18} />{site.contacts.press.email ? <a class="underline" href={`mailto:${site.contacts.press.email}`}>{site.contacts.press.email}</a> : <Todo />}</p>
+        <p class="mt-2 flex items-center gap-2"><Icon name="Phone" size={18} />{site.contacts.press.phone ? <a class="underline" href={`tel:${String(site.contacts.press.phone).replace(/\s/g, "")}`}>{site.contacts.press.phone}</a> : <Todo />}</p>
+      </div>
+      <div class="card p-6">
+        <h2 class="text-xl font-bold">{p.kitTitle}</h2>
+        <p class="mt-2 text-sm text-ink-soft">{p.kitText}</p>
+        {press.mediaKit ? <a href={press.mediaKit} class="btn-dark btn-sm mt-4" download><Icon name="Download" size={16} />{t.companyInfoPage.download}</a> : <p class="mt-4 text-sm"><Todo label={p.kitTodo} fallback={p.kitTodo} /></p>}
+      </div>
+    </aside>
+  </section>
+</BaseLayout>

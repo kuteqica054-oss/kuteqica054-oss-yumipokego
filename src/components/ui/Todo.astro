@@ -1,0 +1,7 @@
+---
+// TODO rozeti. site.json → showTodos: true iken görünür; false iken `fallback` metni (varsa) gösterilir, yoksa hiçbir şey.
+import site from '../../config/site.json';
+interface Props { label?: string; class?: string; fallback?: string }
+const { label = 'TODO', class: cls = '', fallback } = Astro.props;
+---
+{site.showTodos ? <span class:list={['todo', cls]}>{label}</span> : fallback ? <span class="opacity-80">{fallback}</span> : null}

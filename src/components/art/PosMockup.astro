@@ -1,0 +1,52 @@
+---
+// Temsilî POS ekranı (HTML/CSS). Veriler hayalîdir.
+import type { Lang } from '../../i18n/routes';
+import { useT } from '../../i18n/utils';
+import { bowlSvg } from '../../lib/art';
+interface Props { lang: Lang; class?: string }
+const { lang, class: cls = '' } = Astro.props;
+const m = useT(lang).mockups;
+const tiles = [
+  { c: '#ee6a4e', t: ['salmon', 'avocado', 'edamame', 'mango'] },
+  { c: '#f5b83d', t: ['chicken', 'mango', 'corn', 'carrot'] },
+  { c: '#6e9a3c', t: ['tofu', 'avocado', 'seaweed', 'cucumber'] },
+  { c: '#cf4458', t: ['tuna', 'cucumber', 'corn', 'edamame'] },
+  { c: '#9fc46a', t: ['shrimp', 'avocado', 'mango', 'carrot'] },
+  { c: '#24506c', t: ['salmon', 'cucumber', 'seaweed', 'corn'] },
+];
+---
+<figure class:list={['select-none', cls]} aria-hidden="true">
+  <div class="rounded-[22px] bg-ink p-2.5 shadow-[0_30px_60px_-30px_rgb(14_42_59/0.6)]">
+    <div class="overflow-hidden rounded-[14px] bg-[#f7f4ee] text-[11px] text-ink">
+      <div class="flex items-center justify-between bg-ink-2 px-3 py-2 text-white">
+        <span class="font-display font-bold">YumiPokeGo POS</span><span class="text-ink-mute">{m.posTitle}</span><span class="text-ink-mute">12:41</span>
+      </div>
+      <div class="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+        <div class="p-2.5">
+          <div class="mb-2 flex gap-1">
+            {m.posCat.map((c, i) => <span class:list={['rounded-full px-2 py-0.5 font-semibold', i === 0 ? 'bg-coral-600 text-white' : 'bg-white text-ink-soft']}>{c}</span>)}
+          </div>
+          <div class="grid grid-cols-3 gap-1.5">
+            {tiles.map((tile, i) => (
+              <div class="rounded-lg bg-white p-1.5">
+                <svg viewBox="-132 -132 264 264" class="mx-auto block w-full" set:html={bowlSvg({ toppings: tile.t as any, seed: i + 2, idPrefix: `pos${i}` })} />
+                <div class="mt-1 h-1.5 w-3/4 rounded" style={`background:${tile.c}`}></div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="flex flex-col border-l border-line bg-white p-2.5">
+          <ul class="space-y-1.5">
+            {m.posItems.map((it, i) => (
+              <li class="flex justify-between gap-2"><span class="truncate">{i === 2 ? '+ ' : '1× '}{it}</span><span class="text-ink-soft">{m.priceHidden}</span></li>
+            ))}
+          </ul>
+          <div class="mt-auto border-t border-dashed border-line pt-2">
+            <div class="flex justify-between font-bold"><span>{m.posTotal}</span><span>— {lang === 'tr' ? '₺' : '$'}</span></div>
+            <div class="mt-2 rounded-lg bg-avocado-700 py-1.5 text-center font-semibold text-white">{m.posPay}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</figure>

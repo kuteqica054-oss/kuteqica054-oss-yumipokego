@@ -1,0 +1,92 @@
+---
+import type { Lang } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT, pick, type Num } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import franchise from '../data/franchise.json';
+import formats from '../data/formats.json';
+import PageHero from '../components/ui/PageHero.astro';
+import SectionHead from '../components/ui/SectionHead.astro';
+import Icon from '../components/ui/Icon.astro';
+import Todo from '../components/ui/Todo.astro';
+import Value from '../components/ui/Value.astro';
+import KeyFigures from '../components/sections/KeyFigures.astro';
+import FeesTable from '../components/sections/FeesTable.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import Disclaimer from '../components/sections/Disclaimer.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const p = t.investmentPage;
+const colors = ['#c4442a', '#ee6a4e', '#f5b83d', '#9fc46a', '#6e9a3c', '#24506c'];
+const shares = franchise.investmentBreakdown;
+const hasShares = shares.every((s) => typeof s.share === 'number');
+---
+<BaseLayout lang={lang} routeKey="investment">
+  <PageHero lang={lang} eyebrow={p.eyebrow} title={p.title} lead={p.lead} crumbs={[{ label: t.nav.franchise, href: path('franchise', lang) }, { label: t.nav.investment }]} tone="dark">
+    <div slot="actions" class="mt-8 flex flex-wrap gap-3">
+      <a href={path('apply', lang)} class="btn-primary">{t.common.apply}</a>
+    </div>
+  </PageHero>
+
+  <section class="container-x py-14">
+    <Disclaimer lang={lang} />
+    <div class="mt-8"><KeyFigures lang={lang} dark={false} /></div>
+  </section>
+
+  <section class="container-x py-10" aria-labelledby="fees">
+    <SectionHead title={p.tableTitle} id="fees" />
+    <div class="mt-8"><FeesTable lang={lang} /></div>
+  </section>
+
+  <section class="container-x grid gap-10 py-16 lg:grid-cols-[1.2fr_1fr]" aria-labelledby="breakdown">
+    <div>
+      <SectionHead title={p.breakdownTitle} lead={p.breakdownLead} id="breakdown" />
+      <div class="mt-8 flex h-5 overflow-hidden rounded-full bg-rice-3" role="img" aria-label={p.breakdownTitle}>
+        {shares.map((s, i) => <span style={`width:${hasShares ? s.share : 100 / shares.length}%;background:${colors[i]};opacity:${hasShares ? 1 : 0.35}`} class="border-r-2 border-rice last:border-0"></span>)}
+      </div>
+      <ul class="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
+        {shares.map((s, i) => (
+          <li class="flex items-center justify-between gap-3 border-b border-line pb-3">
+            <span class="flex items-center gap-2.5"><span class="h-3 w-3 rounded-sm" style={`background:${colors[i]}`}></span>{pick(s.label, lang)}</span>
+            {typeof s.share === 'number' ? <span class="font-semibold">%{s.share}</span> : <Todo />}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="card self-start p-6 sm:p-8" data-reveal>
+      <h3 class="text-xl font-bold">{p.excludedTitle}</h3>
+      <ul class="mt-4 space-y-2.5 text-ink-soft">
+        {p.excluded.map((x) => <li class="flex gap-3"><span class="mt-0.5 text-coral-700"><Icon name="Minus" size={18} /></span>{x}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-rice-2 py-16" aria-labelledby="byformat">
+    <div class="container-x">
+      <SectionHead title={p.byFormatTitle} id="byformat" />
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {formats.formats.map((f) => (
+          <a href={`${path('formats', lang)}#${f.id}`} class="card group block p-5 transition-colors hover:border-ink/30">
+            <p class="font-display text-lg font-bold">{pick(f.name, lang)}</p>
+            <p class="mt-3 font-display text-2xl font-bold text-coral-700"><Value value={pick(f.investment, lang) as Num} unit="money" lang={lang} /></p>
+            <p class="mt-1 text-sm text-ink-soft">{t.formats.labels.area}: <Value value={f.area as Num} unit="area" lang={lang} /></p>
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-semibold group-hover:underline">{t.common.learnMore}<Icon name="ArrowRight" size={16} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-x grid gap-6 py-16 md:grid-cols-2">
+    <div class="rounded-[var(--radius-card)] border-l-4 border-avocado-500 bg-white p-6 sm:p-8" data-reveal>
+      <h2 class="text-2xl font-bold">{p.paybackTitle}</h2>
+      <p class="mt-3 text-ink-soft">{p.paybackText}</p>
+    </div>
+    <div class="rounded-[var(--radius-card)] border-l-4 border-mango-400 bg-white p-6 sm:p-8" data-reveal>
+      <h2 class="text-2xl font-bold">{p.financingTitle}</h2>
+      <p class="mt-3 text-ink-soft" set:html={p.financingText.replace('TODO', '<span class="todo">TODO</span>')} />
+    </div>
+  </section>
+  <CtaBand lang={lang} />
+</BaseLayout>

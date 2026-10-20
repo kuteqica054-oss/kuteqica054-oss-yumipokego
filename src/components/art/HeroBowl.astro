@@ -1,0 +1,19 @@
+---
+// Hero: üstten poke bowl. Yüklemede malzemeler bowl'a "toplanır" (prefers-reduced-motion'a saygılı, yalnızca CSS).
+import { bowlSvg } from '../../lib/art';
+interface Props { alt: string; class?: string }
+const { alt, class: cls = '' } = Astro.props;
+const svg = bowlSvg({ toppings: ['salmon', 'avocado', 'edamame', 'mango', 'cucumber', 'carrot'], seed: 11, animate: true, chopsticks: true, idPrefix: 'hero' });
+---
+<svg viewBox="-150 -150 300 300" class:list={['hero-bowl block h-auto w-full', cls]} role="img" aria-label={alt} set:html={svg} />
+<style is:global>
+  .hero-bowl { overflow: visible; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-bowl .bowl-base { transform-box: fill-box; transform-origin: center; animation: hb-pop .7s cubic-bezier(.2,.8,.2,1.1) both; }
+    .hero-bowl .ing { transform-box: view-box; animation: hb-in .75s cubic-bezier(.2,.8,.25,1) both; animation-delay: var(--d); }
+    .hero-bowl .sticks { animation: hb-sticks .7s cubic-bezier(.2,.8,.2,1) both; animation-delay: 1.5s; }
+  }
+  @keyframes hb-pop { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: none; } }
+  @keyframes hb-in { from { opacity: 0; transform: translate(var(--tx), var(--ty)); } to { opacity: 1; transform: none; } }
+  @keyframes hb-sticks { from { opacity: 0; transform: translate(40px, -30px); } to { opacity: 1; transform: none; } }
+</style>

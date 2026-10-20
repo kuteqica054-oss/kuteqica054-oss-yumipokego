@@ -1,0 +1,16 @@
+---
+// Geçici kelime logosu (wordmark). Nihai logo geldiğinde bu bileşeni SVG/IMG ile değiştirin.
+import BowlMark from './BowlMark.astro';
+import site from '../../config/site.json';
+interface Props { dark?: boolean; size?: 'sm' | 'md' | 'lg'; class?: string }
+const { dark = false, size = 'md', class: cls = '' } = Astro.props;
+const mark = { sm: 28, md: 34, lg: 44 }[size];
+const text = { sm: 'text-lg', md: 'text-[1.4rem]', lg: 'text-3xl' }[size];
+---
+<span class:list={['inline-flex items-center gap-2', cls]}>
+  <BowlMark size={mark} />
+  <span class:list={['font-display font-extrabold leading-none', text, dark ? 'text-rice' : 'text-ink']} style="letter-spacing:-0.035em">
+    Yumi<span class={dark ? 'text-coral-400' : 'text-coral-600'}>Poke</span><span class={dark ? 'text-avocado-300' : 'text-avocado-700'}>Go</span>
+  </span>
+  <span class="sr-only">{site.brand}</span>
+</span>

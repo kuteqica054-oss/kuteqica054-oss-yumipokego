@@ -1,0 +1,373 @@
+{
+  "_comment": "Franchise ana göstergeleri ve koşulları. Değerler: null (boş → sitede '— ₺ TODO'), sayı (örn. 2500000) veya aralık {\"min\": 1000000, \"max\": 2000000}. 'money' TRY (TR) ve USD/EUR (EN) olarak ayrı girilir: value.tr / value.en.",
+  "keyFigures": [
+    {
+      "id": "investment",
+      "unit": "money",
+      "value": {
+        "tr": null,
+        "en": null
+      },
+      "label": {
+        "tr": "Toplam yatırım",
+        "en": "Total investment"
+      },
+      "note": {
+        "tr": "Format ve lokasyona göre değişir",
+        "en": "Varies by format and location"
+      }
+    },
+    {
+      "id": "fee",
+      "unit": "money",
+      "value": {
+        "tr": null,
+        "en": null
+      },
+      "label": {
+        "tr": "Franchise bedeli",
+        "en": "Franchise fee"
+      },
+      "note": {
+        "tr": "Tek seferlik, KDV hariç",
+        "en": "One-time, excl. VAT"
+      }
+    },
+    {
+      "id": "area",
+      "unit": "area",
+      "value": {
+        "tr": {
+          "min": 15,
+          "max": 150
+        },
+        "en": {
+          "min": 15,
+          "max": 150
+        }
+      },
+      "label": {
+        "tr": "Mağaza alanı",
+        "en": "Unit size"
+      },
+      "note": {
+        "tr": "Kiosk'tan cadde mağazasına",
+        "en": "From kiosk to street store"
+      }
+    },
+    {
+      "id": "opening",
+      "unit": "weeks",
+      "value": {
+        "tr": {
+          "min": 12,
+          "max": 20
+        },
+        "en": {
+          "min": 12,
+          "max": 20
+        }
+      },
+      "label": {
+        "tr": "Sözleşmeden açılışa",
+        "en": "Contract to opening"
+      },
+      "note": {
+        "tr": "Ortalama süre",
+        "en": "Typical timeframe"
+      }
+    },
+    {
+      "id": "payback",
+      "unit": "months",
+      "value": {
+        "tr": null,
+        "en": null
+      },
+      "label": {
+        "tr": "Tahmini geri dönüş süresi",
+        "en": "Estimated payback period"
+      },
+      "note": {
+        "tr": "Ön görülen, garanti değildir",
+        "en": "Projected, not guaranteed"
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "single",
+      "offered": null,
+      "title": {
+        "tr": "Tekil franchise",
+        "en": "Single-unit franchise"
+      },
+      "text": {
+        "tr": "Tek bir lokasyonda, işletmenin başında bizzat duracak girişimciler için. Açılıştan sonra da saha ekibimiz yanınızda.",
+        "en": "For owner-operators who want to run one restaurant hands-on, backed by our field team from day one."
+      },
+      "fit": {
+        "tr": "İlk restoranını açacak girişimciler, işletmeci yatırımcılar",
+        "en": "First-time restaurant owners, owner-operators"
+      }
+    },
+    {
+      "id": "multi",
+      "offered": null,
+      "title": {
+        "tr": "Çoklu franchise",
+        "en": "Multi-unit franchise"
+      },
+      "text": {
+        "tr": "Belirli bir bölgede, takvime bağlanmış bir açılış planıyla birden fazla restoran. Operasyon ekibi kurabilen yatırımcılar için.",
+        "en": "Several restaurants in a defined area under an agreed development schedule — for investors who can build an operations team."
+      },
+      "fit": {
+        "tr": "Restoran grupları, deneyimli işletmeciler",
+        "en": "Restaurant groups, experienced operators"
+      }
+    },
+    {
+      "id": "master",
+      "offered": null,
+      "title": {
+        "tr": "Master franchise",
+        "en": "Master franchise"
+      },
+      "text": {
+        "tr": "Bir bölge ya da ülke için markayı geliştirme ve alt franchise verme hakkı. Yerel pazar bilgisi ve güçlü sermaye yapısı gerektirir.",
+        "en": "The right to develop the brand and sub-franchise across a region or country. Requires local market knowledge and a strong capital base."
+      },
+      "fit": {
+        "tr": "Uluslararası yatırımcılar, holding şirketleri",
+        "en": "International investors, holding companies"
+      }
+    }
+  ],
+  "fees": [
+    {
+      "id": "fee",
+      "unit": "money",
+      "value": {
+        "tr": null,
+        "en": null
+      },
+      "label": {
+        "tr": "Franchise bedeli (giriş bedeli)",
+        "en": "Initial franchise fee"
+      },
+      "detail": {
+        "tr": "Marka kullanım hakkı, başlangıç eğitimi ve açılış desteği. Tek seferlik.",
+        "en": "Brand licence, initial training and opening support. Paid once."
+      }
+    },
+    {
+      "id": "royalty",
+      "unit": "percent",
+      "value": {
+        "tr": null,
+        "en": null
+      },
+      "label": {
+        "tr": "Royalti",
+        "en": "Royalty"
+      },
+      "detail": {
+        "tr": "Aylık net satışlar üzerinden.",
+        "en": "Monthly, on net sales."
+      }
+    },
+    {
+      "id": "marketing",
+      "unit": "percent",
+      "value": {
+        "tr": null,
+        "en": null
+      },
+      "label": {
+        "tr": "Reklam payı",
+        "en": "Marketing fund contribution"
+      },
+      "detail": {
+        "tr": "Ulusal ve dijital pazarlama fonu için, aylık net satışlar üzerinden.",
+        "en": "For national and digital marketing, monthly on net sales."
+      }
+    },
+    {
+      "id": "investment",
+      "unit": "money",
+      "value": {
+        "tr": null,
+        "en": null
+      },
+      "label": {
+        "tr": "Toplam yatırım (franchise bedeli dahil)",
+        "en": "Total investment (incl. franchise fee)"
+      },
+      "detail": {
+        "tr": "Dekorasyon, ekipman, ilk stok, açılış pazarlaması ve işletme sermayesi. Kira ve depozito lokasyona göre değişir.",
+        "en": "Fit-out, equipment, opening inventory, launch marketing and working capital. Rent and deposits vary by site."
+      }
+    },
+    {
+      "id": "term",
+      "unit": "years",
+      "value": {
+        "tr": null,
+        "en": null
+      },
+      "label": {
+        "tr": "Sözleşme süresi",
+        "en": "Agreement term"
+      },
+      "detail": {
+        "tr": "Yenileme koşulları sözleşmede belirlenir.",
+        "en": "Renewal terms are set out in the agreement."
+      }
+    },
+    {
+      "id": "payback",
+      "unit": "months",
+      "value": {
+        "tr": null,
+        "en": null
+      },
+      "label": {
+        "tr": "Tahmini geri dönüş süresi",
+        "en": "Estimated payback period"
+      },
+      "detail": {
+        "tr": "Lokasyon, kira ve işletme performansına bağlıdır; garanti değildir.",
+        "en": "Depends on location, rent and operating performance; not guaranteed."
+      }
+    }
+  ],
+  "investmentBreakdown": [
+    {
+      "id": "fitout",
+      "label": {
+        "tr": "Proje ve dekorasyon",
+        "en": "Design and fit-out"
+      },
+      "share": null
+    },
+    {
+      "id": "equipment",
+      "label": {
+        "tr": "Mutfak ekipmanı ve mobilya",
+        "en": "Kitchen equipment and furniture"
+      },
+      "share": null
+    },
+    {
+      "id": "tech",
+      "label": {
+        "tr": "POS, ekranlar ve teknoloji",
+        "en": "POS, screens and technology"
+      },
+      "share": null
+    },
+    {
+      "id": "stock",
+      "label": {
+        "tr": "İlk stok ve ambalaj",
+        "en": "Opening inventory and packaging"
+      },
+      "share": null
+    },
+    {
+      "id": "launch",
+      "label": {
+        "tr": "Açılış pazarlaması",
+        "en": "Launch marketing"
+      },
+      "share": null
+    },
+    {
+      "id": "working",
+      "label": {
+        "tr": "İşletme sermayesi",
+        "en": "Working capital"
+      },
+      "share": null
+    }
+  ],
+  "budgetRanges": [
+    {
+      "id": "r1",
+      "label": {
+        "tr": "5 milyon ₺'ye kadar",
+        "en": "Up to USD 150,000"
+      }
+    },
+    {
+      "id": "r2",
+      "label": {
+        "tr": "5 – 10 milyon ₺",
+        "en": "USD 150,000 – 300,000"
+      }
+    },
+    {
+      "id": "r3",
+      "label": {
+        "tr": "10 – 20 milyon ₺",
+        "en": "USD 300,000 – 600,000"
+      }
+    },
+    {
+      "id": "r4",
+      "label": {
+        "tr": "20 milyon ₺ ve üzeri",
+        "en": "USD 600,000 and above"
+      }
+    }
+  ],
+  "processDurations": {
+    "_comment": "Açılış sürecinin adım süreleri (tahmini). {tr, en} metin.",
+    "apply": {
+      "tr": "1 gün",
+      "en": "1 day"
+    },
+    "call": {
+      "tr": "1–2 hafta",
+      "en": "1–2 weeks"
+    },
+    "nda": {
+      "tr": "2–4 hafta",
+      "en": "2–4 weeks"
+    },
+    "site": {
+      "tr": "2–6 hafta",
+      "en": "2–6 weeks"
+    },
+    "contract": {
+      "tr": "1–2 hafta",
+      "en": "1–2 weeks"
+    },
+    "build": {
+      "tr": "6–10 hafta",
+      "en": "6–10 weeks"
+    },
+    "training": {
+      "tr": "2–3 hafta",
+      "en": "2–3 weeks"
+    },
+    "opening": {
+      "tr": "1 hafta",
+      "en": "1 week"
+    },
+    "support": {
+      "tr": "Sözleşme boyunca",
+      "en": "Throughout the term"
+    }
+  },
+  "candidateProfile": {
+    "minCapital": {
+      "unit": "money",
+      "value": {
+        "tr": null,
+        "en": null
+      }
+    }
+  }
+}

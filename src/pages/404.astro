@@ -1,0 +1,24 @@
+---
+// 404 — Hostinger .htaccess → ErrorDocument 404 /404.html. İki dilli.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { path } from '../i18n/routes';
+import { bowlSvg } from '../lib/art';
+---
+<BaseLayout lang="tr" routeKey="home" title="Sayfa bulunamadı · Page not found | YumiPokeGo" description="Aradığınız sayfa bulunamadı." noAlternates noindex>
+  <section class="pattern-rice bg-rice-2">
+    <div class="container-x grid items-center gap-10 py-20 md:grid-cols-[1.2fr_0.8fr] md:py-28">
+      <div>
+        <p class="font-display text-[6rem] font-extrabold leading-none text-coral-600 sm:text-[8rem]">404</p>
+        <h1 class="h-section mt-4">Bu bowl boş görünüyor</h1>
+        <p class="lead mt-3">Aradığınız sayfa taşınmış ya da hiç var olmamış olabilir.</p>
+        <p class="mt-1 text-ink-soft" lang="en">This page could not be found.</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={path('home', 'tr')} class="btn-primary">Ana sayfa</a>
+          <a href={path('home', 'en')} class="btn-ghost" lang="en">English home</a>
+          <a href={path('apply', 'tr')} class="btn-ghost">Franchise başvurusu</a>
+        </div>
+      </div>
+      <svg viewBox="-132 -132 264 264" class="mx-auto w-full max-w-[320px]" aria-hidden="true" set:html={bowlSvg({ toppings: [], seed: 4, idPrefix: 'nf' })} />
+    </div>
+  </section>
+</BaseLayout>

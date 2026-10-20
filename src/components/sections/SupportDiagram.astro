@@ -1,0 +1,43 @@
+---
+// Destek şeması: merkezde franchise sahibi, çevrede destek alanları (renk = aşama).
+import type { Lang } from '../../i18n/routes';
+import { useT } from '../../i18n/utils';
+interface Props { lang: Lang; class?: string }
+const { lang, class: cls = '' } = Astro.props;
+const t = useT(lang);
+const color = { before: '#c4442a', during: '#f5b83d', after: '#3f6b22' } as const;
+const soft = { before: '#fbe1d8', during: '#fcebc4', after: '#e3edd3' } as const;
+const cx = 320, cy = 250, R = 190;
+const nodes = t.support.map((s, i) => {
+  const a = -Math.PI / 2 + (i / t.support.length) * Math.PI * 2;
+  const words = s.title.split(' ');
+  const mid = Math.ceil(words.length / 2);
+  const lines = s.title.length > 16 && words.length > 1 ? [words.slice(0, mid).join(' '), words.slice(mid).join(' ')] : [s.title];
+  return { ...s, x: cx + Math.cos(a) * R * 1.2, y: cy + Math.sin(a) * R, lines, phase: s.phase as keyof typeof color };
+});
+---
+<div class={cls}>
+  <svg viewBox="0 0 640 500" class="hidden h-auto w-full md:block" role="img" aria-label={t.supportPage.diagramTitle}>
+    <circle cx={cx} cy={cy} r={R * 0.62} fill="none" stroke="#e3d8c5" stroke-width="1.5" stroke-dasharray="4 6" />
+    {nodes.map((n) => <line x1={cx} y1={cy} x2={n.x} y2={n.y} stroke={color[n.phase]} stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round" opacity=".7" />)}
+    <circle cx={cx} cy={cy} r="74" fill="#0e2a3b" />
+    <circle cx={cx} cy={cy} r="82" fill="none" stroke="#0e2a3b" stroke-width="1.5" opacity=".25" />
+    <g transform={`translate(${cx - 22} ${cy - 40}) scale(0.69)`}>
+      <circle cx="32" cy="32" r="30" fill="#fbf7f0"/><path d="M32 32 L32 8 A24 24 0 0 1 54.8 24.6 Z" fill="#ee6a4e"/><path d="M32 32 L54.8 24.6 A24 24 0 0 1 46.1 51.4 Z" fill="#6e9a3c"/><path d="M32 32 L46.1 51.4 A24 24 0 0 1 17.9 51.4 Z" fill="#f5b83d"/><path d="M32 32 L17.9 51.4 A24 24 0 0 1 9.2 24.6 Z" fill="#9fc46a"/><circle cx="32" cy="32" r="7" fill="#fbf7f0"/>
+    </g>
+    <text x={cx} y={cy + 30} text-anchor="middle" font-family="Bricolage Grotesque Variable, sans-serif" font-weight="700" font-size="15" fill="#fbf7f0">{t.supportHub}</text>
+    {nodes.map((n) => (
+      <g>
+        <rect x={n.x - 82} y={n.y - 26} width="164" height="52" rx="26" fill={soft[n.phase]} stroke={color[n.phase]} stroke-width="1.5" />
+        {n.lines.map((l, i) => (
+          <text x={n.x} y={n.y + (n.lines.length === 1 ? 5 : i === 0 ? -3 : 13)} text-anchor="middle" font-family="DM Sans Variable, sans-serif" font-weight="600" font-size="13.5" fill="#0e2a3b">{l}</text>
+        ))}
+      </g>
+    ))}
+  </svg>
+  <ul class="flex flex-wrap gap-4 text-sm md:mt-2 md:justify-center">
+    {(['before', 'during', 'after'] as const).map((p) => (
+      <li class="flex items-center gap-2"><span class="h-3 w-3 rounded-full" style={`background:${color[p]}`}></span>{t.supportPhases[p]}</li>
+    ))}
+  </ul>
+</div>

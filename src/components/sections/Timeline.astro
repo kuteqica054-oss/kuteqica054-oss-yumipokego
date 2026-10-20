@@ -1,0 +1,45 @@
+---
+// Açılış süreci zaman çizelgesi. compact: ana sayfa (yatay ray), değilse ayrıntılı dikey liste.
+import type { Lang } from '../../i18n/routes';
+import { useT, pick } from '../../i18n/utils';
+import franchise from '../../data/franchise.json';
+import Todo from '../ui/Todo.astro';
+interface Props { lang: Lang; compact?: boolean }
+const { lang, compact = false } = Astro.props;
+const t = useT(lang);
+const durations = franchise.processDurations as unknown as Record<string, { tr: string; en: string } | null>;
+const dur = (id: string) => { const d = durations[id]; return d ? pick(d, lang) : null; };
+---
+{compact ? (
+  <ol class="relative grid gap-x-4 gap-y-8 sm:grid-cols-3 xl:grid-cols-9">
+    <li class="pointer-events-none absolute left-0 right-[10%] top-[22px] hidden h-[2px] bg-[repeating-linear-gradient(90deg,var(--color-ink)_0_8px,transparent_8px_14px)] opacity-25 xl:block" aria-hidden="true"></li>
+    {t.process.map((s, i) => (
+      <li class="relative flex gap-4 xl:block" data-reveal>
+        <span class:list={['relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full font-display text-lg font-bold', i === 0 ? 'bg-coral-600 text-white' : i === t.process.length - 1 ? 'bg-avocado-700 text-white' : 'bg-white text-ink ring-2 ring-ink/15']}>{i + 1}</span>
+        <div class="xl:mt-4">
+          <p class="font-display text-lg font-bold leading-tight hyphens-auto xl:text-[1.02rem]" lang={lang}>{s.title}</p>
+          <p class="mt-1 text-sm text-ink-soft xl:hidden">{s.text}</p>
+          <p class="mt-1 text-xs text-ink-soft">{dur(s.id) ?? <Todo label={t.processDurationTodo} />}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+) : (
+  <ol class="relative ml-1 border-l-2 border-dashed border-ink/20 pl-0">
+    {t.process.map((s, i) => (
+      <li class="relative pb-10 pl-10 last:pb-0 sm:pl-14" data-reveal>
+        <span class:list={['absolute -left-[23px] top-0 flex h-11 w-11 items-center justify-center rounded-full font-display text-lg font-bold', i === 0 ? 'bg-coral-600 text-white' : i === t.process.length - 1 ? 'bg-avocado-700 text-white' : 'bg-white text-ink ring-2 ring-ink/15']}>{i + 1}</span>
+        <div class="card grid gap-3 p-5 sm:grid-cols-[1fr_auto] sm:p-6">
+          <div>
+            <h3 class="text-xl font-bold">{s.title}</h3>
+            <p class="mt-2 text-ink-soft">{s.text}</p>
+          </div>
+          <dl class="flex gap-6 text-sm sm:flex-col sm:gap-2 sm:text-right">
+            <div><dt class="text-ink-soft">{t.processWho}</dt><dd class="font-semibold">{s.who}</dd></div>
+            <div><dt class="text-ink-soft">{lang === 'tr' ? 'Süre' : 'Duration'}</dt><dd class="font-semibold">{dur(s.id) ?? <Todo />}</dd></div>
+          </dl>
+        </div>
+      </li>
+    ))}
+  </ol>
+)}

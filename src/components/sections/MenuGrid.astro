@@ -1,0 +1,29 @@
+---
+import type { Lang } from '../../i18n/routes';
+import { useT, pick } from '../../i18n/utils';
+import menu from '../../data/menu.json';
+import DishArt from '../art/DishArt.astro';
+import PhotoSlot from '../ui/PhotoSlot.astro';
+interface Props { lang: Lang; limit?: number; category?: string; ids?: string[] }
+const { lang, limit, category, ids } = Astro.props;
+const t = useT(lang);
+let items = menu.items;
+if (category) items = items.filter((i) => i.category === category);
+if (ids) items = ids.map((id) => menu.items.find((i) => i.id === id)!).filter(Boolean);
+if (limit) items = items.slice(0, limit);
+const altFor = (k: string) => (k === 'bowl' ? t.dishes.bowlAlt : k === 'wok' ? t.dishes.wokAlt : t.dishes.rollAlt);
+---
+<ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+  {items.map((it, i) => (
+    <li class="group flex flex-col" data-reveal>
+      <PhotoSlot src={it.photo} alt={pick(it.name, lang)} size="1200×1200 — menu.json → photo" class="aspect-square overflow-hidden rounded-[var(--radius-card)] bg-rice-2 p-5 transition-colors group-hover:bg-coral-50" width={1200} height={1200}>
+        <DishArt kind={it.art.kind as any} toppings={it.art.toppings} alt={`${pick(it.name, lang)} — ${altFor(it.art.kind)}`} seed={i * 7 + 3} id={`m-${it.id}`} class="transition-transform duration-500 group-hover:rotate-6" />
+      </PhotoSlot>
+      <div class="mt-3 flex flex-wrap items-center gap-2">
+        <h3 class="text-lg font-bold leading-tight">{pick(it.name, lang)}</h3>
+        {it.tags.map((tg) => <span class:list={['rounded-full px-2 py-0.5 text-xs font-semibold', tg === 'vegan' ? 'bg-avocado-100 text-avocado-700' : 'bg-coral-100 text-coral-700']}>{(t.dishes.tags as Record<string, string>)[tg]}</span>)}
+      </div>
+      <p class="mt-1 text-sm text-ink-soft">{pick(it.desc, lang)}</p>
+    </li>
+  ))}
+</ul>

@@ -1,0 +1,89 @@
+---
+import type { Lang } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT, pick } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import leadership from '../data/leadership.json';
+import photos from '../config/photos.json';
+import PageHero from '../components/ui/PageHero.astro';
+import SectionHead from '../components/ui/SectionHead.astro';
+import PhotoSlot from '../components/ui/PhotoSlot.astro';
+import Todo from '../components/ui/Todo.astro';
+import Icon from '../components/ui/Icon.astro';
+import Leadership from '../components/sections/Leadership.astro';
+import CtaBand from '../components/sections/CtaBand.astro';
+import DishArt from '../components/art/DishArt.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const p = t.corporatePage;
+const qIcons = ['BadgeCheck', 'Snowflake', 'HandHeart', 'ScanBarcode', 'ClipboardCheck', 'TriangleAlert'];
+---
+<BaseLayout lang={lang} routeKey="corporate">
+  <PageHero lang={lang} eyebrow={p.eyebrow} title={p.title} lead={p.lead} crumbs={[{ label: t.nav.corporate }]} tone="dark" />
+
+  <section class="container-x grid gap-12 py-16 md:py-24 lg:grid-cols-[1.1fr_0.9fr]" aria-labelledby="about">
+    <div>
+      <SectionHead title={p.aboutTitle} id="about" />
+      <div class="mt-6 space-y-4 text-lg text-ink-soft">
+        {p.about.map((x) => <p>{x}</p>)}
+      </div>
+    </div>
+    <PhotoSlot src={photos.team.src} alt={pick(photos.team.alt, lang)} size={photos.team.size} class="aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] bg-rice-2 lg:mt-14">
+      <div class="grid h-full grid-cols-2 items-center gap-4 p-8">
+        <DishArt kind="bowl" toppings={['salmon', 'avocado', 'mango', 'edamame']} alt="" seed={55} id="corp1" />
+        <DishArt kind="roll" toppings={['tuna', 'cucumber']} alt="" seed={56} />
+      </div>
+    </PhotoSlot>
+  </section>
+
+  <section class="bg-rice-2 py-16 md:py-20">
+    <div class="container-x grid gap-6 md:grid-cols-2">
+      <div class="on-dark rounded-[var(--radius-card)] bg-ink p-8 text-white" data-reveal>
+        <p class="eyebrow">{p.missionTitle}</p>
+        <p class="mt-4 font-display text-2xl font-semibold leading-snug text-white">{p.mission}</p>
+      </div>
+      <div class="card p-8" data-reveal>
+        <p class="eyebrow">{p.visionTitle}</p>
+        <p class="mt-4 font-display text-2xl font-semibold leading-snug">{p.vision}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-x py-16 md:py-24" aria-labelledby="values">
+    <SectionHead title={p.valuesTitle} id="values" />
+    <dl class="mt-10 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
+      {p.values.map((v, i) => (
+        <div class="border-t-4 py-6" style={`border-color:${['#c4442a', '#6e9a3c', '#f5b83d', '#0e2a3b'][i]}`} data-reveal>
+          <dt class="font-display text-2xl font-bold">{v.title}</dt>
+          <dd class="mt-2 text-ink-soft">{v.text}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="border-y border-line bg-white py-16 md:py-24" aria-labelledby="leadership">
+    <div class="container-x">
+      <SectionHead title={p.leadershipTitle} id="leadership" />
+      <h3 class="mt-10 text-xl font-bold">{p.boardTitle}</h3>
+      <div class="mt-4"><Leadership lang={lang} people={leadership.board} /></div>
+      <h3 class="mt-12 text-xl font-bold">{p.managementTitle}</h3>
+      <div class="mt-4"><Leadership lang={lang} people={leadership.management} /></div>
+    </div>
+  </section>
+
+  <section class="container-x py-16 md:py-24" aria-labelledby="quality">
+    <SectionHead title={p.qualityTitle} lead={p.qualityLead} id="quality" />
+    <ul class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {p.quality.map((q, i) => (
+        <li class="flex gap-4" data-reveal>
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-avocado-100 text-avocado-700"><Icon name={qIcons[i]} size={20} /></span>
+          <div><h3 class="text-lg font-bold">{q.title}</h3><p class="mt-1 text-[0.95rem] text-ink-soft">{q.text}</p></div>
+        </li>
+      ))}
+    </ul>
+    {p.certTodo && <p class="mt-10 text-ink-soft">{p.certTodo}</p>}
+    <a href={path('companyInfo', 'tr')} lang="tr" class="btn-ghost mt-8">{p.companyInfoLink}<Icon name="ArrowRight" size={18} /></a>
+  </section>
+  <CtaBand lang={lang} />
+</BaseLayout>

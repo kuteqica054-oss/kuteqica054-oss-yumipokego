@@ -1,0 +1,64 @@
+---
+import type { Lang } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT, pick, absUrl, telHref } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { restaurants } from '../lib/restaurants';
+import formats from '../data/formats.json';
+import PageHero from '../components/ui/PageHero.astro';
+import Todo from '../components/ui/Todo.astro';
+import Icon from '../components/ui/Icon.astro';
+import TurkeyMap from '../components/art/TurkeyMap.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const p = t.locationsPage;
+const fname = (id: string) => pick(formats.formats.find((f) => f.id === id)?.name ?? { tr: id, en: id }, lang);
+// schema.org Restaurant — yalnızca gerçek (placeholder olmayan) restoranlar
+const restaurantLd = restaurants.filter((r) => !r.placeholder).map((r) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: r.name,
+  servesCuisine: ['Poke', 'Asian'],
+  brand: { '@id': absUrl('/#organization') },
+  url: absUrl(path('locations', lang)),
+  ...(r.address ? { address: { '@type': 'PostalAddress', streetAddress: r.address, addressLocality: r.city, addressCountry: 'TR' } } : {}),
+  ...(r.phone ? { telephone: r.phone } : {}),
+  geo: { '@type': 'GeoCoordinates', latitude: r.lat, longitude: r.lon },
+  ...(pick(r.hours, lang) ? { openingHours: pick(r.hours, lang) } : {}),
+}));
+---
+<BaseLayout lang={lang} routeKey="locations" jsonld={restaurantLd}>
+  <PageHero lang={lang} eyebrow={p.eyebrow} title={p.title} lead={p.lead} crumbs={[{ label: t.nav.locations }]} />
+  <section class="container-x py-14"><TurkeyMap lang={lang} showList={false} /></section>
+  <section class="container-x pb-16" aria-labelledby="list">
+    <h2 id="list" class="h-section">{p.listTitle}</h2>
+    {restaurants.length === 0 ? <p class="mt-6 text-ink-soft">{p.empty}</p> : (
+      <ul class="mt-8 grid gap-5 md:grid-cols-2">
+        {restaurants.map((r) => (
+          <li class="card flex flex-col p-6">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="rounded-full bg-coral-50 px-2.5 py-0.5 text-xs font-semibold text-coral-700">{r.city}</span>
+              <span class="rounded-full bg-rice-2 px-2.5 py-0.5 text-xs font-semibold text-ink-soft">{fname(r.format)}</span>
+              {r.placeholder && <Todo label={t.common.sample} />}
+            </div>
+            <h3 class="mt-3 text-xl font-bold">{r.name.includes('TODO') ? <>YumiPokeGo <Todo label="şube adı TODO" /></> : r.name}</h3>
+            <dl class="mt-4 grid gap-3 text-[0.95rem] sm:grid-cols-2">
+              <div><dt class="text-sm text-ink-soft">{p.address}</dt><dd>{r.address ?? <Todo />}</dd></div>
+              <div><dt class="text-sm text-ink-soft">{p.hours}</dt><dd>{pick(r.hours, lang) ?? <Todo />}</dd></div>
+              <div><dt class="text-sm text-ink-soft">{p.phone}</dt><dd>{r.phone ? <a class="link" href={telHref(r.phone)}>{r.phone}</a> : <Todo />}</dd></div>
+            </dl>
+            <div class="mt-5 flex flex-wrap gap-2">
+              {r.mapsUrl ? <a href={r.mapsUrl} target="_blank" rel="noopener" class="btn-ghost btn-sm"><Icon name="Navigation" size={16} />{p.directions}</a> : <span class="btn-ghost btn-sm pointer-events-none opacity-50"><Icon name="Navigation" size={16} />{p.directions}</span>}
+              {r.deliveryUrl ? <a href={r.deliveryUrl} target="_blank" rel="noopener" class="btn-dark btn-sm"><Icon name="ShoppingBag" size={16} />{p.order}</a> : <span class="btn-dark btn-sm pointer-events-none opacity-50"><Icon name="ShoppingBag" size={16} />{p.order}</span>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    )}
+    <div class="mt-12 flex flex-col items-start justify-between gap-4 rounded-2xl bg-ink p-6 text-white sm:flex-row sm:items-center">
+      <p class="font-display text-xl font-bold">{p.franchiseNote}</p>
+      <a href={path('apply', lang)} class="btn-primary shrink-0">{t.common.apply}</a>
+    </div>
+  </section>
+</BaseLayout>

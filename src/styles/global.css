@@ -1,0 +1,132 @@
+@import "tailwindcss";
+@import "@fontsource-variable/bricolage-grotesque/wght.css";
+@import "@fontsource-variable/dm-sans/wght.css";
+
+/*
+  Tasarım token'ları — renkleri buradan değiştirin.
+  Tailwind sınıfları otomatik üretilir: bg-rice, text-ink, bg-coral-600, text-avocado-700 vb.
+  Ana vurgular: somon mercanı (coral) + avokado yeşili. Mango yalnızca illüstrasyon ve küçük vurgularda.
+*/
+@theme {
+  --color-rice: #fbf7f0;        /* sayfa zemini — pirinç beyazı */
+  --color-rice-2: #f4ede1;      /* alternatif bölüm zemini */
+  --color-rice-3: #ebe1cf;
+  --color-line: #e3d8c5;        /* ince çizgiler */
+
+  --color-ink: #0e2a3b;         /* okyanus laciverti — metin ve kurumsal bloklar */
+  --color-ink-2: #173d55;
+  --color-ink-3: #24506c;
+  --color-ink-soft: #3d5566;    /* ikincil metin */
+  --color-ink-mute: #b9c7d0;    /* koyu zeminde ikincil metin */
+
+  --color-coral-50: #fdf0eb;
+  --color-coral-100: #fbe1d8;
+  --color-coral-300: #f4a088;
+  --color-coral-400: #ee6a4e;   /* somon mercanı — illüstrasyon / koyu zeminde vurgu */
+  --color-coral-600: #c4442a;   /* butonlar (beyaz metinle AA) */
+  --color-coral-700: #a93b22;   /* açık zeminde vurgu metni */
+
+  --color-avocado-50: #f1f6e9;
+  --color-avocado-100: #e3edd3;
+  --color-avocado-300: #9fc46a; /* koyu zeminde vurgu */
+  --color-avocado-500: #6e9a3c;
+  --color-avocado-700: #3f6b22; /* açık zeminde vurgu metni */
+
+  --color-mango-100: #fcebc4;
+  --color-mango-400: #f5b83d;
+
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1.25rem;
+  --shadow-card: 0 1px 0 rgb(14 42 59 / 0.04), 0 8px 24px -12px rgb(14 42 59 / 0.18);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    @apply bg-rice text-ink font-sans antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { @apply font-display text-ink; letter-spacing: -0.02em; line-height: 1.08; text-wrap: balance; }
+  p { text-wrap: pretty; }
+  :focus-visible { outline: 3px solid var(--color-coral-600); outline-offset: 3px; border-radius: 4px; }
+  .on-dark :focus-visible { outline-color: var(--color-mango-400); }
+  ::selection { background: var(--color-mango-100); color: var(--color-ink); }
+  [hidden] { display: none !important; }
+  .grid > * { min-width: 0; }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-[0.98rem] font-semibold leading-none transition-colors duration-150 select-none;
+  min-height: 48px;
+}
+@utility link {
+  @apply underline decoration-coral-600/40 underline-offset-4 hover:decoration-coral-600;
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8; }
+
+  .btn-primary { @apply btn bg-coral-600 text-white hover:bg-coral-700; }
+  .btn-dark { @apply btn bg-ink text-rice hover:bg-ink-2; }
+  .btn-ghost { @apply btn border border-ink/20 text-ink hover:border-ink hover:bg-white; }
+  .btn-ghost-light { @apply btn border border-white/30 text-white hover:border-white hover:bg-white/10; }
+  .btn-sm { min-height: 40px; @apply px-4 py-2 text-sm; }
+
+  .eyebrow { @apply inline-flex items-center gap-2 text-sm font-semibold text-coral-700; letter-spacing: 0.04em; }
+  .eyebrow::before { content: ""; @apply inline-block h-[2px] w-6 rounded bg-current; }
+  .on-dark .eyebrow { @apply text-mango-400; }
+
+  .h-display { @apply font-display font-bold; font-size: clamp(2.3rem, 6vw, 4.4rem); line-height: 1.02; letter-spacing: -0.03em; }
+  .h-section { @apply font-display font-bold; font-size: clamp(1.85rem, 4vw, 2.9rem); }
+  .lead { @apply text-ink-soft; font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.55; }
+  .on-dark .lead { @apply text-ink-mute; }
+
+  .card { @apply rounded-[var(--radius-card)] bg-white border border-line; box-shadow: var(--shadow-card); }
+
+  .todo { @apply inline-flex items-center rounded-md border border-dashed border-coral-600/60 bg-coral-50 px-1.5 py-0.5 align-middle font-sans text-[0.72rem] font-semibold text-coral-700; letter-spacing: 0.02em; line-height: 1.2; }
+  .on-dark .todo { @apply border-mango-400/70 bg-transparent text-mango-400; }
+
+
+  /* Pirinç + susam deseni — çok hafif */
+  .pattern-rice {
+    background-image:
+      radial-gradient(ellipse 3px 1.6px at 20px 18px, rgb(14 42 59 / 0.07) 98%, transparent),
+      radial-gradient(ellipse 1.6px 3px at 62px 48px, rgb(14 42 59 / 0.06) 98%, transparent),
+      radial-gradient(circle 1.3px at 44px 80px, rgb(14 42 59 / 0.09) 98%, transparent),
+      radial-gradient(circle 1.3px at 90px 20px, rgb(14 42 59 / 0.07) 98%, transparent);
+    background-size: 110px 100px;
+  }
+  .pattern-rice-dark {
+    background-image:
+      radial-gradient(ellipse 3px 1.6px at 20px 18px, rgb(255 255 255 / 0.06) 98%, transparent),
+      radial-gradient(circle 1.3px at 44px 80px, rgb(255 255 255 / 0.08) 98%, transparent),
+      radial-gradient(ellipse 1.6px 3px at 80px 50px, rgb(255 255 255 / 0.05) 98%, transparent);
+    background-size: 110px 100px;
+  }
+
+  /* Hukuki metinler */
+  .prose-legal { @apply max-w-[72ch] text-ink-soft; }
+  .prose-legal h2 { @apply mt-10 mb-3 text-2xl font-bold; }
+  .prose-legal h3 { @apply mt-6 mb-2 text-lg font-bold; }
+  .prose-legal p, .prose-legal ul, .prose-legal ol { @apply mb-4; }
+  .prose-legal ul { @apply list-disc pl-6; }
+  .prose-legal ol { @apply list-decimal pl-6; }
+  .prose-legal li { @apply mb-1.5; }
+  .prose-legal a { @apply link text-ink; }
+  .prose-legal strong { @apply text-ink; }
+  .prose-legal blockquote { @apply my-6 rounded-xl border-l-4 border-coral-600 bg-coral-50 px-5 py-4 text-ink; }
+  .prose-legal blockquote p { @apply mb-0; }
+  .prose-legal table { @apply my-6 block w-full overflow-x-auto text-sm; }
+  .prose-legal th, .prose-legal td { @apply border border-line px-3 py-2 text-left align-top; }
+}
+
+/* Kaydırınca beliren öğeler (JS yoksa görünür kalır) */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+  .js [data-reveal].is-in { opacity: 1; transform: none; }
+}

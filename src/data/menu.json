@@ -1,0 +1,222 @@
+{
+  "_comment": "Fiyat gösterilmez. art: illüstrasyon ayarı (kind: bowl | wok | roll; toppings: salmon, tuna, chicken, tofu, shrimp, avocado, edamame, mango, cucumber, carrot, corn, seaweed). photo: /photos/menu/xxx.jpg (kare 1200×1200, üstten çekim önerilir) — doluysa illüstrasyon yerine fotoğraf gösterilir.",
+  "categories": [
+    {
+      "id": "poke",
+      "name": {
+        "tr": "Poke bowl",
+        "en": "Poke bowls"
+      }
+    },
+    {
+      "id": "wok",
+      "name": {
+        "tr": "Wok",
+        "en": "Wok"
+      }
+    },
+    {
+      "id": "roll",
+      "name": {
+        "tr": "Roll",
+        "en": "Rolls"
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "klasik-somon",
+      "category": "poke",
+      "photo": null,
+      "tags": [],
+      "art": {
+        "kind": "bowl",
+        "toppings": [
+          "salmon",
+          "avocado",
+          "edamame",
+          "cucumber",
+          "seaweed",
+          "mango"
+        ]
+      },
+      "name": {
+        "tr": "Klasik Somon Poke",
+        "en": "Classic Salmon Poke"
+      },
+      "desc": {
+        "tr": "Suşi pirinci üzerinde marine somon küpleri, avokado, edamame, salatalık ve wakame; susamlı soya sosla.",
+        "en": "Marinated salmon cubes on sushi rice with avocado, edamame, cucumber and wakame, finished with sesame soy."
+      }
+    },
+    {
+      "id": "aci-ton",
+      "category": "poke",
+      "photo": null,
+      "tags": [
+        "spicy"
+      ],
+      "art": {
+        "kind": "bowl",
+        "toppings": [
+          "tuna",
+          "cucumber",
+          "corn",
+          "edamame",
+          "carrot",
+          "avocado"
+        ]
+      },
+      "name": {
+        "tr": "Acılı Ton Balığı Poke",
+        "en": "Spicy Tuna Poke"
+      },
+      "desc": {
+        "tr": "Sriracha mayonezli ton balığı, mısır, havuç, salatalık ve edamame; üzerine çıtır soğan.",
+        "en": "Tuna in sriracha mayo with sweetcorn, carrot, cucumber and edamame, topped with crispy onions."
+      }
+    },
+    {
+      "id": "mango-tavuk",
+      "category": "poke",
+      "photo": null,
+      "tags": [],
+      "art": {
+        "kind": "bowl",
+        "toppings": [
+          "chicken",
+          "mango",
+          "edamame",
+          "carrot",
+          "cucumber",
+          "corn"
+        ]
+      },
+      "name": {
+        "tr": "Mango Tavuk Poke",
+        "en": "Mango Chicken Poke"
+      },
+      "desc": {
+        "tr": "Izgara teriyaki tavuk, taze mango, havuç, edamame ve mısır; hafif tatlı-ekşi sosla.",
+        "en": "Grilled teriyaki chicken with fresh mango, carrot, edamame and sweetcorn in a light sweet-and-sour dressing."
+      }
+    },
+    {
+      "id": "yesil-tofu",
+      "category": "poke",
+      "photo": null,
+      "tags": [
+        "vegan"
+      ],
+      "art": {
+        "kind": "bowl",
+        "toppings": [
+          "tofu",
+          "avocado",
+          "edamame",
+          "cucumber",
+          "seaweed",
+          "carrot"
+        ]
+      },
+      "name": {
+        "tr": "Yeşil Tofu Bowl",
+        "en": "Green Tofu Bowl"
+      },
+      "desc": {
+        "tr": "Susamlı çıtır tofu, avokado, edamame, wakame ve salatalık; zencefilli limon sosla. Bitkisel.",
+        "en": "Crispy sesame tofu with avocado, edamame, wakame and cucumber in a ginger-lime dressing. Plant-based."
+      }
+    },
+    {
+      "id": "teriyaki-wok",
+      "category": "wok",
+      "photo": null,
+      "tags": [],
+      "art": {
+        "kind": "wok",
+        "toppings": [
+          "chicken",
+          "carrot",
+          "edamame"
+        ]
+      },
+      "name": {
+        "tr": "Teriyaki Tavuklu Noodle",
+        "en": "Teriyaki Chicken Noodles"
+      },
+      "desc": {
+        "tr": "Yüksek ateşte sotelenmiş yumurtalı noodle, tavuk, mevsim sebzeleri ve teriyaki sos.",
+        "en": "Egg noodles flash-fried on high heat with chicken, seasonal vegetables and teriyaki sauce."
+      }
+    },
+    {
+      "id": "karides-wok",
+      "category": "wok",
+      "photo": null,
+      "tags": [
+        "spicy"
+      ],
+      "art": {
+        "kind": "wok",
+        "toppings": [
+          "shrimp",
+          "corn",
+          "edamame"
+        ]
+      },
+      "name": {
+        "tr": "Acılı Karidesli Udon",
+        "en": "Spicy Shrimp Udon"
+      },
+      "desc": {
+        "tr": "Kalın udon, karides, sebzeler ve hafif acılı sarımsaklı sos.",
+        "en": "Thick udon with shrimp, vegetables and a gently spicy garlic sauce."
+      }
+    },
+    {
+      "id": "somon-roll",
+      "category": "roll",
+      "photo": null,
+      "tags": [],
+      "art": {
+        "kind": "roll",
+        "toppings": [
+          "salmon",
+          "avocado",
+          "cucumber"
+        ]
+      },
+      "name": {
+        "tr": "Somon Avokado Roll",
+        "en": "Salmon Avocado Roll"
+      },
+      "desc": {
+        "tr": "Somon, avokado ve krem peynir; dışı susamlı. 8 parça.",
+        "en": "Salmon, avocado and cream cheese, rolled in sesame. 8 pieces."
+      }
+    },
+    {
+      "id": "citir-karides-roll",
+      "category": "roll",
+      "photo": null,
+      "tags": [],
+      "art": {
+        "kind": "roll",
+        "toppings": [
+          "shrimp",
+          "avocado",
+          "mango"
+        ]
+      },
+      "name": {
+        "tr": "Çıtır Karides Roll",
+        "en": "Crispy Shrimp Roll"
+      },
+      "desc": {
+        "tr": "Panko karides, avokado ve mango; üzerinde tatlı acı sos. 8 parça.",
+        "en": "Panko shrimp, avocado and mango with sweet chilli on top. 8 pieces."
+      }
+    }
+  ]
+}

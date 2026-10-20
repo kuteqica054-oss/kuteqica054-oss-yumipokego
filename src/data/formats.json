@@ -1,0 +1,180 @@
+{
+  "_comment": "Restoran formatları. offered: true/false/null (null → 'TODO: teklif ediliyor mu?'). area/seats/staff: sayı veya {min,max}; investment: {tr, en} para. plan: çizim tipi (street | foodcourt | kiosk | darkkitchen). photo: /photos/... (önerilen 1600×1000, WebP/JPG).",
+  "formats": [
+    {
+      "id": "street",
+      "plan": "street",
+      "offered": null,
+      "photo": null,
+      "name": {
+        "tr": "Cadde mağazası",
+        "en": "Street store"
+      },
+      "tagline": {
+        "tr": "Oturma alanlı tam formatlı restoran",
+        "en": "Full-format restaurant with dine-in seating"
+      },
+      "text": {
+        "tr": "Yüksek yaya trafiği olan cadde ve semt merkezleri için. Açık montaj hattı, oturma alanı ve paket servis için ayrı teslim noktası. Markanın en görünür yüzü.",
+        "en": "For high-street and neighbourhood locations with strong footfall. Open assembly line, dine-in seating and a separate pick-up point for delivery riders. The most visible face of the brand."
+      },
+      "features": {
+        "tr": [
+          "Oturma alanı ve vitrin cephe",
+          "Kurye için ayrı teslim noktası",
+          "Tam menü: poke, wok, roll"
+        ],
+        "en": [
+          "Dine-in seating and shopfront",
+          "Dedicated rider pick-up point",
+          "Full menu: poke, wok, rolls"
+        ]
+      },
+      "area": {
+        "min": 80,
+        "max": 150
+      },
+      "seats": {
+        "min": 30,
+        "max": 60
+      },
+      "staff": {
+        "min": 8,
+        "max": 14
+      },
+      "investment": {
+        "tr": null,
+        "en": null
+      }
+    },
+    {
+      "id": "foodcourt",
+      "plan": "foodcourt",
+      "offered": null,
+      "photo": null,
+      "name": {
+        "tr": "AVM yemek katı",
+        "en": "Mall food court"
+      },
+      "tagline": {
+        "tr": "Ortak oturma alanında hızlı servis",
+        "en": "Fast service onto shared seating"
+      },
+      "text": {
+        "tr": "AVM yemek katları için tezgâh formatı. Oturma alanı AVM'nin ortak alanıdır; mağaza yoğun saatlerde hızlı akışa göre kurgulanır.",
+        "en": "A counter format for shopping-mall food courts. Seating is shared with the mall; the unit is designed for fast throughput at peak hours."
+      },
+      "features": {
+        "tr": [
+          "Kısa kuyruk için çift kasa imkânı",
+          "Montaj hattı müşteriye dönük",
+          "AVM teknik şartnamesine uyumlu proje"
+        ],
+        "en": [
+          "Optional second till for peak queues",
+          "Guest-facing assembly line",
+          "Designed to mall technical specs"
+        ]
+      },
+      "area": {
+        "min": 30,
+        "max": 60
+      },
+      "seats": null,
+      "staff": {
+        "min": 5,
+        "max": 9
+      },
+      "investment": {
+        "tr": null,
+        "en": null
+      }
+    },
+    {
+      "id": "kiosk",
+      "plan": "kiosk",
+      "offered": null,
+      "photo": null,
+      "name": {
+        "tr": "Kiosk / Express",
+        "en": "Kiosk / Express"
+      },
+      "tagline": {
+        "tr": "Küçük alanda dar menü",
+        "en": "Focused menu on a small footprint"
+      },
+      "text": {
+        "tr": "Ofis bölgeleri, üniversiteler, istasyonlar ve havalimanları için kompakt format. Daraltılmış menü, hazır bowl seçenekleri ve hızlı servis.",
+        "en": "A compact format for business districts, campuses, stations and airports. A focused menu, signature bowls and quick service."
+      },
+      "features": {
+        "tr": [
+          "Daraltılmış menü",
+          "Minimum ekipman",
+          "Self-servis kiosk ekranı seçeneği"
+        ],
+        "en": [
+          "Focused menu",
+          "Minimal equipment",
+          "Optional self-order screen"
+        ]
+      },
+      "area": {
+        "min": 15,
+        "max": 30
+      },
+      "seats": null,
+      "staff": {
+        "min": 3,
+        "max": 5
+      },
+      "investment": {
+        "tr": null,
+        "en": null
+      }
+    },
+    {
+      "id": "darkkitchen",
+      "plan": "darkkitchen",
+      "offered": null,
+      "photo": null,
+      "name": {
+        "tr": "Dark kitchen",
+        "en": "Dark kitchen"
+      },
+      "tagline": {
+        "tr": "Yalnızca paket servis",
+        "en": "Delivery only"
+      },
+      "text": {
+        "tr": "Salonu olmayan, yalnızca paket servis platformları ve gel-al siparişleri için çalışan mutfak. Kira maliyeti görece düşük bölgelerde teslimat yarıçapına göre konumlanır.",
+        "en": "A kitchen with no dining room, serving delivery platforms and click-and-collect only. Positioned by delivery radius, often in lower-rent areas."
+      },
+      "features": {
+        "tr": [
+          "Salon yok, sadece üretim",
+          "Kurye bekleme ve teslim alanı",
+          "Platform entegrasyonlu sipariş akışı"
+        ],
+        "en": [
+          "No dining room, production only",
+          "Rider waiting and hand-off area",
+          "Platform-integrated order flow"
+        ]
+      },
+      "area": {
+        "min": 40,
+        "max": 80
+      },
+      "seats": null,
+      "staff": {
+        "min": 4,
+        "max": 8
+      },
+      "investment": {
+        "tr": null,
+        "en": null
+      }
+    }
+  ]
+}

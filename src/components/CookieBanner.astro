@@ -1,0 +1,74 @@
+---
+import type { Lang } from '../i18n/routes';
+import { path } from '../i18n/routes';
+import { useT } from '../i18n/utils';
+import site from '../config/site.json';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang).cookie;
+---
+<div id="cookie-banner" class="fixed inset-x-0 bottom-0 z-50 p-3 sm:p-4" hidden role="dialog" aria-modal="false" aria-labelledby="cookie-title" data-ga={site.analytics.ga4Id ?? ''}>
+  <div class="mx-auto max-w-3xl rounded-2xl border border-line bg-white p-5 shadow-[0_20px_50px_-20px_rgb(14_42_59/0.45)] sm:p-6">
+    <p id="cookie-title" class="font-display text-lg font-bold">{t.title}</p>
+    <p class="mt-1 text-[0.95rem] text-ink-soft">{t.text} <a class="link text-ink" href={path('cookies', lang)}>{t.policy}</a></p>
+    <form id="cookie-prefs" class="mt-4 space-y-3" hidden>
+      <label class="flex items-start gap-3 rounded-xl bg-rice p-3">
+        <input type="checkbox" checked disabled class="mt-1 h-4 w-4 accent-[#c4442a]" />
+        <span><span class="font-semibold">{t.necessary}</span> <span class="text-xs text-ink-soft">· {t.alwaysOn}</span><br /><span class="text-sm text-ink-soft">{t.necessaryDesc}</span></span>
+      </label>
+      <label class="flex items-start gap-3 rounded-xl bg-rice p-3">
+        <input type="checkbox" name="analytics" class="mt-1 h-4 w-4 accent-[#c4442a]" />
+        <span><span class="font-semibold">{t.analytics}</span><br /><span class="text-sm text-ink-soft">{t.analyticsDesc}</span></span>
+      </label>
+    </form>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <button type="button" class="btn-dark btn-sm" data-consent="all">{t.acceptAll}</button>
+      <button type="button" class="btn-ghost btn-sm" data-consent="necessary">{t.rejectAll}</button>
+      <button type="button" class="btn-ghost btn-sm" data-consent="customize" aria-expanded="false" aria-controls="cookie-prefs">{t.customize}</button>
+      <button type="button" class="btn-ghost btn-sm" data-consent="save" hidden>{t.save}</button>
+    </div>
+  </div>
+</div>
+<script>
+  // Çerez onayı: tercih localStorage'da "ypg-consent" anahtarıyla tutulur.
+  // Analitik (GA4) yalnızca "analytics: true" onayından sonra yüklenir.
+  const KEY = 'ypg-consent';
+  const banner = document.getElementById('cookie-banner') as HTMLElement;
+  const prefs = document.getElementById('cookie-prefs') as HTMLFormElement;
+  const gaId = banner.dataset.ga;
+  const read = (): { analytics: boolean } | null => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { return null; } };
+  const loadAnalytics = () => {
+    if (!gaId || (window as any).__gaLoaded) return;
+    (window as any).__gaLoaded = true;
+    const s = document.createElement('script');
+    s.async = true; s.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+    document.head.appendChild(s);
+    const w = window as any; w.dataLayer = w.dataLayer || [];
+    w.gtag = function () { w.dataLayer.push(arguments); };
+    w.gtag('js', new Date()); w.gtag('config', gaId, { anonymize_ip: true });
+  };
+  const save = (analytics: boolean) => {
+    try { localStorage.setItem(KEY, JSON.stringify({ analytics, ts: new Date().toISOString() })); } catch {}
+    banner.hidden = true;
+    if (analytics) loadAnalytics();
+  };
+  const open = () => {
+    const c = read();
+    (prefs.elements.namedItem('analytics') as HTMLInputElement).checked = !!c?.analytics;
+    banner.hidden = false;
+  };
+  const c = read();
+  if (!c) banner.hidden = false; else if (c.analytics) loadAnalytics();
+  banner.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-consent]');
+    if (!b) return;
+    const v = b.dataset.consent;
+    if (v === 'all') save(true);
+    else if (v === 'necessary') save(false);
+    else if (v === 'customize') {
+      prefs.hidden = !prefs.hidden; b.setAttribute('aria-expanded', String(!prefs.hidden));
+      (banner.querySelector('[data-consent="save"]') as HTMLElement).hidden = prefs.hidden;
+    } else if (v === 'save') save((prefs.elements.namedItem('analytics') as HTMLInputElement).checked);
+  });
+  document.querySelectorAll('[data-cookie-open]').forEach((el) => el.addEventListener('click', open));
+</script>

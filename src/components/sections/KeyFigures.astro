@@ -1,0 +1,19 @@
+---
+import type { Lang } from '../../i18n/routes';
+import { pick, type Unit, type Num } from '../../i18n/utils';
+import franchise from '../../data/franchise.json';
+import Value from '../ui/Value.astro';
+interface Props { lang: Lang; dark?: boolean }
+const { lang, dark = true } = Astro.props;
+---
+<dl class:list={['grid grid-cols-2 gap-px overflow-hidden rounded-[var(--radius-card)] lg:grid-cols-5', dark ? 'bg-white/10' : 'bg-line border border-line']}>
+  {franchise.keyFigures.map((k, i) => (
+    <div class:list={['flex flex-col p-5 sm:p-6', dark ? 'bg-ink' : 'bg-white', i === 0 && 'col-span-2 lg:col-span-1']} data-reveal>
+      <dt class:list={['order-2 mt-3 text-[0.95rem] font-semibold', dark ? 'text-white' : 'text-ink']}>{pick(k.label, lang)}</dt>
+      <dd class:list={['order-1 font-display font-bold leading-none', dark ? 'text-mango-400' : 'text-ink']} style="font-size:clamp(1.8rem,3vw,2.5rem);letter-spacing:-0.03em">
+        <Value value={pick(k.value as any, lang) as Num} unit={k.unit as Unit} lang={lang} todoClass="mt-2 block w-fit text-[0.7rem]" emptyClass="block text-[0.5em] leading-snug tracking-normal" />
+      </dd>
+      <dd class:list={['order-3 mt-1 text-sm', dark ? 'text-ink-mute' : 'text-ink-soft']}>{pick(k.note, lang)}</dd>
+    </div>
+  ))}
+</dl>

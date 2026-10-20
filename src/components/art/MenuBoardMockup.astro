@@ -1,0 +1,30 @@
+---
+// Temsilî dijital menü panosu. Fiyatlar gösterilmez.
+import type { Lang } from '../../i18n/routes';
+import { useT } from '../../i18n/utils';
+import { bowlSvg } from '../../lib/art';
+interface Props { lang: Lang; class?: string }
+const { lang, class: cls = '' } = Astro.props;
+const m = useT(lang).mockups;
+const sets = [['salmon', 'avocado', 'edamame', 'mango'], ['tuna', 'corn', 'cucumber', 'carrot'], ['tofu', 'avocado', 'seaweed', 'cucumber'], ['chicken', 'mango', 'corn', 'edamame']];
+---
+<figure class:list={['select-none', cls]} aria-hidden="true">
+  <div class="rounded-xl bg-[#0a1f2c] p-2 shadow-[0_30px_60px_-30px_rgb(14_42_59/0.6)]">
+    <div class="pattern-rice-dark rounded-lg bg-ink p-4 text-white">
+      <div class="flex items-end justify-between">
+        <p class="font-display text-xl font-bold leading-none">{m.boardTitle}</p>
+        <p class="font-display text-sm font-extrabold">Yumi<span class="text-coral-400">Poke</span><span class="text-avocado-300">Go</span></p>
+      </div>
+      <div class="mt-3 grid grid-cols-4 gap-2">
+        {m.boardItems.map((it, i) => (
+          <div class="rounded-lg bg-white/5 p-2 text-center">
+            <svg viewBox="-132 -132 264 264" class="mx-auto block w-full" set:html={bowlSvg({ toppings: sets[i] as any, seed: 40 + i, idPrefix: `mb${i}` })} />
+            <p class="mt-1.5 text-[10px] font-semibold leading-tight">{it}</p>
+            <p class="text-[10px] text-mango-400">{m.priceHidden}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  <div class="mx-auto h-4 w-10 bg-[#0a1f2c]"></div>
+</figure>

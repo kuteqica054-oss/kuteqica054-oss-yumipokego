@@ -1,0 +1,15 @@
+---
+import type { Lang } from '../../i18n/routes';
+import { useT } from '../../i18n/utils';
+interface Props { lang: Lang; alternates: Record<Lang, string>; dark?: boolean; class?: string }
+const { lang, alternates, dark = false, class: cls = '' } = Astro.props;
+const t = useT(lang);
+const items: Lang[] = ['tr', 'en'];
+---
+<nav class:list={['inline-flex items-center rounded-full border p-0.5 text-sm font-semibold', dark ? 'border-white/25' : 'border-ink/15', cls]} aria-label={t.common.switchLang}>
+  {items.map((l) => l === lang ? (
+    <span class:list={['rounded-full px-2.5 py-1', dark ? 'bg-rice text-ink' : 'bg-ink text-rice']} aria-current="true">{l === 'tr' ? 'TR' : 'EN'}</span>
+  ) : (
+    <a href={alternates[l]} hreflang={l} lang={l} class:list={['rounded-full px-2.5 py-1 transition-colors', dark ? 'text-ink-mute hover:text-white' : 'text-ink-soft hover:text-ink']} title={t.common.switchLang}>{l === 'tr' ? 'TR' : 'EN'}</a>
+  ))}
+</nav>

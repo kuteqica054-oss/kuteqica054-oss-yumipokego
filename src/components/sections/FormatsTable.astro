@@ -1,0 +1,38 @@
+---
+import type { Lang } from '../../i18n/routes';
+import { useT, pick, type Num } from '../../i18n/utils';
+import data from '../../data/formats.json';
+import Value from '../ui/Value.astro';
+import Todo from '../ui/Todo.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const L = t.formats.labels;
+---
+<div class="overflow-x-auto rounded-[var(--radius-card)] border border-line bg-white">
+  <table class="w-full min-w-[640px] text-left text-[0.95rem]">
+    <caption class="sr-only">{t.formats.tableCaption}</caption>
+    <thead class="bg-rice-2 text-sm text-ink-soft">
+      <tr>
+        <th scope="col" class="px-5 py-3 font-semibold">{t.formats.tableFormat}</th>
+        <th scope="col" class="px-5 py-3 font-semibold">{L.area}</th>
+        <th scope="col" class="px-5 py-3 font-semibold">{L.seats}</th>
+        <th scope="col" class="px-5 py-3 font-semibold">{L.staff}</th>
+        <th scope="col" class="px-5 py-3 font-semibold">{L.investment}</th>
+        <th scope="col" class="px-5 py-3 font-semibold">{L.offered}</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-line">
+      {data.formats.map((f) => (
+        <tr>
+          <th scope="row" class="px-5 py-4 font-display text-base font-bold">{pick(f.name, lang)}</th>
+          <td class="px-5 py-4"><Value value={f.area as Num} unit="area" lang={lang} /></td>
+          <td class="px-5 py-4">{f.id === 'darkkitchen' ? '—' : <Value value={f.seats as Num} unit="count" lang={lang} />}</td>
+          <td class="px-5 py-4"><Value value={f.staff as Num} unit="count" lang={lang} /></td>
+          <td class="px-5 py-4"><Value value={pick(f.investment as any, lang) as Num} unit="money" lang={lang} /></td>
+          <td class="px-5 py-4">{f.offered === null ? <Todo label={t.common.toBeConfirmed} fallback={t.common.available} /> : f.offered ? t.common.available : '—'}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

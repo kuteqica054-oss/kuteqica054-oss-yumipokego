@@ -1,0 +1,15 @@
+---
+// Lucide ikonları (yalnızca derleme sırasında okunur, istemciye JS gitmez).
+import * as lucide from 'lucide';
+interface Props { name: string; size?: number; class?: string; stroke?: number; label?: string }
+const { name, size = 22, class: cls = '', stroke = 1.75, label } = Astro.props;
+const node = (lucide as unknown as Record<string, [string, Record<string, string>][]>)[name];
+if (!node) throw new Error(`Unknown icon: ${name}`);
+const inner = node
+  .map(([tag, attrs]) => `<${tag} ${Object.entries(attrs).map(([k, v]) => `${k}="${v}"`).join(' ')}/>`)
+  .join('');
+---
+<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
+  stroke-width={stroke} stroke-linecap="round" stroke-linejoin="round" class={cls}
+  aria-hidden={label ? undefined : 'true'} role={label ? 'img' : undefined} aria-label={label} focusable="false"
+  set:html={inner} />
